@@ -1,0 +1,17 @@
+timezone: "Asia/Seoul"
+max_items_per_feed: 5
+feeds:
+  - name: Reuters Tech
+    url: https://feeds.reuters.com/reuters/technologyNews
+  - name: The Verge AI
+    url: https://www.theverge.com/rss/artificial-intelligence/index.xml
+  - name: MIT Tech Review
+    url: https://www.technologyreview.com/feed/
+  - name: AP Technology
+    url: https://apnews.com/hub/technology?output=rss
+  - name: VentureBeat AI
+    url: https://venturebeat.com/category/ai/feed/
+  - name: 한국경제 IT/과학
+    url: https://www.hankyung.com/feed/it
+  - name: 연합뉴스 IT/과학
+    url: https://www.yna.co.kr/rss/it
