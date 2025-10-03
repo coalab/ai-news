@@ -36,8 +36,8 @@ html = f"""<!doctype html>
 <header>
   <h1>AI 뉴스 카드뉴스</h1>
   <p class="subtitle">오늘의 AI 이슈를 카드뉴스처럼 한 번에 훑어보기</p>
- <p><a href="/ai-news/archive/{iso}/">오늘 아카이브 바로가기</a></p>
-
+  <!-- 절대 경로 사용 -->
+  <p><a href="/ai-news/archive/{iso}/">오늘 아카이브 바로가기</a></p>
 </header>
 
 <main>
