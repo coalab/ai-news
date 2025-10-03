@@ -21,11 +21,13 @@ for i, entry in enumerate(feed.entries[:10], start=1):  # 상위 10개 기사만
     title = entry.title
     summary = getattr(entry, "summary", "")[:200]  # 요약(최대 200자)
     link = entry.link
+    published = getattr(entry, "published", "")  # 발행일 (있을 경우 표시)
 
     cards_html += f"""
     <article class="card">
       <h3>{title}</h3>
       <p>{summary}</p>
+      <p class="meta">발행일: {published}</p>
       <div><a href="{link}" target="_blank">기사 보기</a></div>
     </article>
     """
@@ -49,7 +51,8 @@ html = f"""<!doctype html>
              box-shadow:0 2px 8px rgba(0,0,0,0.1); }}
     .card h3 {{ margin:6px 0; font-size:18px; }}
     .card p {{ font-size:14px; color:#444; }}
-    footer {{ text-align:center; color:#777; padding:20px; margin-top:30px; font-size:13px; }}
+    .card .meta {{ font-size:12px; color:#777; margin-top:8px; }}
+    footer {{ text-align:center; color:#777; padding:20px; margin-top:30px; font-size:13px; line-height:1.6; }}
     a {{ color:#3057ff; text-decoration:none; }}
   </style>
 </head>
@@ -64,7 +67,14 @@ html = f"""<!doctype html>
   {cards_html}
 </main>
 
-<footer>© Daily AI News · {iso}</footer>
+<footer>
+  <p>© Daily AI News · {iso}</p>
+  <p>
+    본 서비스는 언론사에서 공개한 RSS 피드를 기반으로 기사 <strong>제목·요약·원문 링크</strong>만 제공합니다.<br>
+    모든 기사의 저작권은 원 저작권자(언론사 및 기자)에 있으며, 원문 열람은 해당 언론사 웹사이트에서 가능합니다.<br>
+    교육·연구 목적으로 일부 인용할 경우 반드시 <strong>언론사명·발행일·기자명·URL</strong>을 명시해 주시기 바랍니다.
+  </p>
+</footer>
 </body>
 </html>"""
 
