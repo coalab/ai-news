@@ -1,69 +1,56 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 카드뉴스 | 오늘자</title>
-  <meta name="description" content="오늘의 AI 뉴스 TOP 10을 카드뉴스 형태로 한눈에 정리합니다.">
-  <meta property="og:title" content="AI 뉴스 카드뉴스">
-  <meta property="og:description" content="매일 아침 자동 업데이트되는 AI 뉴스 카드뉴스">
-  <meta property="og:type" content="website">
-  <style>
-    :root{--bg:#eef2ff;--header:linear-gradient(180deg,#e6eeff,transparent);--card:#ffffff;--text:#0b1020;--muted:#4c546a;--border:#e6e9f0}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{background:var(--header);padding:32px 0 12px;border-bottom:1px solid var(--border)}
-    h1{margin:.2em 0;font-size:clamp(24px,5vw,44px)}
-    .subtitle{color:var(--muted);margin:4px 0 14px}
-    .chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px;margin-right:8px;background:#fff}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;text-decoration:none;color:var(--text);font-weight:700}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#5a7cff;font-weight:800;letter-spacing:.06em;margin-bottom:6px}
-    .card h3{margin:6px 0 8px;font-size:18px;line-height:1.35}
-    .desc{color:#334155;font-size:14.5px;line-height:1.7}
-    .meta{margin-top:10px;color:#6b7280;font-size:12.5px;display:flex;gap:6px;flex-wrap:wrap}
-    .tag{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px}
-    footer{color:#6b7280;text-align:center;padding:34px 0 60px}
-    a{color:#3057ff;text-decoration:underline}
-    .list .card{grid-column:span 12}
-  </style>
-  <script>
-    function toPDF(){window.print()}
-    function toggleLayout(){
-      const root=document.querySelector('main'); root.classList.toggle('list');
-      document.getElementById('layoutBtn').textContent = root.classList.contains('list') ? '레이아웃 전환 (리스트→그리드)' : '레이아웃 전환 (그리드→리스트)';
-    }
-  </script>
-</head>
-<body>
-<header>
-  <div class="wrap">
-    <span class="chip">🗞 매일 아침 자동 갱신</span>
-    <h1>AI 뉴스 카드뉴스</h1>
-    <p class="subtitle">오늘의 AI 이슈를 카드뉴스처럼 한 번에 훑어보기</p>
-    <div class="actions">
-      <a class="btn" href="#" onclick="toPDF()">🖨 인쇄/저장 (PDF)</a>
-      <a class="btn" id="layoutBtn" href="#" onclick="toggleLayout()">레이아웃 전환 (그리드→리스트)</a>
-    </div>
-  </div>
-</header>
+# scripts/build.py
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
 
-<main class="wrap grid" id="cards">
-  <!-- 여기에 오늘자 카드 10개를 직접 채우셔도 되고,
-       scripts/build.py가 있으면 Actions가 자동으로 채웁니다. -->
+KST = timezone(timedelta(hours=9))
+today = datetime.now(KST).date()
+iso = today.isoformat()
+
+root = Path(".")
+archive_dir = root / "archive" / iso
+archive_dir.mkdir(parents=True, exist_ok=True)
+
+html = f"""<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 뉴스 카드뉴스 | {iso}</title>
+<style>
+  body{{font-family:system-ui,"Noto Sans KR",sans-serif;background:#eef2ff;margin:0;color:#0b1020}}
+  .wrap{{max-width:1120px;margin:0 auto;padding:24px}}
+  header{{background:linear-gradient(180deg,#e6eeff,transparent);padding:32px 0 12px;border-bottom:1px solid #e6e9f0}}
+  h1{{margin:.2em 0;font-size:clamp(24px,5vw,44px)}}
+  .grid{{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}}
+  .card{{grid-column:span 12;background:#fff;border:1px solid #e6e9f0;border-radius:20px;padding:18px;
+         box-shadow:0 8px 28px rgba(0,0,0,.06)}}
+  @media(min-width:720px){{.card{{grid-column:span 6}}}}
+  @media(min-width:1024px){{.card{{grid-column:span 4}}}}
+  .kicker{{font-size:12px;color:#5a7cff;font-weight:800;margin-bottom:6px}}
+  .meta{{margin-top:10px;color:#6b7280;font-size:12.5px}}
+  a{{color:#3057ff}}
+</style></head><body>
+<header><div class="wrap">
+  <span>📅 {iso}</span>
+  <h1>AI 뉴스 카드뉴스</h1>
+  <p>오늘의 AI 이슈를 카드뉴스처럼 한 번에 훑어보기</p>
+  <p><a href="archive/{iso}/">📚 오늘 아카이브로 바로가기</a></p>
+</div></header>
+
+<main class="wrap grid">
+  <!-- 필요한 만큼 카드 반복해서 채우세요 -->
   <article class="card">
-    <div class="kicker">안내</div>
-    <h3>오늘자 카드뉴스가 곧 표시됩니다</h3>
-    <p class="desc">`scripts/build.py`가 존재하면 GitHub Actions가 매일 아침 자동으로
-    최신 뉴스를 가져와 이 페이지를 갱신합니다. 수동으로 바로 보이게 하려면 아래 카드 예시들을 실제 내용으로 바꿔서 커밋하세요.</p>
-    <div class="meta"><span class="tag">TIP</span> <a href="archive/">지난 뉴스(아카이브)</a></div>
+    <div class="kicker">카드 1</div>
+    <h3>예시 제목</h3>
+    <p>여기에 오늘자 요약을 넣습니다. 실제 운영 시 RSS/크롤러로 내용을 채우도록 확장하세요.</p>
+    <div class="meta">{iso}</div>
   </article>
 </main>
 
-<footer>© Daily AI News · GitHub Pages</footer>
-</body>
-</html>
+<footer class="wrap" style="text-align:center;color:#6b7280;padding:34px 0 60px">
+  © Daily AI News · {iso}
+</footer>
+</body></html>"""
+
+# 메인과 아카이브 모두 갱신
+(root / "index.html").write_text(html, encoding="utf-8")
+(archive_dir / "index.html").write_text(html, encoding="utf-8")
+print("Generated index.html and", archive_dir / "index.html")
