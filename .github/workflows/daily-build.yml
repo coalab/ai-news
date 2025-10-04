@@ -1,52 +1,180 @@
-# .github/workflows/daily-build.yml
-name: Daily AI News Build
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 뉴스 카드뉴스 | {{ today_kr }}</title>
+  <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
+  <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
+  <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
+  <meta property="og:type" content="website">
+  <style>
+    /* ===============================
+       🎨 다크모드 + 민트 포인트 테마
+       =============================== */
+    :root{
+      --bg:#0b1020;
+      --card:#121830;
+      --muted:#A5E0C5;      /* 보조 텍스트톤 (연한 민트) */
+      --text:#E7ECFF;       /* 본문 텍스트 */
+      --border:rgba(255,255,255,.08);
+      --accent:#5CCC88;     /* 포인트 민트 */
+      --accent-hover:#4AB97A;
+      --accent-bg:rgba(92,204,136,0.1);
+    }
 
-on:
-  schedule:
-    - cron: "30 22 * * *"    # 매일 07:30 KST
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;
+    }
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:24px;
+    }
 
-      # build.py가 없으면 '건드리지 않고' 종료
-      - name: Check script exists
-        id: chk
-        run: |
-          if [ ! -f scripts/build.py ]; then
-            echo "has_script=false" >> $GITHUB_OUTPUT
-          else
-            echo "has_script=true" >> $GITHUB_OUTPUT
-          fi
+    header{
+      position:sticky;
+      top:0;
+      background:rgba(0,0,0,.25);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--border);
+      z-index:10;
+    }
 
-      - name: Set up Python
-        if: steps.chk.outputs.has_script == 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    h1{
+      margin:.4em 0;
+      font-size:clamp(22px,4.8vw,42px);
+      color:var(--accent);
+      font-weight:700;
+    }
 
-      - name: Install deps
-        if: steps.chk.outputs.has_script == 'true' && hashFiles('requirements.txt') != ''
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--accent);
+      border-radius:999px;
+      margin-top:8px;
+      color:var(--accent);
+      font-weight:600;
+      background:var(--accent-bg);
+    }
 
-      - name: Build site
-        if: steps.chk.outputs.has_script == 'true'
-        run: python scripts/build.py
+    .grid{
+      display:grid;
+      gap:18px;
+      margin-top:22px;
+      grid-template-columns:repeat(12,1fr);
+    }
 
-      - name: Commit & Push changes
-        if: steps.chk.outputs.has_script == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Auto update site" || echo "No changes"
-          git push
+    .card{
+      grid-column:span 12;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 0 10px rgba(92,204,136,0.15);
+      transition:transform .15s ease, box-shadow .2s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 14px rgba(92,204,136,0.25);
+    }
+
+    @media(min-width:720px){.card{grid-column:span 6}}
+    @media(min-width:1024px){.card{grid-column:span 4}}
+
+    .kicker{
+      font-size:12px;
+      color:var(--accent);
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:.06em;
+      margin-bottom:6px;
+    }
+
+    .desc{
+      color:var(--muted);
+      font-size:14.5px;
+      line-height:1.6;
+    }
+
+    .meta{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12.5px;
+    }
+
+    footer{
+      color:var(--muted);
+      text-align:center;
+      padding:34px 0 60px;
+      border-top:1px solid rgba(92,204,136,0.2);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    a:hover{
+      color:var(--accent-hover);
+    }
+
+    .actions a{
+      display:inline-block;
+      margin-right:10px;
+    }
+
+    .actions a:hover{
+      text-decoration:underline;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <span class="badge">🗞️ {{ week_str }}</span>
+    <h1>AI 뉴스 카드뉴스</h1>
+    <div class="actions">
+      <a href="archive/{{ today_iso }}/index.html">📚 오늘 기사 고정 링크</a>
+      <a href="https://share.naver.com/web/shareView.nhn?url={{ 'https://example.com' }}&title={{ 'AI 뉴스 카드뉴스' }}" target="_blank" rel="noopener">네이버로 공유</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="grid">
+    {% for c in cards %}
+    <article class="card">
+      <div class="kicker">카드 {{ loop.index }}</div>
+      <h3>{{ c.title }}</h3>
+      <p class="desc">{{ c.summary }}</p>
+      <div class="meta">
+        <span>출처: {{ c.source }}</span> ·
+        <span>{{ c.date_kr }}</span> ·
+        <a href="{{ c.link }}" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+
+<footer>
+  <p>© {{ year }} <strong>Daily AI News</strong> · 자동 생성 (GitHub Actions)</p>
+  <p>본 서비스는 언론사에서 공개한 RSS 피드를 기반으로 기사 <strong>제목·요약·원문 링크</strong>만 제공합니다.<br>
+  모든 기사의 저작권은 원 저작권자(언론사 및 기자)에 있으며, 원문 열람은 해당 언론사 웹사이트에서 가능합니다.<br>
+  교육·연구 목적으로 일부 인용할 경우 반드시 <strong>언론사명·발행일·기자명·URL</strong>을 명시해 주세요.</p>
+  <p>📅 최신 업데이트: {{ today_kr }}</p>
+</footer>
+
+</body>
+</html>
