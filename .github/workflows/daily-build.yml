@@ -8,34 +8,37 @@
   <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
   <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
   <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ===============================
-       🎨 다크모드 + 민트 포인트 테마
-       =============================== */
+    /* ========== 테마 색상 ========== */
     :root{
       --bg:#0b1020;
       --card:#121830;
-      --muted:#A5E0C5;      /* 보조 텍스트톤 (연한 민트) */
-      --text:#E7ECFF;       /* 본문 텍스트 */
+      --text:#E7ECFF;
+      --muted:#A5E0C5;
       --border:rgba(255,255,255,.08);
-      --accent:#5CCC88;     /* 포인트 민트 */
+      --accent:#5CCC88;
       --accent-hover:#4AB97A;
       --accent-bg:rgba(92,204,136,0.1);
+      --mint-bg:#E8F9EE;
+      --accent-strong:#22C55E;
+      --ink:#0b1020;
+      --ink-soft:#333;
     }
 
     body{
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;
+      font-family:Pretendard, system-ui, -apple-system, "Noto Sans KR", sans-serif;
     }
 
-    .wrap{
-      max-width:1120px;
-      margin:0 auto;
-      padding:24px;
-    }
+    .wrap{max-width:1120px;margin:0 auto;padding:24px;}
 
+    /* 헤더 */
     header{
       position:sticky;
       top:0;
@@ -44,32 +47,43 @@
       border-bottom:1px solid var(--border);
       z-index:10;
     }
+    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px);color:var(--accent);font-weight:700;}
+    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--accent);
+      border-radius:999px;margin-top:8px;color:var(--accent);font-weight:600;background:var(--accent-bg);}
+    .actions a{color:var(--accent);margin-right:10px;text-decoration:none;font-weight:600;}
+    .actions a:hover{text-decoration:underline;color:var(--accent-hover);}
 
-    h1{
-      margin:.4em 0;
-      font-size:clamp(22px,4.8vw,42px);
-      color:var(--accent);
-      font-weight:700;
+    /* 라이트 민트 배너 */
+    .mint-banner{
+      background:var(--mint-bg);
+      border:2px solid var(--accent);
+      border-radius:16px;
+      padding:28px;
+      text-align:center;
+      color:var(--ink);
+      box-shadow:0 6px 24px rgba(34,197,94,.15);
+      margin:30px auto 50px;
     }
-
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
-      border:1px solid var(--accent);
-      border-radius:999px;
-      margin-top:8px;
-      color:var(--accent);
-      font-weight:600;
-      background:var(--accent-bg);
+    .mint-banner .kicker{
+      color:var(--accent-strong);
+      font-weight:800;
+      letter-spacing:.02em;
+      margin-bottom:.6em;
     }
-
-    .grid{
-      display:grid;
-      gap:18px;
-      margin-top:22px;
-      grid-template-columns:repeat(12,1fr);
+    .mint-banner .headline{
+      font-family:'Jua', Pretendard, sans-serif;
+      font-size:clamp(24px,4.5vw,40px);
+      margin:.2em 0 .4em;
     }
+    .mint-banner p{color:var(--ink-soft);margin:.4em 0;}
+    .mint-banner .cta{
+      display:inline-block;margin-top:14px;padding:12px 18px;
+      background:#111;color:#fff;border-radius:12px;text-decoration:none;font-weight:700;
+    }
+    .mint-banner .cta:hover{background:#222;}
 
+    /* 카드 레이아웃 */
+    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr);}
     .card{
       grid-column:span 12;
       background:var(--card);
@@ -79,63 +93,14 @@
       box-shadow:0 0 10px rgba(92,204,136,0.15);
       transition:transform .15s ease, box-shadow .2s ease;
     }
-
-    .card:hover{
-      transform:translateY(-3px);
-      box-shadow:0 0 14px rgba(92,204,136,0.25);
-    }
-
+    .card:hover{transform:translateY(-3px);box-shadow:0 0 14px rgba(92,204,136,0.25);}
     @media(min-width:720px){.card{grid-column:span 6}}
     @media(min-width:1024px){.card{grid-column:span 4}}
 
-    .kicker{
-      font-size:12px;
-      color:var(--accent);
-      text-transform:uppercase;
-      font-weight:800;
-      letter-spacing:.06em;
-      margin-bottom:6px;
-    }
-
-    .desc{
-      color:var(--muted);
-      font-size:14.5px;
-      line-height:1.6;
-    }
-
-    .meta{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12.5px;
-    }
-
-    footer{
-      color:var(--muted);
-      text-align:center;
-      padding:34px 0 60px;
-      border-top:1px solid rgba(92,204,136,0.2);
-      font-size:13px;
-      line-height:1.6;
-    }
-
-    a{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
-    }
-
-    a:hover{
-      color:var(--accent-hover);
-    }
-
-    .actions a{
-      display:inline-block;
-      margin-right:10px;
-    }
-
-    .actions a:hover{
-      text-decoration:underline;
-    }
+    .kicker{font-size:12px;color:var(--accent);text-transform:uppercase;font-weight:800;letter-spacing:.06em;margin-bottom:6px;}
+    .desc{color:var(--muted);font-size:14.5px;line-height:1.6;}
+    .meta{margin-top:10px;color:var(--muted);font-size:12.5px;}
+    footer{color:var(--muted);text-align:center;padding:34px 0 60px;border-top:1px solid rgba(92,204,136,0.2);font-size:13px;line-height:1.6;}
   </style>
 </head>
 
@@ -150,6 +115,14 @@
     </div>
   </div>
 </header>
+
+<!-- 🟩 라이트 민트 배너 -->
+<section class="mint-banner">
+  <div class="kicker">2025 데일리 AI 뉴스</div>
+  <div class="headline">오늘의 이슈, 한눈에!</div>
+  <p>매일 업데이트되는 최신 AI 뉴스를 카드뉴스로 큐레이션합니다.<br>하루 5분이면 오늘의 트렌드를 빠르게 확인하세요.</p>
+  <a class="cta" href="archive/{{ today_iso }}/index.html">지금 보러가기</a>
+</section>
 
 <main class="wrap">
   <section class="grid">
