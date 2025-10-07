@@ -89,8 +89,7 @@ import re
 from html import unescape
 
 import feedparser
-from jinja2 import
-Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader
 
 # ====== 설정(원하는 값만 바꾸세요) ==========================================
 SITE_URL        = "https://coalab.github.io/ai-news"  # Pages 주소
@@ -184,10 +183,6 @@ html = template.render(
 # ===== 저장 =====
 (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
 (ARCHIVE / "index.html").write_text(html, encoding="utf-8")
-
-print(f"✅ built: {OUT_DIR/'index.html'}")
-print(f"✅ built: {ARCHIVE/'index.html'}")
-
 
 print(f"✅ built: {OUT_DIR/'index.html'}")
 print(f"✅ built: {ARCHIVE/'index.html'}")
