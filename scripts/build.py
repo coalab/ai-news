@@ -124,6 +124,15 @@ from urllib.parse import urlparse
 #     })
 
 # ===== RSS 수집 =====
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+from urllib.parse import urlparse   # ✅ 썸네일 파비콘용
+import re
+from html import unescape
+
+import feedparser                   # ✅ 누락되었던 import
+from jinja2 import Environment, FileSystemLoader
+
 from urllib.parse import urlparse
 
 feed = feedparser.parse(FEED_URL)
