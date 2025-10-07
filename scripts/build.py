@@ -87,40 +87,35 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
 from html import unescape
-
 import feedparser
 from jinja2 import Environment, FileSystemLoader
 
-# ====== 설정(원하는 값만 바꾸세요) ==========================================
-SITE_URL        = "https://coalab.github.io/ai-news"  # Pages 주소
-CARDS_LIMIT     = 10                                   # 카드 개수
-AD_INTERVAL     = 3                                    # 카드 n개마다 광고
-ADS_CLIENT      = "ca-pub-1841750816553239"            # 애드센스 client
-ADS_SLOT_TOP    = "1234567890"                         # 상단 배너 슬롯 ID
-ADS_SLOT_MID    = "1234567890"                         # 중간 광고 슬롯 ID
+# ===== 설정 =====
+SITE_URL        = "https://coalab.github.io/ai-news"
+CARDS_LIMIT     = 10
+AD_INTERVAL     = 3
+ADS_CLIENT      = "ca-pub-1841750816553239"
+ADS_SLOT_TOP    = "1234567890"  # 상단 광고 슬롯 ID
+ADS_SLOT_MID    = "1234567890"  # 중간 광고 슬롯 ID
 FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
-# ============================================================================
 
-# --- RSS summary 정제용 ---
+# ===== HTML 정리 함수 =====
 TAG_RE = re.compile(r"<[^>]+>")
-
 def clean_summary(html_text: str, limit: int = 180) -> str:
-    """RSS summary에서 HTML 태그 제거, 엔티티 디코딩, 공백정리, 길이 제한."""
     if not html_text:
         return ""
-    text = TAG_RE.sub("", html_text)         # 태그 제거
-    text = unescape(text)                    # &quot; 등 디코딩
-    text = re.sub(r"\s+", " ", text).strip() # 공백 정리
+    text = TAG_RE.sub("", html_text)
+    text = unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
     return (text[:limit] + "…") if len(text) > limit else text
 
 # ===== 날짜/경로 =====
 KST = timezone(timedelta(hours=9))
 now = datetime.now(KST)
-today_date = now.date()
-today_iso  = today_date.isoformat()
-today_kr   = now.strftime("%Y.%m.%d (%a)")
-week_str   = now.strftime("Week %W")
-year       = now.year
+today_iso = now.date().isoformat()
+today_kr  = now.strftime("%Y.%m.%d (%a)")
+week_str  = now.strftime("Week %W")
+year      = now.year
 
 ROOT    = Path(__file__).resolve().parents[1]
 TPL_DIR = ROOT / "templates"
@@ -128,17 +123,8 @@ OUT_DIR = ROOT
 ARCHIVE = ROOT / "archive" / today_iso
 ARCHIVE.mkdir(parents=True, exist_ok=True)
 
-if not TPL_DIR.exists():
-    raise FileNotFoundError(f"templates 폴더가 없습니다: {TPL_DIR}")
-
-# 템플릿 파일 자동 탐지 (index.html 우선, 없으면 page.html.j2)
-tpl_name_candidates = ["index.html", "page.html.j2"]
-tpl_name = next((n for n in tpl_name_candidates if (TPL_DIR / n).exists()), None)
-if not tpl_name:
-    raise FileNotFoundError(
-        f"템플릿이 없습니다. 아래 중 하나를 만들어주세요: {', '.join(tpl_name_candidates)}"
-    )
-
+# ===== 템플릿 로드 =====
+tpl_name = "index.html"
 env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
 template = env.get_template(tpl_name)
 
@@ -147,17 +133,13 @@ feed = feedparser.parse(FEED_URL)
 cards = []
 for entry in feed.entries[:CARDS_LIMIT]:
     title = (entry.get("title") or "").strip()
-    link  = entry.get("link")
+    link = entry.get("link")
     if not (title and link):
         continue
-
-    raw_summary = entry.get("summary") or ""
-    summary     = clean_summary(raw_summary, limit=180)
-
+    summary = clean_summary(entry.get("summary") or "")
     published = entry.get("published", "")
     source = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
     source = source or "Google 뉴스"
-
     cards.append({
         "title": title,
         "summary": summary,
@@ -184,5 +166,5 @@ html = template.render(
 (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
 (ARCHIVE / "index.html").write_text(html, encoding="utf-8")
 
-print(f"✅ built: {OUT_DIR/'index.html'}")
-print(f"✅ built: {ARCHIVE/'index.html'}")
+print("✅ index.html 및 archive 페이지 생성 완료:", today_iso)
+
