@@ -58,7 +58,12 @@
     {% for c in cards %}
     <article class="card">
       <div class="kicker">카드 {{ loop.index }}</div>
-      <h3>{{ c.title }}</h3>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
       <p class="desc">{{ c.summary }}</p>
       <div class="meta">
         <span>출처: {{ c.source }}</span> ·
