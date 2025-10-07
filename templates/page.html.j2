@@ -8,24 +8,38 @@
   <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
   <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
   <meta property="og:type" content="website">
-  <style>
-    :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .desc{color:var(--muted);font-size:14.5px;line-height:1.6}
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#8fb0ff;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
-  </style>
+ <style>
+  :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
+  body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px}
+  header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
+  .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
+  .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
+  .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
+  @media(min-width:720px){.card{grid-column:span 6}}
+  @media(min-width:1024px){.card{grid-column:span 4}}
+  .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
+
+  /* ✅ 여기가 핵심 수정 부분 */
+  .desc{
+    color:var(--muted);
+    font-size:14.5px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3; /* 3줄까지만 표시 */
+    overflow:hidden;
+  }
+
+  .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
+  footer{color:var(--muted);text-align:center;padding:34px 0 60px}
+  a{color:#8fb0ff;text-decoration:underline}
+  .actions a{display:inline-block;margin-right:10px}
+</style>
+
 </head>
 <body>
 <header>
