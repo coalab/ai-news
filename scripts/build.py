@@ -83,11 +83,14 @@
 # (archive_dir / "index.html").write_text(html, encoding="utf-8")
 
 # print("✅ index.html 및 archive 페이지가 성공적으로 생성되었습니다.")
-
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+import re
+from html import unescape
+
 import feedparser
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import이걸 어디에 넣어
+Environment, FileSystemLoader
 
 # ====== 설정(원하는 값만 바꾸세요) ==========================================
 SITE_URL        = "https://coalab.github.io/ai-news"  # Pages 주소
@@ -99,6 +102,19 @@ ADS_SLOT_MID    = "1234567890"                         # 중간 광고 슬롯 ID
 FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
 # ============================================================================
 
+# --- RSS summary 정제용 ---
+TAG_RE = re.compile(r"<[^>]+>")
+
+def clean_summary(html_text: str, limit: int = 180) -> str:
+    """RSS summary에서 HTML 태그 제거, 엔티티 디코딩, 공백정리, 길이 제한."""
+    if not html_text:
+        return ""
+    text = TAG_RE.sub("", html_text)         # 태그 제거
+    text = unescape(text)                    # &quot; 등 디코딩
+    text = re.sub(r"\s+", " ", text).strip() # 공백 정리
+    return (text[:limit] + "…") if len(text) > limit else text
+
+# ===== 날짜/경로 =====
 KST = timezone(timedelta(hours=9))
 now = datetime.now(KST)
 today_date = now.date()
@@ -127,18 +143,22 @@ if not tpl_name:
 env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
 template = env.get_template(tpl_name)
 
-# RSS 수집
+# ===== RSS 수집 =====
 feed = feedparser.parse(FEED_URL)
 cards = []
 for entry in feed.entries[:CARDS_LIMIT]:
-    title = entry.get("title", "").strip()
-    link = entry.get("link")
+    title = (entry.get("title") or "").strip()
+    link  = entry.get("link")
     if not (title and link):
         continue
-    summary = (entry.get("summary") or "").strip()[:200]
+
+    raw_summary = entry.get("summary") or ""
+    summary     = clean_summary(raw_summary, limit=180)
+
     published = entry.get("published", "")
     source = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
     source = source or "Google 뉴스"
+
     cards.append({
         "title": title,
         "summary": summary,
@@ -147,7 +167,7 @@ for entry in feed.entries[:CARDS_LIMIT]:
         "source": source,
     })
 
-# 렌더링
+# ===== 렌더링 =====
 html = template.render(
     today_iso=today_iso,
     today_kr=today_kr,
@@ -161,9 +181,13 @@ html = template.render(
     ad_interval=AD_INTERVAL,
 )
 
-# 저장
+# ===== 저장 =====
 (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
 (ARCHIVE / "index.html").write_text(html, encoding="utf-8")
+
+print(f"✅ built: {OUT_DIR/'index.html'}")
+print(f"✅ built: {ARCHIVE/'index.html'}")
+
 
 print(f"✅ built: {OUT_DIR/'index.html'}")
 print(f"✅ built: {ARCHIVE/'index.html'}")
