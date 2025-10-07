@@ -123,14 +123,13 @@ from urllib.parse import urlparse
 #         "thumb": thumb,            # ✅ 추가
 #     })
 
-# ===== RSS 수집 =====
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import re
 from html import unescape
 import feedparser
 from jinja2 import Environment, FileSystemLoader
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 # ===== 설정 =====
 SITE_URL        = "https://coalab.github.io/ai-news"
@@ -169,42 +168,109 @@ ARCHIVE.mkdir(parents=True, exist_ok=True)
 tpl_candidates = ["index.html", "page.html.j2", "index.j2", "index.htm"]
 tpl_name = next((n for n in tpl_candidates if (TPL_DIR / n).exists()), None)
 if not tpl_name:
-    raise FileNotFoundError(f"템플릿 파일을 찾지 못했습니다. templates 폴더에 다음 중 하나를 만들어주세요: {', '.join(tpl_candidates)}")
+    raise FileNotFoundError(
+        f"템플릿 파일을 찾지 못했습니다. templates 폴더에 다음 중 하나를 만들어주세요: {', '.join(tpl_candidates)}"
+    )
 
 env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
 template = env.get_template(tpl_name)
 
+# ===== 유틸: Google News 링크 → 원문 링크 복원 =====
+def resolve_original_link(gn_link: str) -> str:
+    """
+    news.google.com 중계 링크의 쿼리파라미터 ?url= 에 실제 원문 주소가 들어있으면 그걸 반환.
+    그렇지 않으면 원본 링크를 그대로 반환.
+    """
+    try:
+        p = urlparse(gn_link or "")
+        if p.netloc.endswith("news.google.com"):
+            q = parse_qs(p.query)
+            return q.get("url", [gn_link])[0]
+        return gn_link
+    except Exception:
+        return gn_link
+
+def pick_source(entry) -> str:
+    """
+    RSS의 source.title 또는 링크 도메인을 이용해 소스를 추정.
+    """
+    src = None
+    try:
+        if hasattr(entry, "source") and isinstance(entry.source, dict):
+            src = entry.source.get("title")
+    except Exception:
+        pass
+
+    if src:
+        return src
+
+    # source가 비어 있으면 링크 도메인을 소스처럼 표기
+    gn_link = entry.get("link", "")
+    link = resolve_original_link(gn_link)
+    host = urlparse(link).netloc or "Google 뉴스"
+    return host
+
+def parse_published(entry) -> str:
+    """
+    published(문자열)가 있으면 그대로 쓰되, 비면 공백 반환.
+    추후 필요하면 datetime 파싱해 KST 포맷으로 바꿀 수 있음.
+    """
+    return entry.get("published", "") or ""
+
+def pick_thumbnail(entry, cache_key: str) -> str:
+    """
+    1) media:thumbnail
+    2) media:content
+    3) 원문 도메인 파비콘
+    순서로 선택. 캐시버스터를 붙여 새로고침 영향 최소화.
+    """
+    # 1) media:thumbnail
+    try:
+        if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
+            u = entry.media_thumbnail[0].get("url")
+            if u:
+                return f"{u}?v={cache_key}"
+    except Exception:
+        pass
+
+    # 2) media:content
+    try:
+        if hasattr(entry, "media_content") and entry.media_content:
+            u = entry.media_content[0].get("url")
+            if u:
+                return f"{u}?v={cache_key}"
+    except Exception:
+        pass
+
+    # 3) favicon (원문 도메인 기준)
+    gn_link = entry.get("link", "")
+    link = resolve_original_link(gn_link)
+    host = urlparse(link).netloc or "news.google.com"
+    return f"https://www.google.com/s2/favicons?domain={host}&sz=128&v={cache_key}"
+
 # ===== RSS 수집 =====
 feed = feedparser.parse(FEED_URL)
 cards = []
+
 for entry in feed.entries[:CARDS_LIMIT]:
     title = (entry.get("title") or "").strip()
-    link  = entry.get("link")
-    if not (title and link):
+    gn_link = entry.get("link")
+    if not (title and gn_link):
         continue
 
+    link      = resolve_original_link(gn_link)
     summary   = clean_summary(entry.get("summary") or "")
-    published = entry.get("published", "")
-    source    = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
-    source    = source or "Google 뉴스"
-
-    # 썸네일 추출 (없으면 파비콘)
-    thumb = None
-    if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
-        thumb = entry.media_thumbnail[0].get("url")
-    if not thumb and hasattr(entry, "media_content") and entry.media_content:
-        thumb = entry.media_content[0].get("url")
-    if not thumb:
-        host = urlparse(link).netloc
-        thumb = f"https://www.google.com/s2/favicons?domain={host}&sz=128"
+    published = parse_published(entry)
+    source    = pick_source(entry)
+    thumb     = pick_thumbnail(entry, cache_key=today_iso)
 
     cards.append({
         "title": title,
         "summary": summary,
-        "link": link,
-        "date_kr": published,
+        "link": link,          # 원문 링크
+        "date_kr": published,  # 필요 시 포맷 변경 가능
         "source": source,
-        "thumb": thumb,
+        "thumb": thumb,        # 카드별 썸네일
     })
 
 # ===== 렌더링 =====
