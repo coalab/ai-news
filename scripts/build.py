@@ -124,9 +124,16 @@ ARCHIVE = ROOT / "archive" / today_iso
 ARCHIVE.mkdir(parents=True, exist_ok=True)
 
 # ===== 템플릿 로드 =====
-tpl_name = "index.html"
+tpl_candidates = ["index.html", "page.html.j2", "index.j2", "index.htm"]
+tpl_name = next((n for n in tpl_candidates if (TPL_DIR / n).exists()), None)
+if not tpl_name:
+    raise FileNotFoundError(
+        f"템플릿 파일을 찾지 못했습니다. templates 폴더에 다음 중 하나를 만들어주세요: {', '.join(tpl_candidates)}"
+    )
+
 env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
 template = env.get_template(tpl_name)
+
 
 # ===== RSS 수집 =====
 feed = feedparser.parse(FEED_URL)
