@@ -8,24 +8,38 @@
   <meta property="og:title" content="AI 뉴스 카드뉴스 | 2025.10.07 (Tue)">
   <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
   <meta property="og:type" content="website">
-  <style>
-    :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .desc{color:var(--muted);font-size:14.5px;line-height:1.6}
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#8fb0ff;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
-  </style>
+ <style>
+  :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
+  body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px}
+  header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
+  .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
+  .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
+  .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
+  @media(min-width:720px){.card{grid-column:span 6}}
+  @media(min-width:1024px){.card{grid-column:span 4}}
+  .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
+
+  /* ✅ 여기가 핵심 수정 부분 */
+  .desc{
+    color:var(--muted);
+    font-size:14.5px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3; /* 3줄까지만 표시 */
+    overflow:hidden;
+  }
+
+  .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
+  footer{color:var(--muted);text-align:center;padding:34px 0 60px}
+  a{color:#8fb0ff;text-decoration:underline}
+  .actions a{display:inline-block;margin-right:10px}
+</style>
+
 </head>
 <body>
 <header>
@@ -44,19 +58,61 @@
     
     <article class="card">
       <div class="kicker">카드 1</div>
-      <h3>삼성 HBM 고객사 美 AMD, 오픈AI에 AI가속기 대량 공급키로 - v.daum.net</h3>
-      <p class="desc">&lt;ol&gt;&lt;li&gt;&lt;a href=&#34;https://news.google.com/rss/articles/CBMiT0FVX3lxTE10b1Vwal84SUQ5VHNxTzkzbGwwNThzZXQ1SXRUX0hQSzFvVEk5VHlQMXcxRWg2QVAtYnlUekJyZ3lDRkhKY0hET3lvMV9jQXM?oc=5&#34; target=&#34;_blank&#34;&gt;삼성 HBM 고객사 美</p>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">오픈AI, AMD와 5년간 6GW 규모 초대형 컴퓨팅 계약 v.daum.net</p>
       <div class="meta">
         <span>출처: v.daum.net</span> ·
-        <span>Mon, 06 Oct 2025 11:45:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE10b1Vwal84SUQ5VHNxTzkzbGwwNThzZXQ1SXRUX0hQSzFvVEk5VHlQMXcxRWg2QVAtYnlUekJyZ3lDRkhKY0hET3lvMV9jQXM?oc=5" target="_blank" rel="noopener">원문 보기</a>
+        <span>Mon, 06 Oct 2025 18:15:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBiby1tcU1VZWxKYmJYTWFSbDNGTzh1VEJBZ0M3OGRNTy0weGduNElzanpVc001R1pzbm9WdmJQaXF0eFFQaDVHTndWcXJQS2c?oc=5" target="_blank" rel="noopener">원문 보기</a>
       </div>
     </article>
     
     <article class="card">
       <div class="kicker">카드 2</div>
-      <h3>오픈AI, &#39;데브데이 2025&#39;서 비공개 프로젝트 공개한다 - 지디넷코리아</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiVkFVX3lxTE9pQmNlc3l1eEhCdXV5ZjNnUmlnNHhoeHdFZWNWZUphczBmWWNCQXpGUXNDX3NkZEZzQmRNOG5xSk52ZEhtdGlJc2dGUjExNEVfWE9oMVN3?oc=5&#34; target=&#34;_blank&#34;&gt;오픈AI, &#39;데브데이</p>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">[뉴욕증시]AMD·오픈AI &#39;메가딜&#39;에 AI 낙관론 확산…S&amp;P·나스닥 사상 최고치 아시아경제</p>
+      <div class="meta">
+        <span>출처: 아시아경제</span> ·
+        <span>Mon, 06 Oct 2025 23:26:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBtdFNiOHJ6clNldTdMQ2JkSnlYZ2NwUHF0ZHYtanVIbzUwOHpQVF9yTDg1YXZ2dC1nY3hFZ3FDMDVXXzI0clphcXRTcUJtOGVKa2Fqbmgwc28xVnVuWUVreA?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 3</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">삼성 HBM 고객사 美 AMD, 오픈AI에 AI가속기 대량 공급키로 한국경제</p>
+      <div class="meta">
+        <span>출처: 한국경제</span> ·
+        <span>Mon, 06 Oct 2025 11:43:01 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NMjVmVjRENXRBdVRNT0hoeTZyR1RMZnRSSC10TVp4OUhCRmx6Q2YxbnEtbnBGbldIWDl2Y0R5WEgtYXNXdVhYdU1CSlpKX2p3X3hQTm5Rc1RqUdIBVEFVX3lxTE1zV1RMTmRFbl9velRHd1dVOUdIVDdzZ1JGWVJmdk44UzZmTFBsWXkxRUIyN0F5c3hzWlJrSlBjbFFSVHY3NTVQWFJGVEZkRGpNVUEweA?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 4</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">오픈AI, &#39;데브데이 2025&#39;서 비공개 프로젝트 공개한다 지디넷코리아</p>
       <div class="meta">
         <span>출처: 지디넷코리아</span> ·
         <span>Mon, 06 Oct 2025 00:18:44 GMT</span> ·
@@ -65,42 +121,14 @@
     </article>
     
     <article class="card">
-      <div class="kicker">카드 3</div>
-      <h3>챗GPT, 모든 앱 품는다… 인터넷 &#39;관문&#39; 노리는 오픈AI [데브데이 2025] - 서울경제</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiVkFVX3lxTE5BcTNvOVplS3JLMFdSb2tDQUtEX1pZcnYybW9mR3MxbTlsUW1zZFdiZkJ4c1RiNWpRTUt5RzdfVFpxQlduajE4LUJpZUJPdGNHYlRURHZn0gFXQVVfeXFMTzcxUEpFQVM5WmlBWHlNVF</p>
-      <div class="meta">
-        <span>출처: 서울경제</span> ·
-        <span>Mon, 06 Oct 2025 20:47:13 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5BcTNvOVplS3JLMFdSb2tDQUtEX1pZcnYybW9mR3MxbTlsUW1zZFdiZkJ4c1RiNWpRTUt5RzdfVFpxQlduajE4LUJpZUJPdGNHYlRURHZn0gFXQVVfeXFMTzcxUEpFQVM5WmlBWHlNVF9CREsyaHRXVFE3S2p4bjB4WDNuRDZHcU9sSXg5UHRlaUtnazlURndLZjVGa0EzRGJaWGp3SGR1RHE4R0oxLS1n?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-    </article>
-    
-    <article class="card">
-      <div class="kicker">카드 4</div>
-      <h3>“챗GPT하나면 충분”...챗GPT 안에서 스포티파이·부킹닷컴 쓸 수 있다 - 조선일보</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMigwFBVV95cUxQOVA5QklRYkcyQ2M2RTAwWDlwaGZnYVpzZDNHUTdMUFViVWZuLWJLcDA1QVlQWnF0Nkh6Y2hjSDQ1bFphWWt0T2tXR3lDcmRoYkIyMVUwSFFPLTBQOG1Oa0gzWHltMGJHMTZobjBocl</p>
-      <div class="meta">
-        <span>출처: 조선일보</span> ·
-        <span>Mon, 06 Oct 2025 22:50:55 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQOVA5QklRYkcyQ2M2RTAwWDlwaGZnYVpzZDNHUTdMUFViVWZuLWJLcDA1QVlQWnF0Nkh6Y2hjSDQ1bFphWWt0T2tXR3lDcmRoYkIyMVUwSFFPLTBQOG1Oa0gzWHltMGJHMTZobjBoclhNM0FXSV8xN3dva0dTd0l0ZThDNNIBlwFBVV95cUxPSFg1dHdPb0xBdU9LYzFjZEVfNFpOSk5zWmx5ZDRRbWxHRlVWNWFQWjU2SE1VMm5XZmJJR3JFb1d1UThOenVNMDJ1M2tva0VWRm5YVGd3VDBhaG8weFB5b09HMnRNcFowSGZWSzBpb2FIeG1jNTROWDkxc2NfMnBLZVdSSml4a0pzTl9PMDBBMmRUNnQxY0RV?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-    </article>
-    
-    <article class="card">
       <div class="kicker">카드 5</div>
-      <h3>챗GPT 대화창에서 스포티파이·질로우 앱 쓸 수 있다 - 한국일보</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiakFVX3lxTFBvZGF0ODB4U290azZKSnZUTmFCdm5RQWhLY054YTFXemYyMGExbW55RmI4Qm5oQmNZdWJHTmhVV0NFQnN6Tl9wZ09qZjlCX21PQ3FhbGFnTm9KejNGN29LdS1hYnlIbExEdGc?oc=5&#34; </p>
-      <div class="meta">
-        <span>출처: 한국일보</span> ·
-        <span>Tue, 07 Oct 2025 00:53:32 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBvZGF0ODB4U290azZKSnZUTmFCdm5RQWhLY054YTFXemYyMGExbW55RmI4Qm5oQmNZdWJHTmhVV0NFQnN6Tl9wZ09qZjlCX21PQ3FhbGFnTm9KejNGN29LdS1hYnlIbExEdGc?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-    </article>
-    
-    <article class="card">
-      <div class="kicker">카드 6</div>
-      <h3>[비즈톡톡] “정부 AI 어젠다서 소외될라”… 로봇업계가 서둘러 간판 바꾼 속내는 - Chosun Biz</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiggFBVV95cUxQaDlrLVAyeFlSNWtKVWZFRUEydG1MYXV2ZjBfR2VVUlU3VllmSGtNbmJWT0k2aURnWXd3Yjh4S1NVTlpfaGVPUnBScHZLVWxVNzhQTWRLOGxIVHZCLXNlU3FyLWgzZU1CdEZKVzFkWk</p>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">[비즈톡톡] “정부 AI 어젠다서 소외될라”… 로봇업계가 서둘러 간판 바꾼 속내는 Chosun Biz</p>
       <div class="meta">
         <span>출처: Chosun Biz</span> ·
         <span>Mon, 06 Oct 2025 21:00:00 GMT</span> ·
@@ -109,9 +137,14 @@
     </article>
     
     <article class="card">
-      <div class="kicker">카드 7</div>
-      <h3>MS &#39;Mai-1&#39; 출격에 클로드 공식도입…오픈AI 의존 탈피 가속 - 뉴스1</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiX0FVX3lxTE5WZzNuMlZjUERQSU9OTld0dGNzU3l1eWd3WGxGZW1Cald3U3ZkVlJiN0ZJSFRuTkMxNmlNYjM1eTM5VHgtMFdfbkV0Rk1VUGVIQ05JYVZOQ0RHU1VMYnl3?oc=5&#34; target=&#34;_blank&#34;</p>
+      <div class="kicker">카드 6</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">MS &#39;Mai-1&#39; 출격에 클로드 공식도입…오픈AI 의존 탈피 가속 뉴스1</p>
       <div class="meta">
         <span>출처: 뉴스1</span> ·
         <span>Mon, 06 Oct 2025 23:00:00 GMT</span> ·
@@ -120,20 +153,30 @@
     </article>
     
     <article class="card">
-      <div class="kicker">카드 8</div>
-      <h3>오픈AI &#39;미다스 손&#39;?…파트너십 체결 기업 주가 일시 급등 - 연합뉴스</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiW0FVX3lxTE1JczFfMFhlanh2c1dXUkc0cnJRMjJVN1FjX2FsQU1vV3M2Yl9qUzF1TjYzZ1NnUEJXYzg5YVRtUjNLanBqZHdza2hnOUFmVndscVhzWGdhZVhyQ03SAWBBVV95cUxNYTJlazJaQi1uWD</p>
+      <div class="kicker">카드 7</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">오픈AI, ‘에이전트 키트(Agent Kit)’ 공개… 8분 만에 AI 에이전트 제작 매일경제</p>
       <div class="meta">
-        <span>출처: 연합뉴스</span> ·
-        <span>Tue, 07 Oct 2025 00:23:44 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1JczFfMFhlanh2c1dXUkc0cnJRMjJVN1FjX2FsQU1vV3M2Yl9qUzF1TjYzZ1NnUEJXYzg5YVRtUjNLanBqZHdza2hnOUFmVndscVhzWGdhZVhyQ03SAWBBVV95cUxNYTJlazJaQi1uWDhmNHBiN0N5X0ozaWpwZXdRZVBsSkh1LUdrT3hPWGFSeGZEcm8wSGVBZXNybWVnbEphaVkwTGQ3TFZ4TzNWOVRlc1p1MDhiRjlyZ3JkUm4?oc=5" target="_blank" rel="noopener">원문 보기</a>
+        <span>출처: 매일경제</span> ·
+        <span>Mon, 06 Oct 2025 20:32:58 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1XS3Q0dDhOd09VVm15anQ1a3pRc3UxV3BHMklITnJRTno4YnlxTFFGRUR0WEtlazk4c29kX2hFX2ZUUUNoLVV0YlV1SFQ2QQ?oc=5" target="_blank" rel="noopener">원문 보기</a>
       </div>
     </article>
     
     <article class="card">
-      <div class="kicker">카드 9</div>
-      <h3>[AI 리서치뷰] `3인 1조` 효율을 요리하다...작지만 강한 `P-C-G 아키텍처` - 디지털데일리</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiZEFVX3lxTFA0a3dVLVdaUzI1amNKRXRqcERVcjBKSGdXWGVpYUYwTUtYMkZSY1hMOFFJNzVPcTBkOTFZVkMtYVRSVjJ3RzV4UnJ5ZVR6OFVUQlpfTkdoaUFubVV6ajdRemU1Wmg?oc=5&#34; target=&#34;</p>
+      <div class="kicker">카드 8</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">[AI 리서치뷰] `3인 1조` 효율을 요리하다...작지만 강한 `P-C-G 아키텍처` 디지털데일리</p>
       <div class="meta">
         <span>출처: 디지털데일리</span> ·
         <span>Mon, 06 Oct 2025 23:00:00 GMT</span> ·
@@ -142,13 +185,34 @@
     </article>
     
     <article class="card">
-      <div class="kicker">카드 10</div>
-      <h3>오픈AI, ‘에이전트 키트(Agent Kit)’ 공개… 8분 만에 AI 에이전트 제작 - 매일경제</h3>
-      <p class="desc">&lt;a href=&#34;https://news.google.com/rss/articles/CBMiTkFVX3lxTE1XS3Q0dDhOd09VVm15anQ1a3pRc3UxV3BHMklITnJRTno4YnlxTFFGRUR0WEtlazk4c29kX2hFX2ZUUUNoLVV0YlV1SFQ2QQ?oc=5&#34; target=&#34;_blank&#34;&gt;오픈AI, ‘에이전트 키트(Agent </p>
+      <div class="kicker">카드 9</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">오픈AI &#39;미다스 손&#39;?…파트너십 체결 기업 주가 일시 급등 연합뉴스</p>
       <div class="meta">
-        <span>출처: 매일경제</span> ·
-        <span>Mon, 06 Oct 2025 20:32:58 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1XS3Q0dDhOd09VVm15anQ1a3pRc3UxV3BHMklITnJRTno4YnlxTFFGRUR0WEtlazk4c29kX2hFX2ZUUUNoLVV0YlV1SFQ2QQ?oc=5" target="_blank" rel="noopener">원문 보기</a>
+        <span>출처: 연합뉴스</span> ·
+        <span>Tue, 07 Oct 2025 00:23:44 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1JczFfMFhlanh2c1dXUkc0cnJRMjJVN1FjX2FsQU1vV3M2Yl9qUzF1TjYzZ1NnUEJXYzg5YVRtUjNLanBqZHdza2hnOUFmVndscVhzWGdhZVhyQ03SAWBBVV95cUxNYTJlazJaQi1uWDhmNHBiN0N5X0ozaWpwZXdRZVBsSkh1LUdrT3hPWGFSeGZEcm8wSGVBZXNybWVnbEphaVkwTGQ3TFZ4TzNWOVRlc1p1MDhiRjlyZ3JkUm4?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 10</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">라이온스게이트와 손잡은 런웨이가 1년째 AI 영화를 못 내놓는 이유는 AI타임스</p>
+      <div class="meta">
+        <span>출처: AI타임스</span> ·
+        <span>Sun, 05 Oct 2025 06:30:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9TaGZnZGI1NkN6dVlEYXlDYzFaV2FBakhEN2ZkYUotMW9BaE10RV9DV19RSG9NR2w5QkRwUzhhMUs0Y1V6ZHdIWFNtUl9aRHJiRVFCVGRtOXN3bjNkeEFDdXNRaTdUeEhhMlE?oc=5" target="_blank" rel="noopener">원문 보기</a>
       </div>
     </article>
     
