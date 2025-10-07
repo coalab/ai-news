@@ -1,102 +1,91 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 카드뉴스 | {{ today_kr }}</title>
-  <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
-  <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
-  <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
-  <meta property="og:type" content="website">
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+import re
+from html import unescape
+import feedparser
+from jinja2 import Environment, FileSystemLoader
 
-  <!-- AdSense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ad_client }}"
-    crossorigin="anonymous"></script>
+# ===== 설정 =====
+SITE_URL        = "https://coalab.github.io/ai-news"
+CARDS_LIMIT     = 10
+AD_INTERVAL     = 3
+ADS_CLIENT      = "ca-pub-1841750816553239"
+ADS_SLOT_TOP    = "1234567890"  # 상단 광고 슬롯 ID
+ADS_SLOT_MID    = "1234567890"  # 중간 광고 슬롯 ID
+FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
 
-  <style>
-    :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .card h3{
-      margin:6px 0;font-size:18px;line-height:1.35;
-      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
-    }
-    .desc{
-      color:var(--muted);font-size:14.5px;line-height:1.6;
-      overflow-wrap:anywhere;word-break:keep-all;
-      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
-    }
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#8fb0ff;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
-  </style>
-</head>
-<body>
-<header>
-  <div class="wrap">
-    <span class="badge">🗞️ {{ week_str }}</span>
-    <h1>AI 뉴스 카드뉴스</h1>
-    <div class="actions">
-      <a href="archive/{{ today_iso }}/index.html">📚 오늘 기사 고정 링크</a>
-      <a href="https://share.naver.com/web/shareView.nhn?url={{ site_url }}/archive/{{ today_iso }}/index.html&title={{ 'AI 뉴스 카드뉴스' | urlencode }}"
-         target="_blank" rel="noopener">네이버로 공유</a>
-    </div>
-  </div>
-</header>
+# ===== HTML 정리 함수 =====
+TAG_RE = re.compile(r"<[^>]+>")
+def clean_summary(html_text: str, limit: int = 180) -> str:
+    if not html_text:
+        return ""
+    text = TAG_RE.sub("", html_text)
+    text = unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return (text[:limit] + "…") if len(text) > limit else text
 
-<!-- 상단 광고 -->
-<div style="text-align:center;margin:20px 0;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="{{ ad_client }}"
-       data-ad-slot="{{ ad_slot_top }}"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
+# ===== 날짜/경로 =====
+KST = timezone(timedelta(hours=9))
+now = datetime.now(KST)
+today_iso = now.date().isoformat()
+today_kr  = now.strftime("%Y.%m.%d (%a)")
+week_str  = now.strftime("Week %W")
+year      = now.year
 
-<main class="wrap">
-  <section class="grid">
-    {% for c in cards %}
-      <article class="card">
-        <div class="kicker">카드 {{ loop.index }}</div>
-        <h3>{{ c.title }}</h3>
-        <p class="desc">{{ c.summary }}</p>
-        <div class="meta">
-          <span>출처: {{ c.source }}</span> ·
-          <span>{{ c.date_kr }}</span> ·
-          <a href="{{ c.link }}" target="_blank" rel="noopener">원문 보기</a>
-        </div>
-      </article>
+ROOT    = Path(__file__).resolve().parents[1]
+TPL_DIR = ROOT / "templates"
+OUT_DIR = ROOT
+ARCHIVE = ROOT / "archive" / today_iso
+ARCHIVE.mkdir(parents=True, exist_ok=True)
 
-      {% if loop.index % ad_interval == 0 and not loop.last %}
-      <!-- 중간 광고 -->
-      <div style="grid-column:span 12;text-align:center;margin:20px 0;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="{{ ad_client }}"
-             data-ad-slot="{{ ad_slot_mid }}"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-      </div>
-      {% endif %}
-    {% endfor %}
-  </section>
-</main>
+# ===== 템플릿 로드 =====
+tpl_candidates = ["index.html", "page.html.j2", "index.j2", "index.htm"]
+tpl_name = next((n for n in tpl_candidates if (TPL_DIR / n).exists()), None)
+if not tpl_name:
+    raise FileNotFoundError(
+        f"템플릿 파일을 찾지 못했습니다. templates 폴더에 다음 중 하나를 만들어주세요: {', '.join(tpl_candidates)}"
+    )
 
-<footer>
-  © {{ year }} Daily AI News · 자동 생성 (GitHub Actions). 최신: {{ today_kr }}
-</footer>
-</body>
-</html>
+env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
+template = env.get_template(tpl_name)
+
+
+# ===== RSS 수집 =====
+feed = feedparser.parse(FEED_URL)
+cards = []
+for entry in feed.entries[:CARDS_LIMIT]:
+    title = (entry.get("title") or "").strip()
+    link = entry.get("link")
+    if not (title and link):
+        continue
+    summary = clean_summary(entry.get("summary") or "")
+    published = entry.get("published", "")
+    source = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
+    source = source or "Google 뉴스"
+    cards.append({
+        "title": title,
+        "summary": summary,
+        "link": link,
+        "date_kr": published,
+        "source": source,
+    })
+
+# ===== 렌더링 =====
+html = template.render(
+    today_iso=today_iso,
+    today_kr=today_kr,
+    week_str=week_str,
+    year=year,
+    cards=cards,
+    site_url=SITE_URL,
+    ad_client=ADS_CLIENT,
+    ad_slot_top=ADS_SLOT_TOP,
+    ad_slot_mid=ADS_SLOT_MID,
+    ad_interval=AD_INTERVAL,
+)
+
+# ===== 저장 =====
+(OUT_DIR / "index.html").write_text(html, encoding="utf-8")
+(ARCHIVE / "index.html").write_text(html, encoding="utf-8")
+
+print("✅ index.html 및 archive 페이지 생성 완료:", today_iso)
