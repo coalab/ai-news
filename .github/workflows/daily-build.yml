@@ -17,6 +17,13 @@ jobs:
     permissions:
       contents: write
     steps:
+      # ✅ 워크플로에 HTML이 들어가면 즉시 실패시키는 가드
+      - name: Guard: workflow must be YAML, not HTML
+        run: |
+          if grep -qi "<html" ".github/workflows/daily-build.yml"; then
+            echo "❌ daily-build.yml contains HTML. It must remain YAML."; exit 1
+          fi
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -33,12 +40,7 @@ jobs:
 
       - name: Build site
         run: |
-          if [ -f scripts/build.py ]; then
-            python scripts/build.py
-          else
-            echo "⚠️ scripts/build.py not found"
-            exit 1
-          fi
+          python scripts/build.py
 
       - name: Commit & Push changes
         run: |
