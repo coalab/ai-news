@@ -81,12 +81,51 @@
 # # -------- HTML 파일 저장 --------
 # (root / "index.html").write_text(html, encoding="utf-8")
 # (archive_dir / "index.html").write_text(html, encoding="utf-8")
+from urllib.parse import urlparse
 
 # print("✅ index.html 및 archive 페이지가 성공적으로 생성되었습니다.")
 from urllib.parse import urlparse
 # ... (기존 import 밑에 이어서)
 
 # ===== RSS 수집 =====
+# feed = feedparser.parse(FEED_URL)
+# cards = []
+# for entry in feed.entries[:CARDS_LIMIT]:
+#     title = (entry.get("title") or "").strip()
+#     link  = entry.get("link")
+#     if not (title and link):
+#         continue
+
+#     summary   = clean_summary(entry.get("summary") or "")
+#     published = entry.get("published", "")
+#     source    = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
+#     source    = source or "Google 뉴스"
+
+#     # ---- 썸네일 추출 (없으면 파비콘 폴백) ----
+#     thumb = None
+#     # 1) media:thumbnail
+#     if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
+#         thumb = entry.media_thumbnail[0].get("url")
+#     # 2) media:content
+#     if not thumb and hasattr(entry, "media_content") and entry.media_content:
+#         thumb = entry.media_content[0].get("url")
+#     # 3) 파비콘 폴백 (도메인 기반)
+#     host = urlparse(link).netloc
+#     favicon = f"https://www.google.com/s2/favicons?domain={host}&sz=128"
+#     thumb = thumb or favicon
+
+#     cards.append({
+#         "title": title,
+#         "summary": summary,
+#         "link": link,
+#         "date_kr": published,
+#         "source": source,
+#         "thumb": thumb,            # ✅ 추가
+#     })
+
+# ===== RSS 수집 =====
+from urllib.parse import urlparse
+
 feed = feedparser.parse(FEED_URL)
 cards = []
 for entry in feed.entries[:CARDS_LIMIT]:
@@ -95,20 +134,33 @@ for entry in feed.entries[:CARDS_LIMIT]:
     if not (title and link):
         continue
 
-    summary   = clean_summary(entry.get("summary") or "")
-    published = entry.get("published", "")
-    source    = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
-    source    = source or "Google 뉴스"
+    # 요약 정리
+    raw_summary = entry.get("summary") or (entry.get("summary_detail", {}) or {}).get("value", "")
+    summary     = clean_summary(raw_summary)
+    published   = entry.get("published", "")
+    source      = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
+    source      = source or "Google 뉴스"
 
     # ---- 썸네일 추출 (없으면 파비콘 폴백) ----
     thumb = None
-    # 1) media:thumbnail
-    if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
-        thumb = entry.media_thumbnail[0].get("url")
-    # 2) media:content
-    if not thumb and hasattr(entry, "media_content") and entry.media_content:
-        thumb = entry.media_content[0].get("url")
-    # 3) 파비콘 폴백 (도메인 기반)
+    # 1️⃣ media:thumbnail (리스트나 딕셔너리 모두 대응)
+    mt = getattr(entry, "media_thumbnail", None)
+    if mt:
+        if isinstance(mt, list) and mt and isinstance(mt[0], dict):
+            thumb = mt[0].get("url")
+        elif isinstance(mt, dict):
+            thumb = mt.get("url")
+
+    # 2️⃣ media:content
+    if not thumb:
+        mc = getattr(entry, "media_content", None)
+        if mc:
+            if isinstance(mc, list) and mc and isinstance(mc[0], dict):
+                thumb = mc[0].get("url")
+            elif isinstance(mc, dict):
+                thumb = mc.get("url")
+
+    # 3️⃣ 파비콘 폴백
     host = urlparse(link).netloc
     favicon = f"https://www.google.com/s2/favicons?domain={host}&sz=128"
     thumb = thumb or favicon
@@ -119,7 +171,6 @@ for entry in feed.entries[:CARDS_LIMIT]:
         "link": link,
         "date_kr": published,
         "source": source,
-        "thumb": thumb,            # ✅ 추가
+        "thumb": thumb,  # ✅ 추가됨
     })
-
 
