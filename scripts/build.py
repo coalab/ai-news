@@ -89,7 +89,7 @@ import re
 from html import unescape
 
 import feedparser
-from jinja2 import이걸 어디에 넣어
+from jinja2 import
 Environment, FileSystemLoader
 
 # ====== 설정(원하는 값만 바꾸세요) ==========================================
