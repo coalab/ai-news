@@ -89,48 +89,81 @@ from pathlib import Path
 import feedparser
 from jinja2 import Environment, FileSystemLoader
 
-# 한국 시간대 설정
+# ====== 설정(원하는 값만 바꾸세요) ==========================================
+SITE_URL        = "https://coalab.github.io/ai-news"  # Pages 주소
+CARDS_LIMIT     = 10                                   # 카드 개수
+AD_INTERVAL     = 3                                    # 카드 n개마다 광고
+ADS_CLIENT      = "ca-pub-1841750816553239"            # 애드센스 client
+ADS_SLOT_TOP    = "1234567890"                         # 상단 배너 슬롯 ID
+ADS_SLOT_MID    = "1234567890"                         # 중간 광고 슬롯 ID
+FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
+# ============================================================================
+
 KST = timezone(timedelta(hours=9))
-today = datetime.now(KST).date()
-iso = today.isoformat()
-today_kr = today.strftime("%Y년 %m월 %d일 (%a)")
-year = today.year
+now = datetime.now(KST)
+today_date = now.date()
+today_iso  = today_date.isoformat()
+today_kr   = now.strftime("%Y.%m.%d (%a)")
+week_str   = now.strftime("Week %W")
+year       = now.year
 
-# 프로젝트 경로
-root = Path(__file__).resolve().parent.parent
-archive_dir = root / "archive" / iso
-archive_dir.mkdir(parents=True, exist_ok=True)
+ROOT    = Path(__file__).resolve().parents[1]
+TPL_DIR = ROOT / "templates"
+OUT_DIR = ROOT
+ARCHIVE = ROOT / "archive" / today_iso
+ARCHIVE.mkdir(parents=True, exist_ok=True)
 
-# RSS 파싱
-feed = feedparser.parse("https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko")
+if not TPL_DIR.exists():
+    raise FileNotFoundError(f"templates 폴더가 없습니다: {TPL_DIR}")
 
+# 템플릿 파일 자동 탐지 (index.html 우선, 없으면 page.html.j2)
+tpl_name_candidates = ["index.html", "page.html.j2"]
+tpl_name = next((n for n in tpl_name_candidates if (TPL_DIR / n).exists()), None)
+if not tpl_name:
+    raise FileNotFoundError(
+        f"템플릿이 없습니다. 아래 중 하나를 만들어주세요: {', '.join(tpl_name_candidates)}"
+    )
+
+env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
+template = env.get_template(tpl_name)
+
+# RSS 수집
+feed = feedparser.parse(FEED_URL)
 cards = []
-for entry in feed.entries[:10]:
+for entry in feed.entries[:CARDS_LIMIT]:
+    title = entry.get("title", "").strip()
+    link = entry.get("link")
+    if not (title and link):
+        continue
+    summary = (entry.get("summary") or "").strip()[:200]
+    published = entry.get("published", "")
+    source = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
+    source = source or "Google 뉴스"
     cards.append({
-        "title": entry.title,
-        "summary": getattr(entry, "summary", "")[:200],
-        "link": entry.link,
-        "source": getattr(entry, "source", {}).get("title", "Google 뉴스"),
-        "date_kr": getattr(entry, "published", ""),
+        "title": title,
+        "summary": summary,
+        "link": link,
+        "date_kr": published,
+        "source": source,
     })
-
-# Jinja2 환경설정
-env = Environment(loader=FileSystemLoader(str(root / "templates")), autoescape=True)
-template = env.get_template("index.html")
 
 # 렌더링
 html = template.render(
-    today_iso=iso,
+    today_iso=today_iso,
     today_kr=today_kr,
-    week_str=today.strftime("%U주차"),
+    week_str=week_str,
     year=year,
     cards=cards,
-    site_url="https://coalab.github.io/ai-news",
+    site_url=SITE_URL,
+    ad_client=ADS_CLIENT,
+    ad_slot_top=ADS_SLOT_TOP,
+    ad_slot_mid=ADS_SLOT_MID,
+    ad_interval=AD_INTERVAL,
 )
 
 # 저장
-(root / "index.html").write_text(html, encoding="utf-8")
-(archive_dir / "index.html").write_text(html, encoding="utf-8")
+(OUT_DIR / "index.html").write_text(html, encoding="utf-8")
+(ARCHIVE / "index.html").write_text(html, encoding="utf-8")
 
-print(f"✅ {iso}자 뉴스 페이지가 생성되었습니다.")
-
+print(f"✅ built: {OUT_DIR/'index.html'}")
+print(f"✅ built: {ARCHIVE/'index.html'}")
