@@ -3,100 +3,224 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 카드뉴스 | {{ today_kr }}</title>
+  <title>AI 뉴스 카드뉴스 | 2025.10.07 (Tue)</title>
   <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
-  <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
+  <meta property="og:title" content="AI 뉴스 카드뉴스 | 2025.10.07 (Tue)">
   <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
   <meta property="og:type" content="website">
+ <style>
+  :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
+  body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:24px}
+  header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
+  .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
+  .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
+  .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
+  @media(min-width:720px){.card{grid-column:span 6}}
+  @media(min-width:1024px){.card{grid-column:span 4}}
+  .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
 
-  <!-- AdSense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ad_client }}"
-    crossorigin="anonymous"></script>
+  /* ✅ 여기가 핵심 수정 부분 */
+  .desc{
+    color:var(--muted);
+    font-size:14.5px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3; /* 3줄까지만 표시 */
+    overflow:hidden;
+  }
 
-  <style>
-    :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .card h3{
-      margin:6px 0;font-size:18px;line-height:1.35;
-      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
-    }
-    .desc{
-      color:var(--muted);font-size:14.5px;line-height:1.6;
-      overflow-wrap:anywhere;word-break:keep-all;
-      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
-    }
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#8fb0ff;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
-  </style>
+  .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
+  footer{color:var(--muted);text-align:center;padding:34px 0 60px}
+  a{color:#8fb0ff;text-decoration:underline}
+  .actions a{display:inline-block;margin-right:10px}
+</style>
+
 </head>
 <body>
 <header>
   <div class="wrap">
-    <span class="badge">🗞️ {{ week_str }}</span>
+    <span class="badge">🗞️ Week 40</span>
     <h1>AI 뉴스 카드뉴스</h1>
     <div class="actions">
-      <a href="archive/{{ today_iso }}/index.html">📚 오늘 기사 고정 링크</a>
-      <a href="https://share.naver.com/web/shareView.nhn?url={{ site_url }}/archive/{{ today_iso }}/index.html&title={{ 'AI 뉴스 카드뉴스' | urlencode }}"
-         target="_blank" rel="noopener">네이버로 공유</a>
+      <a href="archive/2025-10-07/index.html">📚 오늘 기사 고정 링크</a>
+      <a href="https://share.naver.com/web/shareView.nhn?url=https://example.com&title=AI 뉴스 카드뉴스" target="_blank" rel="noopener">네이버로 공유</a>
     </div>
   </div>
 </header>
 
-<!-- 상단 광고 -->
-<div style="text-align:center;margin:20px 0;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="{{ ad_client }}"
-       data-ad-slot="{{ ad_slot_top }}"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
-
 <main class="wrap">
   <section class="grid">
-    {% for c in cards %}
-      <article class="card">
-        <div class="kicker">카드 {{ loop.index }}</div>
-        <h3>{{ c.title }}</h3>
-        <p class="desc">{{ c.summary }}</p>
-        <div class="meta">
-          <span>출처: {{ c.source }}</span> ·
-          <span>{{ c.date_kr }}</span> ·
-          <a href="{{ c.link }}" target="_blank" rel="noopener">원문 보기</a>
-        </div>
-      </article>
+    
+    <article class="card">
+      <div class="kicker">카드 1</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
 
-      {% if loop.index % ad_interval == 0 and not loop.last %}
-      <!-- 중간 광고 -->
-      <div style="grid-column:span 12;text-align:center;margin:20px 0;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="{{ ad_client }}"
-             data-ad-slot="{{ ad_slot_mid }}"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      <p class="desc">[비즈톡톡] “정부 AI 어젠다서 소외될라”… 로봇업계가 서둘러 간판 바꾼 속내는 - 조선비즈 Chosun Biz</p>
+      <div class="meta">
+        <span>출처: Chosun Biz</span> ·
+        <span>Mon, 06 Oct 2025 22:15:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQaDlrLVAyeFlSNWtKVWZFRUEydG1MYXV2ZjBfR2VVUlU3VllmSGtNbmJWT0k2aURnWXd3Yjh4S1NVTlpfaGVPUnBScHZLVWxVNzhQTWRLOGxIVHZCLXNlU3FyLWgzZU1CdEZKVzFkWklrSFk1M0liUm1MLWZiZGpBb0pB0gGWAUFVX3lxTE9Zd2RZSkNyd2VUTGY5cXh4NEJELU55dkRtNkNiekJEZ0RYTjA0blN6Zl9pbmFNSXFEQ1RHc0JkbTBrS3pyaV9jRFNTLWdneTZyY2VpOUFleHU1eVQtOC1wMWRjdG9PRkU2OFBTZU9oQnQ0cHk3WTNfeVJOaFlrMDlYY1BnZW14aDMxRFU1MGozVE9DaXV6dw?oc=5" target="_blank" rel="noopener">원문 보기</a>
       </div>
-      {% endif %}
-    {% endfor %}
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 2</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">[뉴욕증시]AMD·오픈AI &#39;메가딜&#39;에 AI 낙관론 확산…S&amp;P·나스닥 사상 최고치 아시아경제</p>
+      <div class="meta">
+        <span>출처: 아시아경제</span> ·
+        <span>Mon, 06 Oct 2025 23:26:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBtdFNiOHJ6clNldTdMQ2JkSnlYZ2NwUHF0ZHYtanVIbzUwOHpQVF9yTDg1YXZ2dC1nY3hFZ3FDMDVXXzI0clphcXRTcUJtOGVKa2Fqbmgwc28xVnVuWUVreA?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 3</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">뉴욕증시, 혼조 마감…AMD-오픈AI 맞손에 나스닥 신고가 v.daum.net</p>
+      <div class="meta">
+        <span>출처: v.daum.net</span> ·
+        <span>Tue, 07 Oct 2025 01:59:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBpRnNNSUtfS1J6RGRBZExrY3ZmS2RpUFJhMV9fWExvcVM2YzAtSEVxT3MxX2Q0ZEFETW14cU5GMk04NkU0TXRLdlluRDR2Um8?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 4</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">삼성 HBM 고객사 美 AMD, 오픈AI에 AI가속기 대량 공급키로 한국경제</p>
+      <div class="meta">
+        <span>출처: 한국경제</span> ·
+        <span>Mon, 06 Oct 2025 11:43:01 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NMjVmVjRENXRBdVRNT0hoeTZyR1RMZnRSSC10TVp4OUhCRmx6Q2YxbnEtbnBGbldIWDl2Y0R5WEgtYXNXdVhYdU1CSlpKX2p3X3hQTm5Rc1RqUdIBVEFVX3lxTE1zV1RMTmRFbl9velRHd1dVOUdIVDdzZ1JGWVJmdk44UzZmTFBsWXkxRUIyN0F5c3hzWlJrSlBjbFFSVHY3NTVQWFJGVEZkRGpNVUEweA?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 5</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">올트먼 “AI는 이제 스스로 행동하는 존재” 매일경제</p>
+      <div class="meta">
+        <span>출처: 매일경제</span> ·
+        <span>Mon, 06 Oct 2025 21:08:29 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE5xNTI1RENMcGdPeVIwSWNuSEtRSXlROUVIcFZKTE4zOTVxU0pKMWxGUW1telE0ek1Qek9BcE1XWmpuanVkLTR6eDlHTEpqQQ?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 6</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">네이버 검색의 진화…장소 정보도 AI 브리핑으로 확인한다 연합뉴스</p>
+      <div class="meta">
+        <span>출처: 연합뉴스</span> ·
+        <span>Sun, 05 Oct 2025 13:03:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9YaXA0S1M5VHlOZ0ZRaW5lS3F3SGE1QzlaWVpxclI1bmxoVjBkNHRFbmdIUlZjYy1LN19HRy1KZlEyOFBKSkswMDF4MVBwRGhqd2hqR29ON2VKMnfSAWBBVV95cUxOWktzWkdZZzU1S2JYNklVQWhwdGVIclFuaUtCRF9UODYtWTZSTVRYMEtTcFB2UXB6VjFtMVRKVXNISzF4V0FnMWZZZ3dYT245Z2prTU82aFZWSXoxWklCZFI?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 7</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">&#34;AI로 일자리 1억 개 사라질 수 있어&#34;…위험한 직업은? 뉴시스</p>
+      <div class="meta">
+        <span>출처: 뉴시스</span> ·
+        <span>Tue, 07 Oct 2025 02:16:01 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBJZkREOGgzVjhid18zRnp5QnhJZ2VIenpzczFtZmU3dXd4TFVQYU9ra1kxUUFCSU9OUU1tcjJJYUNwb1B6a2FnNi02azJNZXhCTVQxZEw2cnFoMWdXbHJ0RNIBeEFVX3lxTFBNdXIweDJOZmlMSWxQaGhad01mM05yY201dTZpYmtsdDFFWVpMZ1ZNeFdvVFJMdV9XNXpmaG5GcUZ2SnhLZm1ZcUp1RFQtcm9uYWFkVzdsU2RYRWllYkcxMnlCZElXaFBnOFUzaFNhZEwyT3hPU1AwZA?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 8</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">MS &#39;Mai-1&#39; 출격에 클로드 공식도입…오픈AI 의존 탈피 가속 뉴스1</p>
+      <div class="meta">
+        <span>출처: 뉴스1</span> ·
+        <span>Mon, 06 Oct 2025 23:00:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5WZzNuMlZjUERQSU9OTld0dGNzU3l1eWd3WGxGZW1Cald3U3ZkVlJiN0ZJSFRuTkMxNmlNYjM1eTM5VHgtMFdfbkV0Rk1VUGVIQ05JYVZOQ0RHU1VMYnl3?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 9</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">&#34;오픈AI, 차세대 기기 개발 난항&#34;…&#39;데브데이 2025&#39;서 해법 나올까 지디넷코리아</p>
+      <div class="meta">
+        <span>출처: 지디넷코리아</span> ·
+        <span>Mon, 06 Oct 2025 03:54:46 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9weXcxX2ZQNm12TG9pMmY3U1VzR19GQlNRb2REWlVNRHNucGxGYS00NElsRHNuS2I4Tmh6ZmFsTmM5dnhWUWJGZlVuTlBfbVFJcGFnUHlR?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
+    <article class="card">
+      <div class="kicker">카드 10</div>
+      .card h3{
+  margin:6px 0; font-size:18px; line-height:1.35;
+  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
+  overflow:hidden;
+}
+
+      <p class="desc">[AI 리서치뷰] `3인 1조` 효율을 요리하다...작지만 강한 `P-C-G 아키텍처` 디지털데일리</p>
+      <div class="meta">
+        <span>출처: 디지털데일리</span> ·
+        <span>Mon, 06 Oct 2025 23:00:00 GMT</span> ·
+        <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFA0a3dVLVdaUzI1amNKRXRqcERVcjBKSGdXWGVpYUYwTUtYMkZSY1hMOFFJNzVPcTBkOTFZVkMtYVRSVjJ3RzV4UnJ5ZVR6OFVUQlpfTkdoaUFubVV6ajdRemU1Wmg?oc=5" target="_blank" rel="noopener">원문 보기</a>
+      </div>
+    </article>
+    
   </section>
 </main>
 
 <footer>
-  © {{ year }} Daily AI News · 자동 생성 (GitHub Actions). 최신: {{ today_kr }}
+  © 2025 Daily AI News · 자동 생성 (GitHub Actions). 최신: 2025.10.07 (Tue)
 </footer>
 </body>
 </html>
