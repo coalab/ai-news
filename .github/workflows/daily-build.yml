@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
+    paths:
+      - "scripts/**"
+      - "templates/**"
+      - ".github/workflows/daily-build.yml"
 
 concurrency:
   group: ai-news-daily
@@ -13,6 +17,8 @@ concurrency:
 
 jobs:
   build:
+    # 🔒 봇이 만든 push 트리거는 무시(루프 차단)
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
