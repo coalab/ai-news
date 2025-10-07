@@ -8,39 +8,74 @@
   <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
   <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
   <meta property="og:type" content="website">
- <style>
-  :root{--bg:#0b1020;--card:#121830;--muted:#9aa4c7;--text:#e7ecff;--border:rgba(255,255,255,.08)}
-  body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
-  .wrap{max-width:1120px;margin:0 auto;padding:24px}
-  header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-  h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-  .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-  .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-  .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
-  @media(min-width:720px){.card{grid-column:span 6}}
-  @media(min-width:1024px){.card{grid-column:span 4}}
-  .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
 
-  /* ✅ 여기가 핵심 수정 부분 */
-  .desc{
-    color:var(--muted);
-    font-size:14.5px;
-    line-height:1.6;
-    overflow-wrap:anywhere;
-    word-break:keep-all;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:3; /* 3줄까지만 표시 */
-    overflow:hidden;
-  }
+  <style>
+    :root {
+      --bg:#0b1020;
+      --card:#121830;
+      --muted:#9aa4c7;
+      --text:#e7ecff;
+      --border:rgba(255,255,255,.08);
+    }
 
-  .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-  footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-  a{color:#8fb0ff;text-decoration:underline}
-  .actions a{display:inline-block;margin-right:10px}
-</style>
+    body {
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif;
+    }
 
+    .wrap{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
+    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
+    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px}
+    @media(min-width:720px){.card{grid-column:span 6}}
+    @media(min-width:1024px){.card{grid-column:span 4}}
+    .kicker{font-size:12px;color:#6ea8ff;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
+
+    /* ✅ 제목 스타일 */
+    .card h3 {
+      margin:6px 0;
+      font-size:18px;
+      line-height:1.35;
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:2;
+      overflow:hidden;
+    }
+
+    /* ✅ 요약문 */
+    .desc {
+      color:var(--muted);
+      font-size:14.5px;
+      line-height:1.6;
+      overflow-wrap:anywhere;
+      word-break:keep-all;
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:3;
+      overflow:hidden;
+    }
+
+    /* ✅ 이미지 */
+    .thumb {
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:12px;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
+    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
+    a{color:#8fb0ff;text-decoration:underline}
+    .actions a{display:inline-block;margin-right:10px}
+  </style>
 </head>
+
 <body>
 <header>
   <div class="wrap">
@@ -48,7 +83,8 @@
     <h1>AI 뉴스 카드뉴스</h1>
     <div class="actions">
       <a href="archive/{{ today_iso }}/index.html">📚 오늘 기사 고정 링크</a>
-      <a href="https://share.naver.com/web/shareView.nhn?url={{ 'https://example.com' }}&title={{ 'AI 뉴스 카드뉴스' }}" target="_blank" rel="noopener">네이버로 공유</a>
+      <a href="https://share.naver.com/web/shareView.nhn?url={{ site_url }}&title=AI 뉴스 카드뉴스"
+         target="_blank" rel="noopener">네이버로 공유</a>
     </div>
   </div>
 </header>
@@ -58,17 +94,17 @@
     {% for c in cards %}
     <article class="card">
       <div class="kicker">카드 {{ loop.index }}</div>
-      .card h3{
-  margin:6px 0; font-size:18px; line-height:1.35;
-  display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;
-  overflow:hidden;
-}
+
+      <!-- ✅ 썸네일 추가 -->
+      <img class="thumb" src="{{ c.thumb }}" alt="{{ c.source }}" loading="lazy">
+
+      <!-- ✅ 제목 (클릭 시 원문 이동) -->
+      <h3><a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.title }}</a></h3>
 
       <p class="desc">{{ c.summary }}</p>
       <div class="meta">
         <span>출처: {{ c.source }}</span> ·
-        <span>{{ c.date_kr }}</span> ·
-        <a href="{{ c.link }}" target="_blank" rel="noopener">원문 보기</a>
+        <span>{{ c.date_kr }}</span>
       </div>
     </article>
     {% endfor %}
