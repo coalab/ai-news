@@ -91,12 +91,12 @@ import feedparser
 from jinja2 import Environment, FileSystemLoader
 
 # ===== 설정 =====
-SITE_URL        = "https://coalab.github.io/ai-news"
-CARDS_LIMIT     = 10
-AD_INTERVAL     = 3
-ADS_CLIENT      = "ca-pub-1841750816553239"
-ADS_SLOT_TOP    = "1234567890"  # 상단 광고 슬롯 ID
-ADS_SLOT_MID    = "1234567890"  # 중간 광고 슬롯 ID
+SITE_URL        = "https://coalab.github.io/ai-news"   # GitHub Pages 주소
+CARDS_LIMIT     = 10                                   # 카드 개수
+AD_INTERVAL     = 3                                    # 카드 n개마다 광고
+ADS_CLIENT      = "ca-pub-1841750816553239"            # 애드센스 client
+ADS_SLOT_TOP    = "1234567890"                         # 상단 광고 슬롯 ID (본인 값으로 교체)
+ADS_SLOT_MID    = "1234567890"                         # 중간 광고 슬롯 ID (본인 값으로 교체)
 FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
 
 # ===== HTML 정리 함수 =====
@@ -134,19 +134,18 @@ if not tpl_name:
 env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
 template = env.get_template(tpl_name)
 
-
 # ===== RSS 수집 =====
 feed = feedparser.parse(FEED_URL)
 cards = []
 for entry in feed.entries[:CARDS_LIMIT]:
     title = (entry.get("title") or "").strip()
-    link = entry.get("link")
+    link  = entry.get("link")
     if not (title and link):
         continue
-    summary = clean_summary(entry.get("summary") or "")
+    summary   = clean_summary(entry.get("summary") or "")
     published = entry.get("published", "")
-    source = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
-    source = source or "Google 뉴스"
+    source    = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
+    source    = source or "Google 뉴스"
     cards.append({
         "title": title,
         "summary": summary,
@@ -174,4 +173,5 @@ html = template.render(
 (ARCHIVE / "index.html").write_text(html, encoding="utf-8")
 
 print("✅ index.html 및 archive 페이지 생성 완료:", today_iso)
+
 
