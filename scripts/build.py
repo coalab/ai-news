@@ -83,56 +83,8 @@
 # (archive_dir / "index.html").write_text(html, encoding="utf-8")
 
 # print("✅ index.html 및 archive 페이지가 성공적으로 생성되었습니다.")
-from datetime import datetime, timezone, timedelta
-from pathlib import Path
-import re
-from html import unescape
-import feedparser
-from jinja2 import Environment, FileSystemLoader
-
-# ===== 설정 =====
-SITE_URL        = "https://coalab.github.io/ai-news"   # GitHub Pages 주소
-CARDS_LIMIT     = 10                                   # 카드 개수
-AD_INTERVAL     = 3                                    # 카드 n개마다 광고
-ADS_CLIENT      = "ca-pub-1841750816553239"            # 애드센스 client
-ADS_SLOT_TOP    = "1234567890"                         # 상단 광고 슬롯 ID (본인 값으로 교체)
-ADS_SLOT_MID    = "1234567890"                         # 중간 광고 슬롯 ID (본인 값으로 교체)
-FEED_URL        = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
-
-# ===== HTML 정리 함수 =====
-TAG_RE = re.compile(r"<[^>]+>")
-def clean_summary(html_text: str, limit: int = 180) -> str:
-    if not html_text:
-        return ""
-    text = TAG_RE.sub("", html_text)
-    text = unescape(text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return (text[:limit] + "…") if len(text) > limit else text
-
-# ===== 날짜/경로 =====
-KST = timezone(timedelta(hours=9))
-now = datetime.now(KST)
-today_iso = now.date().isoformat()
-today_kr  = now.strftime("%Y.%m.%d (%a)")
-week_str  = now.strftime("Week %W")
-year      = now.year
-
-ROOT    = Path(__file__).resolve().parents[1]
-TPL_DIR = ROOT / "templates"
-OUT_DIR = ROOT
-ARCHIVE = ROOT / "archive" / today_iso
-ARCHIVE.mkdir(parents=True, exist_ok=True)
-
-# ===== 템플릿 로드 =====
-tpl_candidates = ["index.html", "page.html.j2", "index.j2", "index.htm"]
-tpl_name = next((n for n in tpl_candidates if (TPL_DIR / n).exists()), None)
-if not tpl_name:
-    raise FileNotFoundError(
-        f"템플릿 파일을 찾지 못했습니다. templates 폴더에 다음 중 하나를 만들어주세요: {', '.join(tpl_candidates)}"
-    )
-
-env = Environment(loader=FileSystemLoader(str(TPL_DIR)), autoescape=True)
-template = env.get_template(tpl_name)
+from urllib.parse import urlparse
+# ... (기존 import 밑에 이어서)
 
 # ===== RSS 수집 =====
 feed = feedparser.parse(FEED_URL)
@@ -142,36 +94,32 @@ for entry in feed.entries[:CARDS_LIMIT]:
     link  = entry.get("link")
     if not (title and link):
         continue
+
     summary   = clean_summary(entry.get("summary") or "")
     published = entry.get("published", "")
     source    = (getattr(entry, "source", {}) or {}).get("title") if hasattr(entry, "source") else None
     source    = source or "Google 뉴스"
+
+    # ---- 썸네일 추출 (없으면 파비콘 폴백) ----
+    thumb = None
+    # 1) media:thumbnail
+    if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
+        thumb = entry.media_thumbnail[0].get("url")
+    # 2) media:content
+    if not thumb and hasattr(entry, "media_content") and entry.media_content:
+        thumb = entry.media_content[0].get("url")
+    # 3) 파비콘 폴백 (도메인 기반)
+    host = urlparse(link).netloc
+    favicon = f"https://www.google.com/s2/favicons?domain={host}&sz=128"
+    thumb = thumb or favicon
+
     cards.append({
         "title": title,
         "summary": summary,
         "link": link,
         "date_kr": published,
         "source": source,
+        "thumb": thumb,            # ✅ 추가
     })
-
-# ===== 렌더링 =====
-html = template.render(
-    today_iso=today_iso,
-    today_kr=today_kr,
-    week_str=week_str,
-    year=year,
-    cards=cards,
-    site_url=SITE_URL,
-    ad_client=ADS_CLIENT,
-    ad_slot_top=ADS_SLOT_TOP,
-    ad_slot_mid=ADS_SLOT_MID,
-    ad_interval=AD_INTERVAL,
-)
-
-# ===== 저장 =====
-(OUT_DIR / "index.html").write_text(html, encoding="utf-8")
-(ARCHIVE / "index.html").write_text(html, encoding="utf-8")
-
-print("✅ index.html 및 archive 페이지 생성 완료:", today_iso)
 
 
