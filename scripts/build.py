@@ -291,5 +291,5 @@ html = template.render(
 (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
 (ARCHIVE / "index.html").write_text(html, encoding="utf-8")
 
-print("✅ index.html 및 archive 페이지 생성 완료:", today_iso)
+print("✅ index.html 및 COALAB archive 페이지 생성 완료:", today_iso)
 
