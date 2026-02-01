@@ -116,102 +116,62 @@
 </footer>
 </body>
 </html> #}
+
 <!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
   <title>AI 뉴스 카드뉴스 | {{ today_kr }}</title>
-  <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
-
-  <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
-  <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
-  <meta property="og:type" content="website">
-
-  <!-- ✅ Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVJY22EKJZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-GVJY22EKJZ');
-  </script>
-
-  <!-- ✅ Google AdSense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ad_client }}"
-    crossorigin="anonymous"></script>
 
   <style>
-    :root {
-      --bg:#0b1020;
-      --card:#121830;
-      --muted:#9aa4c7;
-      --text:#e7ecff;
-      --border:rgba(255,255,255,.08);
-    }
-
     body {
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
+      margin: 0;
+      background: #0b1020;
+      color: #e7ecff;
       font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif;
     }
-
-    .wrap {
-      max-width:1120px;
-      margin:0 auto;
-      padding:24px;
-    }
-
-    header {
-      position:sticky;
-      top:0;
-      background:rgba(0,0,0,.25);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--border);
-      z-index:10;
-    }
-
-    h1 {
-      margin:.4em 0;
-      font-size:clamp(22px,4.8vw,42px);
-    }
-
-    .badge {
-      display:inline-block;
-      padding:6px 10px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      margin-top:8px;
-    }
-
-    .actions a {
-      display:inline-block;
-      margin-right:10px;
-      color:#8fb0ff;
-      text-decoration:underline;
-    }
-
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 32px; margin-bottom: 16px; }
     .grid {
-      display:grid;
-      gap:18px;
-      margin-top:22px;
-      grid-template-columns:repeat(12,1fr);
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
-
     .card {
-      grid-column:span 12;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:20px;
-      padding:18px;
+      background: #121830;
+      border-radius: 16px;
+      padding: 16px;
     }
-
-    @media(min-width:720px){
-      .card { grid-column:span 6; }
+    .thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
     }
+    h3 { font-size: 18px; margin: 8px 0; }
+    p { color: #9aa4c7; font-size: 14px; }
+  </style>
+</head>
 
-    @media(m
+<body>
+  <div class="wrap">
+    <h1>AI 뉴스 카드뉴스</h1>
 
+    <section class="grid">
+      {% for c in cards %}
+      <article class="card">
+        <img class="thumb" src="{{ c.thumb }}" alt="">
+        <h3>
+          <a href="{{ c.link }}" target="_blank" style="color:#8fb0ff">
+            {{ c.title }}
+          </a>
+        </h3>
+        <p>{{ c.summary }}</p>
+      </article>
+      {% endfor %}
+    </section>
+  </div>
+</body>
+</html>
