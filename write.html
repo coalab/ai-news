@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>기사 작성 | AI 뉴스</title>
+  <meta name="description" content="AI 뉴스 기사 작성">
+  <link rel="stylesheet" href="css/board.css">
+  <!-- Quill.js 에디터 -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+  <style>
+    .ql-toolbar.ql-snow {
+      border-radius: 10px 10px 0 0;
+      border-color: var(--border);
+      background: #f9fdfb;
+    }
+    .ql-container.ql-snow {
+      border-radius: 0 0 10px 10px;
+      border-color: var(--border);
+      font-size: 15px;
+      font-family: inherit;
+      min-height: 300px;
+    }
+    .ql-editor {
+      min-height: 300px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<header class="board-header">
+  <div class="wrap">
+    <h1><a href="index.html">AI 뉴스</a></h1>
+    <nav class="header-nav">
+      <a href="index.html">카드뉴스</a>
+      <a href="board.html">기사 게시판</a>
+      <a href="admin.html">관리자</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-wrap">
+  <div class="editor-wrap">
+    <h2 id="editor-title">새 기사 작성</h2>
+
+    <div id="editor-error" class="alert alert-error" style="display:none"></div>
+    <div id="editor-success" class="alert alert-success" style="display:none"></div>
+
+    <div class="form-group">
+      <label for="article-title">제목 *</label>
+      <input type="text" id="article-title" placeholder="기사 제목을 입력하세요" required>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="form-group">
+        <label for="article-category">카테고리</label>
+        <select id="article-category">
+          <option value="일반">일반</option>
+          <option value="AI">AI</option>
+          <option value="산업">산업</option>
+          <option value="기술">기술</option>
+          <option value="정책">정책</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="article-author">작성자</label>
+        <input type="text" id="article-author" placeholder="관리자" value="관리자">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="article-thumbnail">썸네일 URL (선택)</label>
+      <input type="text" id="article-thumbnail" placeholder="https://example.com/image.jpg">
+    </div>
+
+    <div class="form-group">
+      <label for="article-summary">요약 (선택)</label>
+      <input type="text" id="article-summary" placeholder="기사 요약 (목록에 표시됩니다)">
+    </div>
+
+    <div class="form-group">
+      <label>본문 *</label>
+      <div id="editor-container"></div>
+    </div>
+
+    <div class="form-group" style="display:flex;align-items:center;gap:10px">
+      <label class="toggle" style="margin:0">
+        <input type="checkbox" id="article-published" checked>
+        <span class="slider"></span>
+      </label>
+      <span style="font-size:14px;font-weight:600" id="published-label">공개</span>
+    </div>
+
+    <div class="editor-actions">
+      <a href="admin.html" class="btn btn-secondary">취소</a>
+      <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">저장</button>
+    </div>
+  </div>
+</div>
+
+<footer class="board-footer">
+  &copy; 2026 AI 뉴스 &middot; 관리자 페이지
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<script>
+  // Quill 에디터 초기화
+  const quill = new Quill('#editor-container', {
+    theme: 'snow',
+    placeholder: '기사 본문을 작성하세요...',
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['link', 'image'],
+        ['clean']
+      ]
+    }
+  });
+
+  // 공개/비공개 토글 라벨
+  document.getElementById('article-published').addEventListener('change', function() {
+    document.getElementById('published-label').textContent = this.checked ? '공개' : '비공개';
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const editId = params.get('id');
+  let isEditMode = false;
+
+  // 수정 모드: 기존 기사 로드
+  async function loadArticleForEdit() {
+    if (!editId) return;
+
+    isEditMode = true;
+    document.getElementById('editor-title').textContent = '기사 수정';
+    document.getElementById('save-btn').textContent = '수정 저장';
+
+    const { data, error } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('id', editId)
+      .single();
+
+    if (error || !data) {
+      showError('기사를 불러올 수 없습니다.');
+      return;
+    }
+
+    document.getElementById('article-title').value = data.title || '';
+    document.getElementById('article-category').value = data.category || '일반';
+    document.getElementById('article-author').value = data.author || '관리자';
+    document.getElementById('article-thumbnail').value = data.thumbnail_url || '';
+    document.getElementById('article-summary').value = data.summary || '';
+    document.getElementById('article-published').checked = data.published;
+    document.getElementById('published-label').textContent = data.published ? '공개' : '비공개';
+
+    // Quill에 기존 HTML 콘텐츠 로드
+    quill.root.innerHTML = data.content || '';
+  }
+
+  // 기사 저장
+  async function saveArticle() {
+    const title = document.getElementById('article-title').value.trim();
+    const content = quill.root.innerHTML;
+    const contentText = quill.getText().trim();
+
+    if (!title) {
+      showError('제목을 입력해주세요.');
+      return;
+    }
+    if (!contentText) {
+      showError('본문을 입력해주세요.');
+      return;
+    }
+
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.textContent = '저장 중...';
+    saveBtn.disabled = true;
+
+    const articleData = {
+      title: title,
+      content: content,
+      summary: document.getElementById('article-summary').value.trim() || null,
+      author: document.getElementById('article-author').value.trim() || '관리자',
+      category: document.getElementById('article-category').value,
+      thumbnail_url: document.getElementById('article-thumbnail').value.trim() || null,
+      published: document.getElementById('article-published').checked,
+      updated_at: new Date().toISOString()
+    };
+
+    let result;
+
+    if (isEditMode) {
+      result = await supabase
+        .from('articles')
+        .update(articleData)
+        .eq('id', editId)
+        .select()
+        .single();
+    } else {
+      // slug 생성: 제목에서 간단한 slug
+      articleData.slug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .substring(0, 80)
+        + '-' + Date.now().toString(36);
+
+      result = await supabase
+        .from('articles')
+        .insert(articleData)
+        .select()
+        .single();
+    }
+
+    saveBtn.textContent = isEditMode ? '수정 저장' : '저장';
+    saveBtn.disabled = false;
+
+    if (result.error) {
+      showError('저장 실패: ' + result.error.message);
+      return;
+    }
+
+    showSuccess(isEditMode ? '기사가 수정되었습니다.' : '기사가 등록되었습니다.');
+
+    // 2초 후 기사 상세 페이지로 이동
+    setTimeout(() => {
+      window.location.href = 'article.html?id=' + result.data.id;
+    }, 1500);
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('editor-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+    document.getElementById('editor-success').style.display = 'none';
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function showSuccess(msg) {
+    const el = document.getElementById('editor-success');
+    el.textContent = msg;
+    el.style.display = 'block';
+    document.getElementById('editor-error').style.display = 'none';
+  }
+
+  // 초기화: 인증 확인
+  (async () => {
+    const user = await getCurrentUser();
+    if (!user) {
+      window.location.href = 'admin.html';
+      return;
+    }
+    loadArticleForEdit();
+  })();
+</script>
+
+</body>
+</html>

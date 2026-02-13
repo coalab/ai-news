@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>기사 게시판 | AI 뉴스</title>
+  <meta name="description" content="AI 뉴스 기사 게시판 - 최신 AI 뉴스와 기사를 확인하세요">
+  <link rel="stylesheet" href="css/board.css">
+</head>
+<body>
+
+<header class="board-header">
+  <div class="wrap">
+    <h1><a href="index.html">AI 뉴스</a></h1>
+    <nav class="header-nav">
+      <a href="index.html">카드뉴스</a>
+      <a href="board.html" style="background:rgba(45,134,89,.12)">기사 게시판</a>
+      <a href="admin.html">관리자</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-wrap">
+  <!-- 검색/필터 -->
+  <div class="toolbar">
+    <input type="text" id="search-input" placeholder="기사 검색...">
+    <select id="category-filter">
+      <option value="">전체 카테고리</option>
+      <option value="AI">AI</option>
+      <option value="산업">산업</option>
+      <option value="기술">기술</option>
+      <option value="정책">정책</option>
+      <option value="일반">일반</option>
+    </select>
+    <button class="btn btn-primary" onclick="loadArticles()">검색</button>
+  </div>
+
+  <!-- 기사 목록 -->
+  <div id="article-list">
+    <div class="loading">기사를 불러오는 중</div>
+  </div>
+
+  <!-- 페이지네이션 -->
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<footer class="board-footer">
+  &copy; 2026 AI 뉴스 &middot; <a href="index.html">카드뉴스 홈</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+  const PAGE_SIZE = 10;
+  let currentPage = 1;
+  let totalCount = 0;
+
+  // 기사 목록 로드
+  async function loadArticles() {
+    const listEl = document.getElementById('article-list');
+    const searchQuery = document.getElementById('search-input').value.trim();
+    const category = document.getElementById('category-filter').value;
+
+    listEl.innerHTML = '<div class="loading">기사를 불러오는 중</div>';
+
+    const from = (currentPage - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+
+    let query = supabase
+      .from('articles')
+      .select('id, title, author, category, view_count, created_at, published', { count: 'exact' })
+      .eq('published', true)
+      .order('created_at', { ascending: false })
+      .range(from, to);
+
+    if (searchQuery) {
+      query = query.ilike('title', `%${searchQuery}%`);
+    }
+    if (category) {
+      query = query.eq('category', category);
+    }
+
+    const { data, error, count } = await query;
+
+    if (error) {
+      listEl.innerHTML = '<div class="alert alert-error">기사를 불러오는 데 실패했습니다: ' + error.message + '</div>';
+      return;
+    }
+
+    totalCount = count || 0;
+
+    if (!data || data.length === 0) {
+      listEl.innerHTML = '<div class="empty-state"><div class="emoji">📭</div><p>등록된 기사가 없습니다.</p></div>';
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+
+    let html = `
+      <table class="board-table">
+        <thead>
+          <tr>
+            <th style="width:50%">제목</th>
+            <th>카테고리</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    data.forEach(article => {
+      const date = new Date(article.created_at).toLocaleDateString('ko-KR');
+      html += `
+        <tr>
+          <td class="title-cell">
+            <a href="article.html?id=${article.id}">${escapeHtml(article.title)}</a>
+          </td>
+          <td><span class="category-badge">${escapeHtml(article.category || '일반')}</span></td>
+          <td>${escapeHtml(article.author || '관리자')}</td>
+          <td>${date}</td>
+          <td>${article.view_count || 0}</td>
+        </tr>
+      `;
+    });
+
+    html += '</tbody></table>';
+    listEl.innerHTML = html;
+
+    renderPagination();
+  }
+
+  // 페이지네이션 렌더링
+  function renderPagination() {
+    const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+    const paginationEl = document.getElementById('pagination');
+
+    if (totalPages <= 1) {
+      paginationEl.innerHTML = '';
+      return;
+    }
+
+    let html = '';
+    html += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">&laquo; 이전</button>`;
+
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(totalPages, currentPage + 2);
+
+    if (startPage > 1) {
+      html += `<button onclick="goToPage(1)">1</button>`;
+      if (startPage > 2) html += `<button disabled>...</button>`;
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) html += `<button disabled>...</button>`;
+      html += `<button onclick="goToPage(${totalPages})">${totalPages}</button>`;
+    }
+
+    html += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">다음 &raquo;</button>`;
+
+    paginationEl.innerHTML = html;
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    loadArticles();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // HTML 이스케이프
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // 엔터키 검색
+  document.getElementById('search-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      currentPage = 1;
+      loadArticles();
+    }
+  });
+
+  // 초기 로드
+  loadArticles();
+</script>
+
+</body>
+</html>
