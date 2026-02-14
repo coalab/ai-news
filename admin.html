@@ -90,7 +90,25 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="js/supabase-config.js"></script>
+<script>
+  const SUPABASE_URL = 'https://onfddgmyzkeaxidpdwra.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uZmRkZ215emtlYXhpZHBkd3JhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NzgwMDcsImV4cCI6MjA3ODI1NDAwN30.pwzxOD_6TEQT-KWZzvvlIXCnR6qr_9kN6jFf57FtAwo';
+  const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  async function getCurrentUser() {
+    const { data: { session } } = await _supabase.auth.getSession();
+    return session?.user || null;
+  }
+  async function signIn(email, password) {
+    const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return data;
+  }
+  async function signOut() {
+    const { error } = await _supabase.auth.signOut();
+    if (error) throw error;
+  }
+</script>
 <script>
   const ADMIN_PAGE_SIZE = 15;
   let adminPage = 1;
@@ -144,7 +162,7 @@
 
   // 통계 로드
   async function loadStats() {
-    const { data: allArticles } = await supabase
+    const { data: allArticles } = await _supabase
       .from('articles')
       .select('published, view_count');
 
@@ -172,7 +190,7 @@
     const from = (adminPage - 1) * ADMIN_PAGE_SIZE;
     const to = from + ADMIN_PAGE_SIZE - 1;
 
-    let query = supabase
+    let query = _supabase
       .from('articles')
       .select('id, title, author, category, published, view_count, created_at', { count: 'exact' })
       .order('created_at', { ascending: false })
@@ -283,7 +301,7 @@
   async function deleteArticle(id) {
     if (!confirm('정말로 이 기사를 삭제하시겠습니까?')) return;
 
-    const { error } = await supabase
+    const { error } = await _supabase
       .from('articles')
       .delete()
       .eq('id', id);
