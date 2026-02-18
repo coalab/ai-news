@@ -3,231 +3,277 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 카드뉴스 | 2026.02.18 (Wed)</title>
-  <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
-  <meta property="og:title" content="AI 뉴스 카드뉴스 | 2026.02.18 (Wed)">
-  <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
+  <title>AI 뉴스 | 2026.02.18 (Wed)</title>
+  <meta name="description" content="AI 뉴스 - 에디터 기사와 자동 수집 뉴스를 한눈에">
+  <meta property="og:title" content="AI 뉴스 | 2026.02.18 (Wed)">
+  <meta property="og:description" content="AI 주요 이슈를 한눈에 확인하세요">
   <meta property="og:type" content="website">
   <style>
-    :root{--bg:#d4f1e8;--card:#ffffff;--muted:#2d7a5f;--text:#1a4d3a;--border:rgba(0,0,0,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(0,0,0,.05);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);transition:transform .2s, box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.1)}.ai-news-img1{width:100%;height:200px;object-fit:cover;background:#f5f1e8}.card-gradient{width:100%;height:160px;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%);border-radius:20px 20px 0 0}
-    .card-gradient[data-index="2"]{background:linear-gradient(135deg,#9eddc4 0%,#7ac9a8 100%)}
-    .card-gradient[data-index="3"]{background:linear-gradient(135deg,#aee3cc 0%,#88d5b3 100%)}
-    .card-gradient[data-index="4"]{background:linear-gradient(135deg,#c2ebda 0%,#9adfc1 100%)}
-    .card-gradient[data-index="5"]{background:linear-gradient(135deg,#b0e5cf 0%,#85d2b0 100%)}
-    .card-gradient[data-index="6"]{background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
-    .card-gradient[data-index="7"]{background:linear-gradient(135deg,#9eddc4 0%,#7ac9a8 100%)}
-    .card-gradient[data-index="8"]{background:linear-gradient(135deg,#aee3cc 0%,#88d5b3 100%)}
-    .card-gradient[data-index="9"]{background:linear-gradient(135deg,#c2ebda 0%,#9adfc1 100%)}
-    .card-gradient[data-index="10"]{background:linear-gradient(135deg,#b0e5cf 0%,#85d2b0 100%)}
-    .card-content{padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#2d8659;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .desc{color:var(--muted);font-size:14.5px;line-height:1.6}
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#2d8659;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
+    :root{--bg:#f4f6f8;--card:#ffffff;--muted:#6b7280;--text:#111827;--border:rgba(0,0,0,.08);--accent:#2d8659;--accent-light:#e8f5ef}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.85}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+    /* 헤더 */
+    .site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;gap:8px}
+    .site-logo{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+    .site-logo span{color:var(--accent)}
+    .site-nav{display:flex;gap:6px;align-items:center}
+    .site-nav a{font-size:14px;font-weight:600;padding:6px 14px;border-radius:8px;color:var(--text);transition:background .2s}
+    .site-nav a:hover,.site-nav a.active{background:var(--accent-light);color:var(--accent);opacity:1}
+    .site-date{font-size:13px;color:var(--muted);width:100%;text-align:center;padding-bottom:4px;border-top:1px solid var(--border);margin-top:4px;padding-top:8px}
+
+    /* 섹션 헤딩 */
+    .section-title{display:flex;align-items:center;gap:10px;margin:32px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--text)}
+    .section-title h2{margin:0;font-size:20px;font-weight:800}
+    .section-title .label{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+    .label-editor{background:#1a4d3a;color:#fff}
+    .label-auto{background:var(--accent-light);color:var(--accent)}
+    .section-title .more{margin-left:auto;font-size:13px;font-weight:600}
+
+    /* 에디터 기사 카드 */
+    .editor-grid{display:grid;gap:20px;grid-template-columns:1fr}
+    @media(min-width:720px){.editor-grid{grid-template-columns:1fr 1fr}}
+    @media(min-width:960px){.editor-grid.has-featured{grid-template-columns:1.2fr 1fr}}
+
+    .editor-card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+    .editor-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+    .editor-card.featured{grid-row:span 2}
+    .editor-card-thumb{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
+    .editor-card.featured .editor-card-thumb{height:100%;min-height:260px}
+    .editor-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .editor-card-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .editor-card-body h3{margin:0 0 8px;font-size:17px;font-weight:700;line-height:1.4}
+    .editor-card-body h3 a{color:var(--text)}
+    .editor-card-body h3 a:hover{color:var(--accent)}
+    .editor-card-body .summary{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
+    .editor-card-body .meta{font-size:12px;color:#9ca3af;margin-top:10px}
+    .editor-empty{text-align:center;padding:40px;color:var(--muted);background:var(--card);border-radius:14px}
+
+    /* 자동 수집 뉴스 그리드 */
+    .news-grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .news-card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+    .news-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    @media(min-width:720px){.news-card{grid-column:span 6}}
+    @media(min-width:1024px){.news-card{grid-column:span 4}}
+    .news-card-img{width:100%;height:160px;object-fit:cover;background:#f0f0f0}
+    .news-card-body{padding:16px}
+    .news-card-body .kicker{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+    .news-card-body h3{margin:0 0 8px;font-size:15px;font-weight:700;line-height:1.4}
+    .news-card-body h3 a{color:var(--text)}
+    .news-card-body h3 a:hover{color:var(--accent)}
+    .news-card-body .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+    .news-card-body .meta{margin-top:8px;color:#9ca3af;font-size:12px}
+
+    /* 푸터 */
+    .site-footer{text-align:center;color:var(--muted);padding:40px 0 60px;font-size:13px;border-top:1px solid var(--border);margin-top:40px}
   </style>
 </head>
 <body>
-<header style="background: linear-gradient(135deg, #f8fdfb 0%, #d4f1e8 100%); padding: 20px 0; border-bottom: 1px solid var(--border);">
+
+<!-- 헤더 -->
+<header class="site-header">
   <div class="wrap">
-    <div class="header-content">
-       <span class="badge" style="background: #ffffff; font-weight: 600;">🗞️ Week 07</span>
-       <h1 style="margin: 15px 0 10px 0; color: #1a4d3a;">AI 뉴스 카드뉴스</h1>
-       <p style="margin: 0 0 20px 0; color: #2d7a5f; font-size: 1.1em; opacity: 0.9;">오늘의 주요 AI 이슈 10선을 요약해 드립니다.</p>
-    </div>
-    
-    <div class="actions">
-       <a href="board.html" style="text-decoration: none; font-weight: 600;">📝 기사 게시판</a>
-       <a href="archive-list.html" style="text-decoration: none; font-weight: 600; margin-left: 15px;">📚 전체 아카이브</a>
-       <a href="archive/2026-02-18/index.html" style="text-decoration: none; font-weight: 600; margin-left: 15px;">🔗 오늘 고정 링크</a>
-    </div>
+    <a href="index.html" class="site-logo">AI<span>NEWS</span></a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">홈</a>
+      <a href="board.html">기사 게시판</a>
+      <a href="archive-list.html">아카이브</a>
+      <a href="admin.html">관리자</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <div class="site-date">2026.02.18 (Wed) · Week 07</div>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="grid">
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 1</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1nZmIzUno2RnhCNTA5NUdVRUlNWk1JSDRnZEhtRzl2NnBXZkQ2a2R6NHRqM3lwYk9sQURhaV9QNTBrSDhpQWFTQkhfY2J5YkE?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">“‘옷 벗기는 AI’ 언제까지 그냥 둘 건가”···성착취 이미지 생성에 전 세계가 ‘우려’ 성명 - v.daum.net</a></h3>
-      <p class="desc">“‘옷 벗기는 AI’ 언제까지 그냥 둘 건가”···성착취 이미지 생성에 전 세계가 ‘우려’ 성명 v.daum.net</p>
-      <div class="meta">
-        <span>출처: v.daum.net</span> ·
-        <span>Tue, 17 Feb 2026 02:16:12 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1nZmIzUno2RnhCNTA5NUdVRUlNWk1JSDRnZEhtRzl2NnBXZkQ2a2R6NHRqM3lwYk9sQURhaV9QNTBrSDhpQWFTQkhfY2J5YkE?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
-      </div>
-    </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 2</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE00c3VqWnZHR2JZV3ZESS02cEg0N2xWMFRZSUpWbGp4WWdIbERLMXZFMHVWdEttS2hWdnZBTkdxeFNxbi1VeEl5eHczTXhIRi14N2dzeXplY3gtczc2azVMZW4wd2hyQQ?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">AI에 쫓겨나는 글로벌 빅테크 노동자…1월 해고 직원 지난해 10배 - 한겨레</a></h3>
-      <p class="desc">AI에 쫓겨나는 글로벌 빅테크 노동자…1월 해고 직원 지난해 10배 한겨레</p>
-      <div class="meta">
-        <span>출처: 한겨레</span> ·
-        <span>Tue, 17 Feb 2026 02:49:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE00c3VqWnZHR2JZV3ZESS02cEg0N2xWMFRZSUpWbGp4WWdIbERLMXZFMHVWdEttS2hWdnZBTkdxeFNxbi1VeEl5eHczTXhIRi14N2dzeXplY3gtczc2azVMZW4wd2hyQQ?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+  <!-- 에디터 기사 섹션 (Supabase에서 동적 로드) -->
+  <div class="section-title">
+    <span class="label label-editor">EDITOR</span>
+    <h2>에디터 기사</h2>
+    <a href="board.html" class="more">전체보기 &rarr;</a>
+  </div>
+  <div class="editor-grid" id="editor-articles">
+    <div class="editor-empty">기사를 불러오는 중...</div>
+  </div>
+
+  <!-- 자동 수집 뉴스 섹션 -->
+  <div class="section-title">
+    <span class="label label-auto">AUTO</span>
+    <h2>AI 뉴스 자동 수집</h2>
+    <a href="archive/2026-02-18/index.html" class="more">오늘 아카이브 &rarr;</a>
+  </div>
+  <section class="news-grid">
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1nZmIzUno2RnhCNTA5NUdVRUlNWk1JSDRnZEhtRzl2NnBXZkQ2a2R6NHRqM3lwYk9sQURhaV9QNTBrSDhpQWFTQkhfY2J5YkE?oc=5" target="_blank" rel="noopener">"'옷 벗기는 AI' 언제까지 그냥 둘 건가"···성착취 이미지 생성에 전 세계가 '우려' 성명</a></h3>
+        <p class="desc">"'옷 벗기는 AI' 언제까지 그냥 둘 건가"···성착취 이미지 생성에 전 세계가 '우려' 성명</p>
+        <div class="meta">Tue, 17 Feb 2026 02:16:12 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 3</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9pSXhqZ3JQN3ZtR1hpenI2RmlLWFlpVlFTTnVaaGVQTzhIN2tqUk0xM2tReWZBdjdlTE84ZDNIbXoyWGZCTmczcjE2Vzdsa3cyQnczSEVEdFNSUdIBX0FVX3lxTE9mY2RWdFdIYzlDRXAzZjRfZzYyZlZFOVczS1RvOF9ZXzgtWGZQdnlRc0xxTzVod2gweFhIRW4xRC1fSnc1WnFlajI5QXFZSkNEV2NMWUhCcm5maVY0LWZR?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">경찰, AI 도입 본격화···수사부터 치안산업까지 활용 범위 확대 - 경향신문</a></h3>
-      <p class="desc">경찰, AI 도입 본격화···수사부터 치안산업까지 활용 범위 확대 경향신문</p>
-      <div class="meta">
-        <span>출처: 경향신문</span> ·
-        <span>Tue, 17 Feb 2026 22:27:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9pSXhqZ3JQN3ZtR1hpenI2RmlLWFlpVlFTTnVaaGVQTzhIN2tqUk0xM2tReWZBdjdlTE84ZDNIbXoyWGZCTmczcjE2Vzdsa3cyQnczSEVEdFNSUdIBX0FVX3lxTE9mY2RWdFdIYzlDRXAzZjRfZzYyZlZFOVczS1RvOF9ZXzgtWGZQdnlRc0xxTzVod2gweFhIRW4xRC1fSnc1WnFlajI5QXFZSkNEV2NMWUhCcm5maVY0LWZR?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">한겨레</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE00c3VqWnZHR2JZV3ZESS02cEg0N2xWMFRZSUpWbGp4WWdIbERLMXZFMHVWdEttS2hWdnZBTkdxeFNxbi1VeEl5eHczTXhIRi14N2dzeXplY3gtczc2azVMZW4wd2hyQQ?oc=5" target="_blank" rel="noopener">AI에 쫓겨나는 글로벌 빅테크 노동자…1월 해고 직원 지난해 10배</a></h3>
+        <p class="desc">AI에 쫓겨나는 글로벌 빅테크 노동자…1월 해고 직원 지난해 10배</p>
+        <div class="meta">Tue, 17 Feb 2026 02:49:00 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 4</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBoUFFTd1VTZkJTdWxLZjdHZFVMcml3T2lvbEYwYmhmSm5JQ0xUbk1SQ2xuT2taOVdEbEJwbkM1S0pkR0x6RW9Yb3EtWUFRdlVlVHgzcXExcTl1S0nSAWBBVV95cUxQUDZTVWI2cFNfZlg3WnRJQTJDeTdXQS1mVEs2VGxCUWdSMF8wNmZkenY4YXBhZU5mOXNoc2pETWc0aF9sZ2xhbGFLSDRWUDRqYkQ0M3R4SjFwWVB0dXB0QXo?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">&#34;애플, AI기반 스마트안경·펜던트 개발중…카메라 단 에어팟도&#34; - 연합뉴스</a></h3>
-      <p class="desc">&#34;애플, AI기반 스마트안경·펜던트 개발중…카메라 단 에어팟도&#34; 연합뉴스</p>
-      <div class="meta">
-        <span>출처: 연합뉴스</span> ·
-        <span>Tue, 17 Feb 2026 19:50:46 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBoUFFTd1VTZkJTdWxLZjdHZFVMcml3T2lvbEYwYmhmSm5JQ0xUbk1SQ2xuT2taOVdEbEJwbkM1S0pkR0x6RW9Yb3EtWUFRdlVlVHgzcXExcTl1S0nSAWBBVV95cUxQUDZTVWI2cFNfZlg3WnRJQTJDeTdXQS1mVEs2VGxCUWdSMF8wNmZkenY4YXBhZU5mOXNoc2pETWc0aF9sZ2xhbGFLSDRWUDRqYkQ0M3R4SjFwWVB0dXB0QXo?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">경향신문</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9pSXhqZ3JQN3ZtR1hpenI2RmlLWFlpVlFTTnVaaGVQTzhIN2tqUk0xM2tReWZBdjdlTE84ZDNIbXoyWGZCTmczcjE2Vzdsa3cyQnczSEVEdFNSUdIBX0FVX3lxTE9mY2RWdFdIYzlDRXAzZjRfZzYyZlZFOVczS1RvOF9ZXzgtWGZQdnlRc0xxTzVod2gweFhIRW4xRC1fSnc1WnFlajI5QXFZSkNEV2NMWUhCcm5maVY0LWZR?oc=5" target="_blank" rel="noopener">경찰, AI 도입 본격화···수사부터 치안산업까지 활용 범위 확대</a></h3>
+        <p class="desc">경찰, AI 도입 본격화···수사부터 치안산업까지 활용 범위 확대</p>
+        <div class="meta">Tue, 17 Feb 2026 22:27:00 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 5</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1LdzZaNmlUMWJLOHVVb0EwRnV2TVFsZzFCVDRIV2RVS1Nqc1lGa2ZEdkhXdWgteHhFSzcwNmpsOFJDUlN3VVotd1E2ZVQ1REtILXc?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">검색 판 흔드는 AI…포털은 AI처럼, AI는 포털처럼 - 노컷뉴스</a></h3>
-      <p class="desc">검색 판 흔드는 AI…포털은 AI처럼, AI는 포털처럼 노컷뉴스</p>
-      <div class="meta">
-        <span>출처: 노컷뉴스</span> ·
-        <span>Tue, 17 Feb 2026 20:00:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1LdzZaNmlUMWJLOHVVb0EwRnV2TVFsZzFCVDRIV2RVS1Nqc1lGa2ZEdkhXdWgteHhFSzcwNmpsOFJDUlN3VVotd1E2ZVQ1REtILXc?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBoUFFTd1VTZkJTdWxLZjdHZFVMcml3T2lvbEYwYmhmSm5JQ0xUbk1SQ2xuT2taOVdEbEJwbkM1S0pkR0x6RW9Yb3EtWUFRdlVlVHgzcXExcTl1S0nSAWBBVV95cUxQUDZTVWI2cFNfZlg3WnRJQTJDeTdXQS1mVEs2VGxCUWdSMF8wNmZkenY4YXBhZU5mOXNoc2pETWc0aF9sZ2xhbGFLSDRWUDRqYkQ0M3R4SjFwWVB0dXB0QXo?oc=5" target="_blank" rel="noopener">&#34;애플, AI기반 스마트안경·펜던트 개발중…카메라 단 에어팟도&#34;</a></h3>
+        <p class="desc">&#34;애플, AI기반 스마트안경·펜던트 개발중…카메라 단 에어팟도&#34;</p>
+        <div class="meta">Tue, 17 Feb 2026 19:50:46 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 6</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQM1F6QkhOU2MzdV9zY05XZG95VHEtY21Wa3JNVjQxMkk0Z2laRzh6bTFDZXl2RWgyN2lKQzZBd2VvOUNEczUzTGFoWUpsNlVYREpGSl9XN3VBMnlncXI1Y1ItMWZKTDlua2d0djVWcnhibk04ZU52ZmFsU1ktWDY0dA?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">‘AI 자동매매’ 시대…대박도 쪽박도 사라진다? - 조선일보</a></h3>
-      <p class="desc">‘AI 자동매매’ 시대…대박도 쪽박도 사라진다? 조선일보</p>
-      <div class="meta">
-        <span>출처: 조선일보</span> ·
-        <span>Mon, 16 Feb 2026 18:01:27 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQM1F6QkhOU2MzdV9zY05XZG95VHEtY21Wa3JNVjQxMkk0Z2laRzh6bTFDZXl2RWgyN2lKQzZBd2VvOUNEczUzTGFoWUpsNlVYREpGSl9XN3VBMnlncXI1Y1ItMWZKTDlua2d0djVWcnhibk04ZU52ZmFsU1ktWDY0dA?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">노컷뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1LdzZaNmlUMWJLOHVVb0EwRnV2TVFsZzFCVDRIV2RVS1Nqc1lGa2ZEdkhXdWgteHhFSzcwNmpsOFJDUlN3VVotd1E2ZVQ1REtILXc?oc=5" target="_blank" rel="noopener">검색 판 흔드는 AI…포털은 AI처럼, AI는 포털처럼</a></h3>
+        <p class="desc">검색 판 흔드는 AI…포털은 AI처럼, AI는 포털처럼</p>
+        <div class="meta">Tue, 17 Feb 2026 20:00:00 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 7</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNNENQRHZteEo5LUpVMm5fN3FSZkl3MGdCeklLb2Y3MGNneDB3WUtmd1BoNlptYTI5WmVuVUxuSXdiS3lQMGNzRU5OYXFDb2ZaX3Z4aFFzRm9fcTFCRXRUc3lhWWpMWXpwSkZMRklvTU4wcllYNkNwR1FOOTZ2bEdGREVlU2xOaVJiVFQ1NUlhb0FoWlozNTQ4?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">2026 메가 테크 IPO 전망 : 스페이스X, 오픈AI, 앤트로픽, 앤듀릴 - 네이버 프리미엄콘텐츠</a></h3>
-      <p class="desc">2026 메가 테크 IPO 전망 : 스페이스X, 오픈AI, 앤트로픽, 앤듀릴 네이버 프리미엄콘텐츠</p>
-      <div class="meta">
-        <span>출처: 네이버 프리미엄콘텐츠</span> ·
-        <span>Tue, 17 Feb 2026 14:02:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNNENQRHZteEo5LUpVMm5fN3FSZkl3MGdCeklLb2Y3MGNneDB3WUtmd1BoNlptYTI5WmVuVUxuSXdiS3lQMGNzRU5OYXFDb2ZaX3Z4aFFzRm9fcTFCRXRUc3lhWWpMWXpwSkZMRklvTU4wcllYNkNwR1FOOTZ2bEdGREVlU2xOaVJiVFQ1NUlhb0FoWlozNTQ4?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">조선일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQM1F6QkhOU2MzdV9zY05XZG95VHEtY21Wa3JNVjQxMkk0Z2laRzh6bTFDZXl2RWgyN2lKQzZBd2VvOUNEczUzTGFoWUpsNlVYREpGSl9XN3VBMnlncXI1Y1ItMWZKTDlua2d0djVWcnhibk04ZU52ZmFsU1ktWDY0dA?oc=5" target="_blank" rel="noopener">'AI 자동매매' 시대…대박도 쪽박도 사라진다?</a></h3>
+        <p class="desc">'AI 자동매매' 시대…대박도 쪽박도 사라진다?</p>
+        <div class="meta">Mon, 16 Feb 2026 18:01:27 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 8</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE42N1IwV2szQ243WXZpX3dwb2V1cHhLZHJPdE15VUFfWWxwNDBnQ09DRGlSNjJUQ21pOXVXWTJpMktLczdvcTA1SHUxSnh3MGFqOTBPWFBIc3lCYnh4ZlRQaGhtVVRjYUNCNzl6QXhobFdhRl9uTGfSAWZBVV95cUxPV3hNQ2FiREw5TlhBandEODBsUG1Ib05pU0RiUEN6ak5GeXFTaXdZU2RYTm9mYlNhckozUkd3TFltRy1wWlljRzh5TjdCVHJWdDRlZ1pjWWNiRGpnc09aQ2JkTEZ0Qnc?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">빅테크는 SW회사? AI 경쟁에 반도체도-안경도 만든다 - 동아일보</a></h3>
-      <p class="desc">빅테크는 SW회사? AI 경쟁에 반도체도-안경도 만든다 동아일보</p>
-      <div class="meta">
-        <span>출처: 동아일보</span> ·
-        <span>Tue, 17 Feb 2026 03:36:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE42N1IwV2szQ243WXZpX3dwb2V1cHhLZHJPdE15VUFfWWxwNDBnQ09DRGlSNjJUQ21pOXVXWTJpMktLczdvcTA1SHUxSnh3MGFqOTBPWFBIc3lCYnh4ZlRQaGhtVVRjYUNCNzl6QXhobFdhRl9uTGfSAWZBVV95cUxPV3hNQ2FiREw5TlhBandEODBsUG1Ib05pU0RiUEN6ak5GeXFTaXdZU2RYTm9mYlNhckozUkd3TFltRy1wWlljRzh5TjdCVHJWdDRlZ1pjWWNiRGpnc09aQ2JkTEZ0Qnc?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">네이버 프리미엄콘텐츠</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNNENQRHZteEo5LUpVMm5fN3FSZkl3MGdCeklLb2Y3MGNneDB3WUtmd1BoNlptYTI5WmVuVUxuSXdiS3lQMGNzRU5OYXFDb2ZaX3Z4aFFzRm9fcTFCRXRUc3lhWWpMWXpwSkZMRklvTU4wcllYNkNwR1FOOTZ2bEdGREVlU2xOaVJiVFQ1NUlhb0FoWlozNTQ4?oc=5" target="_blank" rel="noopener">2026 메가 테크 IPO 전망 : 스페이스X, 오픈AI, 앤트로픽, 앤듀릴</a></h3>
+        <p class="desc">2026 메가 테크 IPO 전망 : 스페이스X, 오픈AI, 앤트로픽, 앤듀릴</p>
+        <div class="meta">Tue, 17 Feb 2026 14:02:00 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 9</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5nZkNoZVlTeG15RUVGeTNPeHhvZ0FtMkx3TWplQjJxeGpqcDdObmptZ1ZJdlV6NDBFd2NQZFVRZU9ydnR0bEFMS0RTLVA2Vzl6dkoxQlBB?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">&#34;AI가 투자전략도 세워&#34;…앤트로픽, 클로드 새 모델 공개 - 지디넷코리아</a></h3>
-      <p class="desc">&#34;AI가 투자전략도 세워&#34;…앤트로픽, 클로드 새 모델 공개 지디넷코리아</p>
-      <div class="meta">
-        <span>출처: 지디넷코리아</span> ·
-        <span>Tue, 17 Feb 2026 18:01:01 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5nZkNoZVlTeG15RUVGeTNPeHhvZ0FtMkx3TWplQjJxeGpqcDdObmptZ1ZJdlV6NDBFd2NQZFVRZU9ydnR0bEFMS0RTLVA2Vzl6dkoxQlBB?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">동아일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE42N1IwV2szQ243WXZpX3dwb2V1cHhLZHJPdE15VUFfWWxwNDBnQ09DRGlSNjJUQ21pOXVXWTJpMktLczdvcTA1SHUxSnh3MGFqOTBPWFBIc3lCYnh4ZlRQaGhtVVRjYUNCNzl6QXhobFdhRl9uTGfSAWZBVV95cUxPV3hNQ2FiREw5TlhBandEODBsUG1Ib05pU0RiUEN6ak5GeXFTaXdZU2RYTm9mYlNhckozUkd3TFltRy1wWlljRzh5TjdCVHJWdDRlZ1pjWWNiRGpnc09aQ2JkTEZ0Qnc?oc=5" target="_blank" rel="noopener">빅테크는 SW회사? AI 경쟁에 반도체도-안경도 만든다</a></h3>
+        <p class="desc">빅테크는 SW회사? AI 경쟁에 반도체도-안경도 만든다</p>
+        <div class="meta">Tue, 17 Feb 2026 03:36:00 GMT</div>
       </div>
     </article>
-    
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 10</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE5nZTA3dTh5Sk5WclMtcUZtai1PTmdkSDN4akJsUnZLdVF3MWhOOFZmUUdsQVdWdHFvS3llYTYzWjlHQXVHek11aGJWRlFUS1Rhcy11cXFHUERiSW0zd2xrb3BNc05pX3YzY21uRGF4OHBxTXowb3ln?oc=5" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">&#39;AI를 쓰지 않는다&#39;는 사람들이 모르고 있는 사실 - OhmyNews</a></h3>
-      <p class="desc">&#39;AI를 쓰지 않는다&#39;는 사람들이 모르고 있는 사실 OhmyNews</p>
-      <div class="meta">
-        <span>출처: OhmyNews</span> ·
-        <span>Mon, 16 Feb 2026 09:01:00 GMT</span> ·
-        <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE5nZTA3dTh5Sk5WclMtcUZtai1PTmdkSDN4akJsUnZLdVF3MWhOOFZmUUdsQVdWdHFvS3llYTYzWjlHQXVHek11aGJWRlFUS1Rhcy11cXFHUERiSW0zd2xrb3BNc05pX3YzY21uRGF4OHBxTXowb3ln?oc=5" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">지디넷코리아</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5nZkNoZVlTeG15RUVGeTNPeHhvZ0FtMkx3TWplQjJxeGpqcDdObmptZ1ZJdlV6NDBFd2NQZFVRZU9ydnR0bEFMS0RTLVA2Vzl6dkoxQlBB?oc=5" target="_blank" rel="noopener">&#34;AI가 투자전략도 세워&#34;…앤트로픽, 클로드 새 모델 공개</a></h3>
+        <p class="desc">&#34;AI가 투자전략도 세워&#34;…앤트로픽, 클로드 새 모델 공개</p>
+        <div class="meta">Tue, 17 Feb 2026 18:01:01 GMT</div>
       </div>
     </article>
-    
+
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">OhmyNews</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE5nZTA3dTh5Sk5WclMtcUZtai1PTmdkSDN4akJsUnZLdVF3MWhOOFZmUUdsQVdWdHFvS3llYTYzWjlHQXVHek11aGJWRlFUS1Rhcy11cXFHUERiSW0zd2xrb3BNc05pX3YzY21uRGF4OHBxTXowb3ln?oc=5" target="_blank" rel="noopener">&#39;AI를 쓰지 않는다&#39;는 사람들이 모르고 있는 사실</a></h3>
+        <p class="desc">&#39;AI를 쓰지 않는다&#39;는 사람들이 모르고 있는 사실</p>
+        <div class="meta">Mon, 16 Feb 2026 09:01:00 GMT</div>
+      </div>
+    </article>
+
   </section>
+
 </main>
 
-<footer>
-  © 2026 Daily AI News · 자동 생성 (GitHub Actions). 최신: 2026.02.18 (Wed)
+<footer class="site-footer">
+  &copy; 2026 AI NEWS &middot; 자동 생성 (GitHub Actions) &middot; 최신: 2026.02.18 (Wed)
 </footer>
+
+<!-- Supabase: 에디터 기사 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(async function() {
+  const SUPABASE_URL = 'https://onfddgmyzkeaxidpdwra.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uZmRkZ215emtlYXhpZHBkd3JhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NzgwMDcsImV4cCI6MjA3ODI1NDAwN30.pwzxOD_6TEQT-KWZzvvlIXCnR6qr_9kN6jFf57FtAwo';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const container = document.getElementById('editor-articles');
+
+  const { data, error } = await sb
+    .from('articles')
+    .select('id, title, summary, author, category, thumbnail_url, created_at')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
+    .limit(5);
+
+  if (error || !data || data.length === 0) {
+    container.innerHTML = '<div class="editor-empty">등록된 에디터 기사가 없습니다.</div>';
+    return;
+  }
+
+  container.classList.add('has-featured');
+  let html = '';
+
+  data.forEach(function(article, idx) {
+    var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+    var thumbStyle = article.thumbnail_url
+      ? 'background-image:url(' + article.thumbnail_url + ');background-size:cover;background-position:center'
+      : '';
+    var featured = idx === 0 ? ' featured' : '';
+
+    html += '<div class="editor-card' + featured + '">';
+    if (article.thumbnail_url) {
+      html += '<div class="editor-card-thumb" style="' + thumbStyle + '"></div>';
+    } else {
+      html += '<div class="editor-card-thumb"></div>';
+    }
+    html += '<div class="editor-card-body">';
+    html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
+    html += '<h3><a href="article.html?id=' + article.id + '">' + escapeHtml(article.title) + '</a></h3>';
+    if (article.summary) {
+      html += '<p class="summary">' + escapeHtml(article.summary) + '</p>';
+    }
+    html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+})();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

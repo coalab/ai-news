@@ -3,81 +3,188 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 카드뉴스 | {{ today_kr }}</title>
-  <meta name="description" content="매일 업데이트되는 AI 뉴스 카드뉴스">
-  <meta property="og:title" content="AI 뉴스 카드뉴스 | {{ today_kr }}">
-  <meta property="og:description" content="AI 주요 이슈 10선을 카드뉴스로 요약">
+  <title>AI 뉴스 | {{ today_kr }}</title>
+  <meta name="description" content="AI 뉴스 - 에디터 기사와 자동 수집 뉴스를 한눈에">
+  <meta property="og:title" content="AI 뉴스 | {{ today_kr }}">
+  <meta property="og:description" content="AI 주요 이슈를 한눈에 확인하세요">
   <meta property="og:type" content="website">
   <style>
-    :root{--bg:#d4f1e8;--card:#ffffff;--muted:#2d7a5f;--text:#1a4d3a;--border:rgba(0,0,0,.08)}
-    body{margin:0;background:var(--bg);color:var(--text);font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(0,0,0,.05);border-bottom:1px solid var(--border)}
-    h1{margin:.4em 0;font-size:clamp(22px,4.8vw,42px)}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-top:8px}
-    .grid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(12,1fr)}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);transition:transform .2s, box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.1)}.ai-news-img1{width:100%;height:200px;object-fit:cover;background:#f5f1e8}.card-gradient{width:100%;height:160px;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%);border-radius:20px 20px 0 0}
-    .card-gradient[data-index="2"]{background:linear-gradient(135deg,#9eddc4 0%,#7ac9a8 100%)}
-    .card-gradient[data-index="3"]{background:linear-gradient(135deg,#aee3cc 0%,#88d5b3 100%)}
-    .card-gradient[data-index="4"]{background:linear-gradient(135deg,#c2ebda 0%,#9adfc1 100%)}
-    .card-gradient[data-index="5"]{background:linear-gradient(135deg,#b0e5cf 0%,#85d2b0 100%)}
-    .card-gradient[data-index="6"]{background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
-    .card-gradient[data-index="7"]{background:linear-gradient(135deg,#9eddc4 0%,#7ac9a8 100%)}
-    .card-gradient[data-index="8"]{background:linear-gradient(135deg,#aee3cc 0%,#88d5b3 100%)}
-    .card-gradient[data-index="9"]{background:linear-gradient(135deg,#c2ebda 0%,#9adfc1 100%)}
-    .card-gradient[data-index="10"]{background:linear-gradient(135deg,#b0e5cf 0%,#85d2b0 100%)}
-    .card-content{padding:18px}
-    @media(min-width:720px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .kicker{font-size:12px;color:#2d8659;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
-    .desc{color:var(--muted);font-size:14.5px;line-height:1.6}
-    .meta{margin-top:10px;color:var(--muted);font-size:12.5px}
-    footer{color:var(--muted);text-align:center;padding:34px 0 60px}
-    a{color:#2d8659;text-decoration:underline}
-    .actions a{display:inline-block;margin-right:10px}
+    :root{--bg:#f4f6f8;--card:#ffffff;--muted:#6b7280;--text:#111827;--border:rgba(0,0,0,.08);--accent:#2d8659;--accent-light:#e8f5ef}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.85}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+    /* 헤더 */
+    .site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;gap:8px}
+    .site-logo{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+    .site-logo span{color:var(--accent)}
+    .site-nav{display:flex;gap:6px;align-items:center}
+    .site-nav a{font-size:14px;font-weight:600;padding:6px 14px;border-radius:8px;color:var(--text);transition:background .2s}
+    .site-nav a:hover,.site-nav a.active{background:var(--accent-light);color:var(--accent);opacity:1}
+    .site-date{font-size:13px;color:var(--muted);width:100%;text-align:center;padding-bottom:4px;border-top:1px solid var(--border);margin-top:4px;padding-top:8px}
+
+    /* 섹션 헤딩 */
+    .section-title{display:flex;align-items:center;gap:10px;margin:32px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--text)}
+    .section-title h2{margin:0;font-size:20px;font-weight:800}
+    .section-title .label{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+    .label-editor{background:#1a4d3a;color:#fff}
+    .label-auto{background:var(--accent-light);color:var(--accent)}
+    .section-title .more{margin-left:auto;font-size:13px;font-weight:600}
+
+    /* 에디터 기사 카드 */
+    .editor-grid{display:grid;gap:20px;grid-template-columns:1fr}
+    @media(min-width:720px){.editor-grid{grid-template-columns:1fr 1fr}}
+    @media(min-width:960px){.editor-grid.has-featured{grid-template-columns:1.2fr 1fr}}
+
+    .editor-card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+    .editor-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+    .editor-card.featured{grid-row:span 2}
+    .editor-card-thumb{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
+    .editor-card.featured .editor-card-thumb{height:100%;min-height:260px}
+    .editor-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .editor-card-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+    .editor-card-body h3{margin:0 0 8px;font-size:17px;font-weight:700;line-height:1.4}
+    .editor-card-body h3 a{color:var(--text)}
+    .editor-card-body h3 a:hover{color:var(--accent)}
+    .editor-card-body .summary{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
+    .editor-card-body .meta{font-size:12px;color:#9ca3af;margin-top:10px}
+    .editor-empty{text-align:center;padding:40px;color:var(--muted);background:var(--card);border-radius:14px}
+
+    /* 자동 수집 뉴스 그리드 */
+    .news-grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .news-card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+    .news-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    @media(min-width:720px){.news-card{grid-column:span 6}}
+    @media(min-width:1024px){.news-card{grid-column:span 4}}
+    .news-card-img{width:100%;height:160px;object-fit:cover;background:#f0f0f0}
+    .news-card-body{padding:16px}
+    .news-card-body .kicker{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+    .news-card-body h3{margin:0 0 8px;font-size:15px;font-weight:700;line-height:1.4}
+    .news-card-body h3 a{color:var(--text)}
+    .news-card-body h3 a:hover{color:var(--accent)}
+    .news-card-body .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+    .news-card-body .meta{margin-top:8px;color:#9ca3af;font-size:12px}
+
+    /* 푸터 */
+    .site-footer{text-align:center;color:var(--muted);padding:40px 0 60px;font-size:13px;border-top:1px solid var(--border);margin-top:40px}
   </style>
 </head>
 <body>
-<header style="background: linear-gradient(135deg, #f8fdfb 0%, #d4f1e8 100%); padding: 20px 0; border-bottom: 1px solid var(--border);">
+
+<!-- 헤더 -->
+<header class="site-header">
   <div class="wrap">
-    <div class="header-content">
-       <span class="badge" style="background: #ffffff; font-weight: 600;">🗞️ {{ week_str }}</span>
-       <h1 style="margin: 15px 0 10px 0; color: #1a4d3a;">AI 뉴스 카드뉴스</h1>
-       <p style="margin: 0 0 20px 0; color: #2d7a5f; font-size: 1.1em; opacity: 0.9;">오늘의 주요 AI 이슈 10선을 요약해 드립니다.</p>
-    </div>
-    
-    <div class="actions">
-       <a href="board.html" style="text-decoration: none; font-weight: 600;">📝 기사 게시판</a>
-       <a href="archive-list.html" style="text-decoration: none; font-weight: 600; margin-left: 15px;">📚 전체 아카이브</a>
-       <a href="archive/{{ today_iso }}/index.html" style="text-decoration: none; font-weight: 600; margin-left: 15px;">🔗 오늘 고정 링크</a>
-    </div>
+    <a href="index.html" class="site-logo">AI<span>NEWS</span></a>
+    <nav class="site-nav">
+      <a href="index.html" class="active">홈</a>
+      <a href="board.html">기사 게시판</a>
+      <a href="archive-list.html">아카이브</a>
+      <a href="admin.html">관리자</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <div class="site-date">{{ today_kr }} · {{ week_str }}</div>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="grid">
+
+  <!-- 에디터 기사 섹션 (Supabase에서 동적 로드) -->
+  <div class="section-title">
+    <span class="label label-editor">EDITOR</span>
+    <h2>에디터 기사</h2>
+    <a href="board.html" class="more">전체보기 &rarr;</a>
+  </div>
+  <div class="editor-grid" id="editor-articles">
+    <div class="editor-empty">기사를 불러오는 중...</div>
+  </div>
+
+  <!-- 자동 수집 뉴스 섹션 -->
+  <div class="section-title">
+    <span class="label label-auto">AUTO</span>
+    <h2>AI 뉴스 자동 수집</h2>
+    <a href="archive/{{ today_iso }}/index.html" class="more">오늘 아카이브 &rarr;</a>
+  </div>
+  <section class="news-grid">
     {% for c in cards %}
-    <article class="card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="ai-news-img1">
-      <div class="card-content">
-        <div class="kicker">카드 {{ loop.index }}</div>
-        <h3><a href="{{ c.link }}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">{{ c.title }}</a></h3>
-      <p class="desc">{{ c.summary }}</p>
-      <div class="meta">
-        <span>출처: {{ c.source }}</span> ·
-        <span>{{ c.date_kr }}</span> ·
-        <a href="{{ c.link }}" target="_blank" rel="noopener">원문 보기</a>
-      </div>
-      </div>
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">{{ c.source }}</div>
+        <h3><a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.title }}</a></h3>
+        <p class="desc">{{ c.summary }}</p>
+        <div class="meta">{{ c.date_kr }}</div>
       </div>
     </article>
     {% endfor %}
   </section>
+
 </main>
 
-<footer>
-  © {{ year }} Daily AI News · 자동 생성 (GitHub Actions). 최신: {{ today_kr }}
+<footer class="site-footer">
+  &copy; {{ year }} AI NEWS &middot; 자동 생성 (GitHub Actions) &middot; 최신: {{ today_kr }}
 </footer>
+
+<!-- Supabase: 에디터 기사 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(async function() {
+  const SUPABASE_URL = 'https://onfddgmyzkeaxidpdwra.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uZmRkZ215emtlYXhpZHBkd3JhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NzgwMDcsImV4cCI6MjA3ODI1NDAwN30.pwzxOD_6TEQT-KWZzvvlIXCnR6qr_9kN6jFf57FtAwo';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const container = document.getElementById('editor-articles');
+
+  const { data, error } = await sb
+    .from('articles')
+    .select('id, title, summary, author, category, thumbnail_url, created_at')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
+    .limit(5);
+
+  if (error || !data || data.length === 0) {
+    container.innerHTML = '<div class="editor-empty">등록된 에디터 기사가 없습니다.</div>';
+    return;
+  }
+
+  container.classList.add('has-featured');
+  let html = '';
+
+  data.forEach(function(article, idx) {
+    var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+    var thumbStyle = article.thumbnail_url
+      ? 'background-image:url(' + article.thumbnail_url + ');background-size:cover;background-position:center'
+      : '';
+    var featured = idx === 0 ? ' featured' : '';
+
+    html += '<div class="editor-card' + featured + '">';
+    if (article.thumbnail_url) {
+      html += '<div class="editor-card-thumb" style="' + thumbStyle + '"></div>';
+    } else {
+      html += '<div class="editor-card-thumb"></div>';
+    }
+    html += '<div class="editor-card-body">';
+    html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
+    html += '<h3><a href="article.html?id=' + article.id + '">' + escapeHtml(article.title) + '</a></h3>';
+    if (article.summary) {
+      html += '<p class="summary">' + escapeHtml(article.summary) + '</p>';
+    }
+    html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
+    html += '</div></div>';
+  });
+
+  container.innerHTML = html;
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+})();
+</script>
 </body>
 </html>
 
