@@ -117,7 +117,7 @@
   <section class="news-grid">
     {% for c in cards %}
     <article class="news-card">
-      <img src="{{ c.thumb }}" alt="AI News" class="news-card-img" onerror="this.src='/assets/images/ai-news-img1.png'">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
         <div class="kicker">{{ c.source }}</div>
         <h3><a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.title }}</a></h3>
