@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>기사 상세 | AI 뉴스</title>
+  <title>기사 상세 | AI NEWS</title>
   <meta name="description" content="AI 뉴스 기사 상세 페이지">
   <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
 
-<header class="board-header">
+<header class="site-header">
   <div class="wrap">
-    <h1><a href="index.html">AI 뉴스</a></h1>
-    <nav class="header-nav">
-      <a href="index.html">카드뉴스</a>
+    <a href="index.html" class="site-logo">AI<span>NEWS</span></a>
+    <nav class="site-nav">
+      <a href="index.html">홈</a>
       <a href="board.html">기사 게시판</a>
       <a href="admin.html">관리자</a>
     </nav>
@@ -26,8 +26,8 @@
   </div>
 </div>
 
-<footer class="board-footer">
-  &copy; 2026 AI 뉴스 &middot; <a href="board.html">게시판으로 돌아가기</a>
+<footer class="site-footer">
+  &copy; 2026 AI NEWS &middot; <a href="board.html">게시판으로 돌아가기</a>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -63,11 +63,9 @@
       return;
     }
 
-    // 조회수 증가 (RPC 함수 사용, 비인증 사용자도 가능)
     _supabase.rpc('increment_view_count', { article_id: articleId }).then();
 
-    // 페이지 제목 업데이트
-    document.title = data.title + ' | AI 뉴스';
+    document.title = data.title + ' | AI NEWS';
 
     const date = new Date(data.created_at).toLocaleDateString('ko-KR', {
       year: 'numeric', month: 'long', day: 'numeric'
@@ -94,7 +92,6 @@
 
     html += `<div class="article-body">${data.content}</div>`;
 
-    // 관리자 버튼 (로그인 시만 표시)
     html += `
         <div class="article-actions" id="admin-actions" style="display:none">
           <a href="write.html?id=${data.id}" class="btn btn-secondary">수정</a>
@@ -105,7 +102,6 @@
 
     container.innerHTML = html;
 
-    // 관리자 확인
     const user = await getCurrentUser();
     if (user) {
       document.getElementById('admin-actions').style.display = 'flex';

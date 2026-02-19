@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>관리자 | AI 뉴스</title>
+  <title>관리자 | AI NEWS</title>
   <meta name="description" content="AI 뉴스 관리자 페이지">
   <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
 
-<header class="board-header">
+<header class="site-header">
   <div class="wrap">
-    <h1><a href="index.html">AI 뉴스</a></h1>
-    <nav class="header-nav">
-      <a href="index.html">카드뉴스</a>
+    <a href="index.html" class="site-logo">AI<span>NEWS</span></a>
+    <nav class="site-nav">
+      <a href="index.html">홈</a>
       <a href="board.html">기사 게시판</a>
-      <a href="admin.html" style="background:rgba(45,134,89,.12)">관리자</a>
+      <a href="admin.html" class="active">관리자</a>
       <a href="#" id="logout-btn" style="display:none" onclick="handleLogout(event)">로그아웃</a>
     </nav>
   </div>
@@ -43,7 +43,6 @@
 <!-- 관리자 대시보드 -->
 <div id="dashboard-section" style="display:none">
   <div class="content-wrap">
-    <!-- 통계 -->
     <div class="dashboard-stats">
       <div class="stat-card">
         <div class="stat-number" id="stat-total">-</div>
@@ -63,7 +62,6 @@
       </div>
     </div>
 
-    <!-- 기사 관리 툴바 -->
     <div class="toolbar">
       <input type="text" id="admin-search" placeholder="기사 검색...">
       <select id="admin-status-filter">
@@ -71,22 +69,20 @@
         <option value="true">공개</option>
         <option value="false">비공개</option>
       </select>
-      <button class="btn btn-secondary" onclick="loadDashboard()">검색</button>
+      <button class="btn btn-secondary" onclick="adminPage=1;loadDashboard()">검색</button>
       <a href="write.html" class="btn btn-primary" style="margin-left:auto">새 기사 작성</a>
     </div>
 
-    <!-- 기사 목록 -->
     <div id="admin-article-list">
       <div class="loading">기사를 불러오는 중</div>
     </div>
 
-    <!-- 페이지네이션 -->
     <div class="pagination" id="admin-pagination"></div>
   </div>
 </div>
 
-<footer class="board-footer">
-  &copy; 2026 AI 뉴스 &middot; 관리자 페이지
+<footer class="site-footer">
+  &copy; 2026 AI NEWS &middot; 관리자 페이지
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -114,7 +110,6 @@
   let adminPage = 1;
   let adminTotal = 0;
 
-  // 로그인 처리
   async function handleLogin(e) {
     e.preventDefault();
     const email = document.getElementById('email').value;
@@ -138,14 +133,12 @@
     }
   }
 
-  // 로그아웃 처리
   async function handleLogout(e) {
     e.preventDefault();
     await signOut();
     showLogin();
   }
 
-  // UI 전환
   function showLogin() {
     document.getElementById('login-section').style.display = 'block';
     document.getElementById('dashboard-section').style.display = 'none';
@@ -160,7 +153,6 @@
     loadStats();
   }
 
-  // 통계 로드
   async function loadStats() {
     const { data: allArticles } = await _supabase
       .from('articles')
@@ -179,7 +171,6 @@
     document.getElementById('stat-views').textContent = views.toLocaleString();
   }
 
-  // 대시보드 기사 목록 로드
   async function loadDashboard() {
     const listEl = document.getElementById('admin-article-list');
     const searchQuery = document.getElementById('admin-search').value.trim();
@@ -261,7 +252,6 @@
     renderAdminPagination();
   }
 
-  // 관리자 페이지네이션
   function renderAdminPagination() {
     const totalPages = Math.ceil(adminTotal / ADMIN_PAGE_SIZE);
     const el = document.getElementById('admin-pagination');
@@ -297,7 +287,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // 기사 삭제
   async function deleteArticle(id) {
     if (!confirm('정말로 이 기사를 삭제하시겠습니까?')) return;
 
@@ -321,12 +310,10 @@
     return div.innerHTML;
   }
 
-  // 검색 엔터키
   document.getElementById('admin-search').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { adminPage = 1; loadDashboard(); }
   });
 
-  // 초기 로드: 로그인 상태 확인
   (async () => {
     const user = await getCurrentUser();
     if (user) {

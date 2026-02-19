@@ -34,23 +34,31 @@
     .label-auto{background:var(--accent-light);color:var(--accent)}
     .section-title .more{margin-left:auto;font-size:13px;font-weight:600}
 
-    /* 에디터 기사 카드 */
-    .editor-grid{display:grid;gap:20px;grid-template-columns:1fr}
-    @media(min-width:720px){.editor-grid{grid-template-columns:1fr 1fr}}
-    @media(min-width:960px){.editor-grid.has-featured{grid-template-columns:1.2fr 1fr}}
+    /* 에디터 섹션: 왼쪽 메인 + 오른쪽 리스트 */
+    .editor-layout{display:grid;gap:20px;grid-template-columns:1fr}
+    @media(min-width:768px){.editor-layout{grid-template-columns:1.3fr 1fr}}
 
-    .editor-card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-    .editor-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-    .editor-card.featured{grid-row:span 2}
-    .editor-card-thumb{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
-    .editor-card.featured .editor-card-thumb{height:100%;min-height:260px}
-    .editor-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
-    .editor-card-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-    .editor-card-body h3{margin:0 0 8px;font-size:17px;font-weight:700;line-height:1.4}
-    .editor-card-body h3 a{color:var(--text)}
-    .editor-card-body h3 a:hover{color:var(--accent)}
-    .editor-card-body .summary{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
-    .editor-card-body .meta{font-size:12px;color:#9ca3af;margin-top:10px}
+    /* 왼쪽 메인 기사 */
+    .editor-main{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}
+    .editor-main:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+    .editor-main-thumb{width:100%;height:300px;background-size:cover;background-position:center;background-color:#e5e7eb;background-image:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
+    .editor-main-body{padding:20px}
+    .editor-main-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+    .editor-main-body h3{margin:0 0 10px;font-size:20px;font-weight:800;line-height:1.4}
+    .editor-main-body h3 a{color:var(--text)}
+    .editor-main-body h3 a:hover{color:var(--accent)}
+    .editor-main-body .summary{font-size:14px;color:var(--muted);line-height:1.6}
+    .editor-main-body .meta{font-size:12px;color:#9ca3af;margin-top:12px}
+
+    /* 오른쪽 제목 리스트 */
+    .editor-sidebar{background:var(--card);border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+    .editor-sidebar-item{display:block;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .15s}
+    .editor-sidebar-item:last-child{border-bottom:none}
+    .editor-sidebar-item:hover{background:#f8fafb}
+    .editor-sidebar-item .cat{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+    .editor-sidebar-item h4{margin:0 0 4px;font-size:15px;font-weight:700;line-height:1.4;color:var(--text)}
+    .editor-sidebar-item .meta{font-size:11px;color:#9ca3af}
+
     .editor-empty{text-align:center;padding:40px;color:var(--muted);background:var(--card);border-radius:14px}
 
     /* 자동 수집 뉴스 그리드 */
@@ -81,7 +89,7 @@
     <nav class="site-nav">
       <a href="index.html" class="active">홈</a>
       <a href="board.html">기사 게시판</a>
-      <a href="archive-list.html">아카이브</a>
+      <a href="board.html">기사 목록</a>
       <a href="admin.html">관리자</a>
     </nav>
   </div>
@@ -98,7 +106,7 @@
     <h2>에디터 기사</h2>
     <a href="board.html" class="more">전체보기 &rarr;</a>
   </div>
-  <div class="editor-grid" id="editor-articles">
+  <div class="editor-layout" id="editor-articles">
     <div class="editor-empty">기사를 불러오는 중...</div>
   </div>
 
@@ -240,31 +248,38 @@
     return;
   }
 
-  container.classList.add('has-featured');
-  let html = '';
+  // 첫 번째 기사: 왼쪽 메인 (이미지 + 제목 + 요약)
+  var first = data[0];
+  var firstDate = new Date(first.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+  var firstThumb = first.thumbnail_url
+    ? 'background-image:url(' + first.thumbnail_url + ');background-size:cover;background-position:center;background-color:transparent'
+    : '';
 
-  data.forEach(function(article, idx) {
-    var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
-    var thumbStyle = article.thumbnail_url
-      ? 'background-image:url(' + article.thumbnail_url + ');background-size:cover;background-position:center'
-      : '';
-    var featured = idx === 0 ? ' featured' : '';
+  var html = '<div class="editor-main">';
+  html += '<div class="editor-main-thumb" style="' + firstThumb + '"></div>';
+  html += '<div class="editor-main-body">';
+  html += '<div class="cat">' + escapeHtml(first.category || '일반') + '</div>';
+  html += '<h3><a href="article.html?id=' + first.id + '">' + escapeHtml(first.title) + '</a></h3>';
+  if (first.summary) {
+    html += '<p class="summary">' + escapeHtml(first.summary) + '</p>';
+  }
+  html += '<div class="meta">' + escapeHtml(first.author || '관리자') + ' · ' + firstDate + '</div>';
+  html += '</div></div>';
 
-    html += '<div class="editor-card' + featured + '">';
-    if (article.thumbnail_url) {
-      html += '<div class="editor-card-thumb" style="' + thumbStyle + '"></div>';
-    } else {
-      html += '<div class="editor-card-thumb"></div>';
+  // 나머지 기사: 오른쪽 사이드바 (제목만)
+  if (data.length > 1) {
+    html += '<div class="editor-sidebar">';
+    for (var i = 1; i < data.length; i++) {
+      var article = data[i];
+      var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+      html += '<a href="article.html?id=' + article.id + '" class="editor-sidebar-item">';
+      html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
+      html += '<h4>' + escapeHtml(article.title) + '</h4>';
+      html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
+      html += '</a>';
     }
-    html += '<div class="editor-card-body">';
-    html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
-    html += '<h3><a href="article.html?id=' + article.id + '">' + escapeHtml(article.title) + '</a></h3>';
-    if (article.summary) {
-      html += '<p class="summary">' + escapeHtml(article.summary) + '</p>';
-    }
-    html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
-    html += '</div></div>';
-  });
+    html += '</div>';
+  }
 
   container.innerHTML = html;
 
