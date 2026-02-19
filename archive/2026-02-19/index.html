@@ -34,23 +34,29 @@
     .label-auto{background:var(--accent-light);color:var(--accent)}
     .section-title .more{margin-left:auto;font-size:13px;font-weight:600}
 
-    /* 에디터 기사 카드 */
-    .editor-grid{display:grid;gap:20px;grid-template-columns:1fr}
-    @media(min-width:720px){.editor-grid{grid-template-columns:1fr 1fr}}
-    @media(min-width:960px){.editor-grid.has-featured{grid-template-columns:1.2fr 1fr}}
+    /* 에디터 섹션: 왼쪽 메인 + 오른쪽 리스트 */
+    .editor-layout{display:grid;gap:20px;grid-template-columns:1fr}
+    @media(min-width:768px){.editor-layout{grid-template-columns:1.3fr 1fr}}
 
-    .editor-card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-    .editor-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-    .editor-card.featured{grid-row:span 2}
-    .editor-card-thumb{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
-    .editor-card.featured .editor-card-thumb{height:100%;min-height:260px}
-    .editor-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
-    .editor-card-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-    .editor-card-body h3{margin:0 0 8px;font-size:17px;font-weight:700;line-height:1.4}
-    .editor-card-body h3 a{color:var(--text)}
-    .editor-card-body h3 a:hover{color:var(--accent)}
-    .editor-card-body .summary{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
-    .editor-card-body .meta{font-size:12px;color:#9ca3af;margin-top:10px}
+    .editor-main{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}
+    .editor-main:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+    .editor-main-thumb{width:100%;height:300px;background-size:cover;background-position:center;background-color:#e5e7eb;background-image:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
+    .editor-main-body{padding:20px}
+    .editor-main-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+    .editor-main-body h3{margin:0 0 10px;font-size:20px;font-weight:800;line-height:1.4}
+    .editor-main-body h3 a{color:var(--text)}
+    .editor-main-body h3 a:hover{color:var(--accent)}
+    .editor-main-body .summary{font-size:14px;color:var(--muted);line-height:1.6}
+    .editor-main-body .meta{font-size:12px;color:#9ca3af;margin-top:12px}
+
+    .editor-sidebar{background:var(--card);border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+    .editor-sidebar-item{display:block;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .15s}
+    .editor-sidebar-item:last-child{border-bottom:none}
+    .editor-sidebar-item:hover{background:#f8fafb}
+    .editor-sidebar-item .cat{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+    .editor-sidebar-item h4{margin:0 0 4px;font-size:15px;font-weight:700;line-height:1.4;color:var(--text)}
+    .editor-sidebar-item .meta{font-size:11px;color:#9ca3af}
+
     .editor-empty{text-align:center;padding:40px;color:var(--muted);background:var(--card);border-radius:14px}
 
     /* 자동 수집 뉴스 그리드 */
@@ -81,7 +87,7 @@
     <nav class="site-nav">
       <a href="index.html" class="active">홈</a>
       <a href="board.html">기사 게시판</a>
-      <a href="archive-list.html">아카이브</a>
+      <a href="board.html">기사 목록</a>
       <a href="admin.html">관리자</a>
     </nav>
   </div>
@@ -98,7 +104,7 @@
     <h2>에디터 기사</h2>
     <a href="board.html" class="more">전체보기 &rarr;</a>
   </div>
-  <div class="editor-grid" id="editor-articles">
+  <div class="editor-layout" id="editor-articles">
     <div class="editor-empty">기사를 불러오는 중...</div>
   </div>
 
@@ -114,59 +120,9 @@
       <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
         <div class="kicker">지디넷코리아</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1NTVlNNV9DSDlRdDNYcW80UGZ6YkJlR3M5bEdXT25NcGhDaklIQ0FVbGhOVE55VWVpTnJxRHhpNVQxY0dmWFdtN0tmWU51UHdYN1NDUlZn?oc=5" target="_blank" rel="noopener">AI 에이전트도 &#39;실적 압박&#39; 받으면 꼼수 쓴다 - 지디넷코리아</a></h3>
-        <p class="desc">AI 에이전트도 &#39;실적 압박&#39; 받으면 꼼수 쓴다 지디넷코리아</p>
-        <div class="meta">Wed, 18 Feb 2026 06:00:01 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">경향신문</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE0xVkVwUnB0R0hudmhTb2d2SGVuNVg3RHlxV2xsTWZiN21tYTJ3TzZyekpoZk9wZGFUOXJqclEzOWdmZk9zaVU2aEVGczNpbWQ5b2VQc3FwTU5kUdIBX0FVX3lxTE1rSjNTMm42dzc0Z1VHWmtTR1hhOTJfWGdQX09pQWRabl9OenEtdmdMNkhSeVJxbENHa3hXaWdNODB5QzFwb0p0dzYxenlKVGVQTTVfZ3loeDhVcy1XRWlV?oc=5" target="_blank" rel="noopener">“‘옷 벗기는 AI’ 언제까지 그냥 둘 건가”···성착취 이미지 생성에 전 세계가 ‘우려’ 성명 - 경향신문</a></h3>
-        <p class="desc">“‘옷 벗기는 AI’ 언제까지 그냥 둘 건가”···성착취 이미지 생성에 전 세계가 ‘우려’ 성명 경향신문</p>
-        <div class="meta">Tue, 17 Feb 2026 02:14:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">뉴스1</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9BSDVvek5jSXR3Szd6VUtLZlVSWUMxSktLTzhlVWgxRC1CX1dNSXJtMUtEZGdKVWd6ckFUcU5QeWRMU3pCQm1HSGhaNTlaLVZNamduTzZ2MmNsSUw0REQ2VWExZV9qQQ?oc=5" target="_blank" rel="noopener">GPU 확보부터 독파모까지…부총리 체제로 속도 붙은 AI 드라이드 - 뉴스1</a></h3>
-        <p class="desc">GPU 확보부터 독파모까지…부총리 체제로 속도 붙은 AI 드라이드 뉴스1</p>
-        <div class="meta">Wed, 18 Feb 2026 20:30:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">이투데이</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTFBlQTJOVXBpWG1OcFl3QmtLZS1NTFp0WXBRTGVSX2RzSjAzNVNzUThpSXotc2hvYk8tVzNGQS1rR0JOMXozbzFYUmkxS3RmWXRCQzBLWA?oc=5" target="_blank" rel="noopener">[기고] 진화하는 AI 음악에 적응하기 - 이투데이</a></h3>
-        <p class="desc">[기고] 진화하는 AI 음악에 적응하기 이투데이</p>
-        <div class="meta">Wed, 18 Feb 2026 21:00:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">동아일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFByTUdLQ2pHUC16YkJtNk9SWlVfc1NkQ3lSWUNhazJUQXBpU1RobGNMTlphdldyNFExcmx3clNDMTN5ZkYwVExXZHZlcjVNMG9EbGkybG1XdGNwTG9zZVVmaml0RVEzMVI2dUNrajNtR0ZlRTNISkHSAWZBVV95cUxOcWhwTWtnbFRON244MER1MV9fX0ZzaHNiUDNRdkw1YlpDNG9aLV9BUTJhTEw0Zmw4UHFHZFBscjc0U3g2M2tmSXdUTlV3eFFwdVhPV3dGZk10amN5RGFCVUhuU2Vuenc?oc=5" target="_blank" rel="noopener">위성사진 속 1m 물체 AI로 분석… 방산 이어 재해구호 영역 확장 - 동아일보</a></h3>
-        <p class="desc">위성사진 속 1m 물체 AI로 분석… 방산 이어 재해구호 영역 확장 동아일보</p>
-        <div class="meta">Wed, 18 Feb 2026 19:30:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">마켓인</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE5XdFczTzU0UUpPc09MUTFnb2VyZzN3UlAzNXZTMUQ1Q2RmRTJQNE5TTmZJZEJsRXhXYUhEanpTNS1UY3hKRkdnRVhEUXVPZGtrWE84bDI1WEt0Ri1kZnQ0VkR6RFhJVVZaa0NNQ0VLYVNzQlU?oc=5" target="_blank" rel="noopener">1석3조 AI칩 자체 개발 …天地人 동시 공략 - 마켓인</a></h3>
-        <p class="desc">1석3조 AI칩 자체 개발 …天地人 동시 공략 마켓인</p>
-        <div class="meta">Wed, 18 Feb 2026 21:00:00 GMT</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1UTEZHUDFOQlJLTnl0Ym0wc2Q4MnZqdzlFaHVaQ3FmdVJJaFVQbGs3emRzcWN1SGRfTmMzMmhyQVVWbGhhZ3Z6Q3RGNl84bXZzMkZ3NXRn?oc=5" target="_blank" rel="noopener">韓 AI반도체, &#39;엔비디아 대항마&#39; 넘어 실전으로 - 지디넷코리아</a></h3>
+        <p class="desc">韓 AI반도체, &#39;엔비디아 대항마&#39; 넘어 실전으로 지디넷코리아</p>
+        <div class="meta">Wed, 18 Feb 2026 07:00:04 GMT</div>
       </div>
     </article>
     
@@ -174,39 +130,89 @@
       <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
         <div class="kicker">v.daum.net</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1EVDktdDBRRzFITVhEbGxySEprOXZHRWlCR3QwSlN2ODc0OV9ITWwtSXpsVm9CUGNOeWtwNzM1UU9SNTdGYmRfVU9hZWFtd1U?oc=5" target="_blank" rel="noopener">AI·로봇, 인간의 업무 57% 자동화...AI조차 대체 불가능한 일은? - v.daum.net</a></h3>
-        <p class="desc">AI·로봇, 인간의 업무 57% 자동화...AI조차 대체 불가능한 일은? v.daum.net</p>
-        <div class="meta">Tue, 17 Feb 2026 22:01:46 GMT</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTE1qSDN2NlY3c19KSUhIc0JfYU1Ed0lfZGRpZ2phU1R0YTB1MUszdGFnOG5Wd2Vlc0Z3NG1Bbjc2WlJ3RmNjanc?oc=5" target="_blank" rel="noopener">반도체 값 수직 상승… 엔비디아 “메타에 AI칩 수백만개 공급” - v.daum.net</a></h3>
+        <p class="desc">반도체 값 수직 상승… 엔비디아 “메타에 AI칩 수백만개 공급” v.daum.net</p>
+        <div class="meta">Wed, 18 Feb 2026 15:32:29 GMT</div>
       </div>
     </article>
     
     <article class="news-card">
       <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">마켓인</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE04VG5GQm1wNDlTd1g0OUpEa01kYU9HTHlGYm1nanVfbUpPeGluMC1mSU1STlAtamQwdmVrd1FKbEp4X0dOZEdxRGJFSVdMcW8wRnBCQ0NpTm5VY3I0NnVUZDJaa0dEdGZ6ZmJxY3ktcXE2elE?oc=5" target="_blank" rel="noopener">&#34;청소로봇, 한시간 만에 하루치 일 &#39;쓱싹&#39;…AI, 물·전기같은 생활기반 시설될 것&#34; - 마켓인</a></h3>
-        <p class="desc">&#34;청소로봇, 한시간 만에 하루치 일 &#39;쓱싹&#39;…AI, 물·전기같은 생활기반 시설될 것&#34; 마켓인</p>
-        <div class="meta">Wed, 18 Feb 2026 21:00:00 GMT</div>
+        <div class="kicker">보안뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9lXzBuMVduS3I0NFN3cExxbGJEeF9uNnJhZHpaYkJ3bUNHcUpzeVZTOWQwWFVpNkwxWmhoMzFoWjZGVnU5ZEZlQ1h1RUlPNWU2NEFKcy1kYmNpb3BEQnl2aTJYNVd0NHU4?oc=5" target="_blank" rel="noopener">모빌린트, ‘반도체 올림픽’ ISSCC서 AI 반도체 논문 발표 및 시연 - 보안뉴스</a></h3>
+        <p class="desc">모빌린트, ‘반도체 올림픽’ ISSCC서 AI 반도체 논문 발표 및 시연 보안뉴스</p>
+        <div class="meta">Thu, 19 Feb 2026 05:45:00 GMT</div>
       </div>
     </article>
     
     <article class="news-card">
       <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">AI타임스</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE54RW5LeTd6NGxVVnlsSXBab1NfREhETEdvbndFdTBGQWtWck02a3JqUGctYU5Tdl9IR0ZxTkUweERyekRhanRYb2ZMTWlSYjJoMDVPTHdnLUR2RnJmN0dBMjZlb2tkdDlCdHc?oc=5" target="_blank" rel="noopener">애플, 카메라 탑재된 AI 기기 3종 개발 박차...&#34;올해 에어팟부터 출시&#34; - AI타임스</a></h3>
-        <p class="desc">애플, 카메라 탑재된 AI 기기 3종 개발 박차...&#34;올해 에어팟부터 출시&#34; AI타임스</p>
-        <div class="meta">Wed, 18 Feb 2026 06:04:12 GMT</div>
+        <div class="kicker">지디넷코리아</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9lZ3dBOG1oc19pQlRzaUl0ZUpGUW4yQXpsZWtSbHlROVJYUGk0bkxhNWc2ZFJUTWRyMWw2djBvM24xNkd0NkJ6MTZqeEhjTGJqYjctQm5B?oc=5" target="_blank" rel="noopener">[AI는 지금] 로펌 판 바꾸는 AI…리걸테크 200조 시장 열린다 - 지디넷코리아</a></h3>
+        <p class="desc">[AI는 지금] 로펌 판 바꾸는 AI…리걸테크 200조 시장 열린다 지디넷코리아</p>
+        <div class="meta">Wed, 18 Feb 2026 07:07:12 GMT</div>
       </div>
     </article>
     
     <article class="news-card">
       <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">조선일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOMEJpTzFqLUdySkx3TThseGdxUjlFbXB6VTdZcUpCemRibGNjaTBYajZMZENfSkMtT24zcWtldW94Y3ZtS3BZd1NsY25SbG9HYlQ5djJWR05oMTduTnVCMkNLazJsM0QxX195bTBieGI2am55eXhBWF96Ukd4REtzNDFBRdIBlwFBVV95cUxPNTBEam9RM1VsUFRScDBycE1TMHVsNjBHRFBQYWpWN0ZsTDVoLW4tOVpvMERIUTY0RVAwOFhvbXVuZXBTWF84Q3E1Z3V3c1Nxd3ZkZnltUUJrTXpnTzlLc2dwQzNmZHVEWDFRTTBob3lUcVdBY2p6dERpXzJqOWk4NVBLZlpPU0NIUURWMFBIclJtbkd6ZEpr?oc=5" target="_blank" rel="noopener">애플, AI 기반 안경·펜던트 개발... 뒤처진 AI 기기 ‘맹추격’ - 조선일보</a></h3>
-        <p class="desc">애플, AI 기반 안경·펜던트 개발... 뒤처진 AI 기기 ‘맹추격’ 조선일보</p>
-        <div class="meta">Wed, 18 Feb 2026 06:03:50 GMT</div>
+        <div class="kicker">경향신문</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5nZHo5aWVJbDV2bnJKM0puaGZmRmFCa05zb0JFZTBUbWlwbmFydWFlNDF2cnEyQTBTMENDSWtmcE9EOUNkVmV1LWtKRkt2ZW1BdEtQcldNckxRd9IBX0FVX3lxTE1FaWpmLWczRjh2bm1reGRsY29vZkU4Ym51NWdlczhtaGN1V0lXbmNyS0lzZHFGdDZGazNEYUxLRy1TaGU1V0VwZVYyZjltaUtyb2t3X29wcTI1YTB6dTNN?oc=5" target="_blank" rel="noopener">[뉴스분석] AI 윤리 준수 요구하는 앤트로픽, 공급망 배제로 압박하는 펜타곤…기로에 선 AI 전쟁의 규칙 - 경향신문</a></h3>
+        <p class="desc">[뉴스분석] AI 윤리 준수 요구하는 앤트로픽, 공급망 배제로 압박하는 펜타곤…기로에 선 AI 전쟁의 규칙 경향신문</p>
+        <div class="meta">Thu, 19 Feb 2026 05:41:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9NamhiZmxwbGF2SVllRlA4N2xobWJuZi10enZnMEJCUlJTdW1XYS1hYXBKZWdmRDAycjJ1bDhGQzJOYjMydGE1dWVEWWRKeTQ?oc=5" target="_blank" rel="noopener">이길여 “AI는 금지 아닌 필수”…가천대, 시험·과제에 AI 전면 허용 - v.daum.net</a></h3>
+        <p class="desc">이길여 “AI는 금지 아닌 필수”…가천대, 시험·과제에 AI 전면 허용 v.daum.net</p>
+        <div class="meta">Thu, 19 Feb 2026 05:37:24 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">전자신문</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE9rQ195c2o4MFdtdEtXc216X3AxMkgycnJONHZQTUx1RjJCaUZYMVZGVUo3RHgxNmJ4RkdYVFlLVmI0Vk1mRkRfWG5IUGJRdw?oc=5" target="_blank" rel="noopener">[에듀플러스]가천대, AI 교육혁신 본격화… &#39;교수부터 AI 교육&#39; 전방위 속도전 - 전자신문</a></h3>
+        <p class="desc">[에듀플러스]가천대, AI 교육혁신 본격화… &#39;교수부터 AI 교육&#39; 전방위 속도전 전자신문</p>
+        <div class="meta">Thu, 19 Feb 2026 05:47:23 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">문화일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFAxbjN0ZENkRnNDUFQ2dG5ESmd0NzBoSVhiOERvWTB3dV92X3liOEFmX2hDamJqZGpwSVc4MWZPOGpfZVdreFZzTm81SUdrbDFz?oc=5" target="_blank" rel="noopener">“교수부터 AI 교육”…가천대, AI 혁신 속도전 - 문화일보</a></h3>
+        <p class="desc">“교수부터 AI 교육”…가천대, AI 혁신 속도전 문화일보</p>
+        <div class="meta">Thu, 19 Feb 2026 05:45:29 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFWkZrQmFNeENueWFJTDlJMmVWX21YSHgxVFB0MHJIYk9uYjhRRUpXUTBqdjFHVEZibURqT1I0cFROb1dkY3NFTnN2bzNtVEJRYzM2aTY5VlE5QWPSAWBBVV95cUxOa1BjX2lPUXUzTXc1cUdoY29WOXNpaXpGbkRxeXdyQmQzSWNuRWpKZGFsWDQyM19jcDVZVEpPcEJIOHZzZXlUN2J2ZUYzTFJGOGpKcm9JM3YwTFY4TEVDMzE?oc=5" target="_blank" rel="noopener">제주 119구급 현장에 AI 심전도 판독 시스템 전국 최초 도입 - 연합뉴스</a></h3>
+        <p class="desc">제주 119구급 현장에 AI 심전도 판독 시스템 전국 최초 도입 연합뉴스</p>
+        <div class="meta">Thu, 19 Feb 2026 05:14:47 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">YTN 사이언스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxOVC12bGh4YXhYRGs0MmZyc3hPNnc0alJZNkxtemtDOG9ZNkhoVmMyT0RVQ3RUNUFtMG9IRWhuOTREXzgwLWQ0eUtpbDhqWmxuazRuSlAwQ3JfcVg0YzB2V2IxRzJBMkdualkxelo4NXYzT0dJVV9RNnRyTTVULWprRDdjUnhpMWdqNXN3NQ?oc=5" target="_blank" rel="noopener">AI 잘 다룰수록 반전 커진다...&#39;U자형 심리 곡선&#39; - YTN 사이언스</a></h3>
+        <p class="desc">AI 잘 다룰수록 반전 커진다...&#39;U자형 심리 곡선&#39; YTN 사이언스</p>
+        <div class="meta">Thu, 19 Feb 2026 00:00:00 GMT</div>
       </div>
     </article>
     
@@ -240,31 +246,36 @@
     return;
   }
 
-  container.classList.add('has-featured');
-  let html = '';
+  var first = data[0];
+  var firstDate = new Date(first.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+  var firstThumb = first.thumbnail_url
+    ? 'background-image:url(' + first.thumbnail_url + ');background-size:cover;background-position:center;background-color:transparent'
+    : '';
 
-  data.forEach(function(article, idx) {
-    var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
-    var thumbStyle = article.thumbnail_url
-      ? 'background-image:url(' + article.thumbnail_url + ');background-size:cover;background-position:center'
-      : '';
-    var featured = idx === 0 ? ' featured' : '';
+  var html = '<div class="editor-main">';
+  html += '<div class="editor-main-thumb" style="' + firstThumb + '"></div>';
+  html += '<div class="editor-main-body">';
+  html += '<div class="cat">' + escapeHtml(first.category || '일반') + '</div>';
+  html += '<h3><a href="article.html?id=' + first.id + '">' + escapeHtml(first.title) + '</a></h3>';
+  if (first.summary) {
+    html += '<p class="summary">' + escapeHtml(first.summary) + '</p>';
+  }
+  html += '<div class="meta">' + escapeHtml(first.author || '관리자') + ' · ' + firstDate + '</div>';
+  html += '</div></div>';
 
-    html += '<div class="editor-card' + featured + '">';
-    if (article.thumbnail_url) {
-      html += '<div class="editor-card-thumb" style="' + thumbStyle + '"></div>';
-    } else {
-      html += '<div class="editor-card-thumb"></div>';
+  if (data.length > 1) {
+    html += '<div class="editor-sidebar">';
+    for (var i = 1; i < data.length; i++) {
+      var article = data[i];
+      var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+      html += '<a href="article.html?id=' + article.id + '" class="editor-sidebar-item">';
+      html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
+      html += '<h4>' + escapeHtml(article.title) + '</h4>';
+      html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
+      html += '</a>';
     }
-    html += '<div class="editor-card-body">';
-    html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
-    html += '<h3><a href="article.html?id=' + article.id + '">' + escapeHtml(article.title) + '</a></h3>';
-    if (article.summary) {
-      html += '<p class="summary">' + escapeHtml(article.summary) + '</p>';
-    }
-    html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
-    html += '</div></div>';
-  });
+    html += '</div>';
+  }
 
   container.innerHTML = html;
 
