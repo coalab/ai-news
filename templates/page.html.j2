@@ -83,12 +83,12 @@
 <!-- 헤더 -->
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="site-logo">AI<span>NEWS</span></a>
+    <a href="/index.html" class="site-logo">AI<span>NEWS</span></a>
     <nav class="site-nav">
-      <a href="index.html" class="active">홈</a>
-      <a href="board.html">기사 게시판</a>
-      <a href="archive-list.html">아카이브</a>
-      <a href="admin.html">관리자</a>
+      <a href="/index.html" class="active">홈</a>
+      <a href="/board.html">기사 게시판</a>
+      <a href="/archive-list.html">아카이브</a>
+      <a href="/admin.html">관리자</a>
     </nav>
   </div>
   <div class="wrap">
@@ -112,12 +112,12 @@
   <div class="section-title">
     <span class="label label-auto">AUTO</span>
     <h2>AI 뉴스 자동 수집</h2>
-    <a href="archive/{{ today_iso }}/index.html" class="more">오늘 아카이브 &rarr;</a>
+    <a href="/archive/{{ today_iso }}/index.html" class="more">오늘 아카이브 &rarr;</a>
   </div>
   <section class="news-grid">
     {% for c in cards %}
     <article class="news-card">
-      <img src="assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <img src="{{ c.thumb }}" alt="AI News" class="news-card-img" onerror="this.src='/assets/images/ai-news-img1.png'">
       <div class="news-card-body">
         <div class="kicker">{{ c.source }}</div>
         <h3><a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.title }}</a></h3>
