@@ -1,4 +1,95 @@
 {
   "date": "2026-03-06",
-  "articles": []
+  "articles": [
+    {
+      "index": 1,
+      "title": "과기정통부, AI 역량 강화 위한 4대 프로그램 본격 시행",
+      "summary": "과기정통부는 모든 직원의 AI 역량을 강화하기 위해 4대 프로그램을 본격적으로 가동한다. 이 프로그램에는 AI 기반의 교육 및 훈련, 프로젝트 지원, 멘토링体系구축, 및 AI 기술応用 역량평가 등이 포함된다. 이러한 프로그램을 통해 과기정통부는 직원의 AI 역량을 향상시키고, 산업 现場에서의 디지털 전환을 견인할 수 있는 전문 인력을 육성하고자 한다. 이를 통해 과기정통부는 더욱 효과적으로 산업 발전을 지원하고, 국가의 디지털 혁신을 주도할 수 있을 것으로 기대된다.",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5XWjFkN0puejh4Ym5INndBM0ZDUjB3NDg2aHd0UjU3MmdlLWVBOTBaUElrZnZpdmFWMmdPWXR6UEU3NnJlOEJtM0U3cXpyRVhaRXNPOGRB?oc=5",
+      "image": "https://images.unsplash.com/photo-1664447972862-e26efc5b709f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4NzF8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "지디넷코리아",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 2,
+      "title": "2026년 주요 전략 기술 트렌드: AI가 중심에 선다",
+      "summary": "전 세계 리서치 및 컨설팅 회사인 가트너는 2026년 주요 전략 기술 트렌드를 발표했다. AI 기술이 중심에 서게 되면서 다양한 산업에서 혁신을 가져올 것으로 예상된다. 가트너는 AI, 클라우드 컴퓨팅, 사이버 보안 등의 기술이 주요 트렌드가 될 것으로 전망했다. 이 트렌드는 기업의 비즈니스 모델과 운영 방식을 획기적으로 변화시킬 것으로 기대된다.",
+      "link": "https://news.google.com/rss/articles/CBMivgJBVV95cUxOMllPSFZjWkNEV0N3d19PcGI4QnFiRFlIbjlMbjE2SmVwS0VKWng2c1pxMkpIN1NuZHQ3dGMzM0ZWbk8wTklTV2J3OW1EVzljbDlTQ2x4SFhsLW5RRGJIbXowTnBqcHJ1eENfQ1ZUd3VJWFVaMDFBWmltMk5nTU1aQVUydUt2LVFvdHNiWU93QklmM1ktakhWTHdJeUw5djZZTlJBNUlOeGgzZzRIT1ppNXJvak42Y3docDM1X3RTZE5lY3RxcVhBTk9yQWprUVVqY1ZPZmdWTzJrbFFQbnQzV0JQcmQ2ekx3V2tGZ193WDhzNWVfUl9rY1hfN0p1dEI3N0Fja1F2YWpnLVZSX0NKNWw2MlhRUW1PUmNCbk9NSmQtSHNKYVA0U3V6WUNYeEZ1LVQwbmg0YXFiYndYNmc?oc=5",
+      "image": "https://images.unsplash.com/photo-1692607431230-5fabd2b717cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4NzN8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "cio.com",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 3,
+      "title": "2026년 AI와 디지털의 미래: 주요 트렌드와 기술 총정리",
+      "summary": "2026년의 AI와 디지털 트렌드는 어떤 모습일까? 최근 아웃소싱타임스의 보고서에 따르면, 2026년에는 12대 주요 트렌드와 10대 기술이 우리의 디지털 생태계를 규정할 것으로 예상된다. 이러한 트렌드와 기술은 비즈니스, 산업, 그리고 우리의 일상생활에 큰 영향을 미칠 것이 기대된다..report에서는 이러한 트렌드와 기술을 자세히介绍하며, 2026년의 디지털 미래를 위한 준비와 전략에 관해 논의하였다.",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBkMnYwNXRtT25KekNHcWtIRXMwUzIyRTRsc09FdVdFNjZPSjB0UHJ1Zlkyd1ZIUnhRWjdHM3prWlAzbWRJNU82MzhocEN6SUNMVThtYVBaQ1FzOGMxSm1VUGxwMnpUek8tNW1uZVpFNTVuQQ?oc=5",
+      "image": "https://images.unsplash.com/photo-1677442135730-64f105e0ea05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4NzZ8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "아웃소싱타임스",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 4,
+      "title": "정부 정책브리핑 查看 도구",
+      "summary": "국내 주요 정책브리핑을 查看하는 문서뷰어 도구가 개발됨에 따라 국민들이 정부의 중요 정책을 쉽게 확인할 수 있게 됨. 문서뷰어는 여러 형식의 문서를 지원하며, 사용자 친화적인 인터페이스를 제공함으로써 정보에 대한 접근성을 향상시킴.",
+      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTFAwbEVKSWN0ZFNmd25SbHNycHdIRV9BS3FlUE9DNVdGVHRrWUFUMzYtazJrbFgyaDg1dXd0YjJGRUpaQ1RIYzBCTV9vOUFVaVFYRTRsYTB1a3JCd3lLLWtXSzFmbUM0NExyalVUNFhRZTVOazgzeDNZ?oc=5",
+      "image": "https://images.unsplash.com/photo-1675557009285-b55f562641b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4Nzl8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "대한민국 정책브리핑",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 5,
+      "title": "글로벌 산업 트렌드의 주요 흐름",
+      "summary": "최근 글로벌 산업 트렌드에서 산업기계, 스마트팩토리, AI가 성장과 자동화, 투자 확대를 중심으로 하는 흐름을 보이고 있습니다. 이러한 트렌드는 생산성 향상과 효율성 제고를 위한 노력의 일환으로 볼 수 있으며, 기업들의 글로벌 경쟁력을 강화하고 미래 산업 발전에สำคัญ한 역할을 있을 것입니다.",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1JaGF0dlBvbkZZcEVXdWIyZC0tZ0ltUEtfU08zTWw1THVXRkJxbUQ3U1Rwb0JreUdUeWJzNDFCbDVDeGZiTWE0djNieGREQlZqUktV?oc=5",
+      "image": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4ODN8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "산업종합저널",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 6,
+      "title": "2026년 교육업계 기술 트렌드: AI 활용 확대",
+      "summary": "2026년 교육업계 기술 트렌드는 교사와 학생 모두가 AI를 적극 활용하는 방향으로 나아갈 것으로 예상된다. IT조선의보도에 따르면, 교육 분야에서 AI의 활용은 점점 더 확대되고 있으며, 이를 통해 교육의 효율性과 질을 개선하는 데 努력을 하고 있다. 교사들은 AI를 통해 교육 콘텐츠를 개발하고, 학생들의 학습 데이터를 분석하여 맞춤형 교육을 제공할 수 있을 것으로 기대된다. 또한, 학생들은 AI를 통해 실시간 피드백을 받고, 自主학습을 할 수 있는 환경이 마련될 것으로 예상된다. 이러한 트렌드는 교육업계의 변화를 예고하며, 교육의 미래를 위한 준비가 필요할 것으로 보인다.",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1JVTBKNEw3MlRJbktqdHhGOFViVTFORWdxaVo1S21uMkhld1Q1OUFZb1hadHlUTkFRaXYyTG1zWEZfODZEcFFGWnJodUt3UjZiQzMzOHlZRkFxbW1iVk0tclRJY2l6a2pZYmJBRVo0ZHjSAXRBVV95cUxPdWcyM3AtYUVodGxUOGd1VHJYR2J1T3ZuaDQtdU9qMm5kYy1pZHNjTC1ZYVFNWkxQdlpDVEViZHowdGRnZ2FkelFwQzYxdXY3emw5ZjBzaS00bHRMaWVlbWZELXNMT2VBRTBvRjBFbE5BQkxvQw?oc=5",
+      "image": "https://images.unsplash.com/photo-1678347123725-2d0d31bc06bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4ODZ8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "IT조선",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 7,
+      "title": "2025 인공지능 기술 트렌드 세미나 개최",
+      "summary": "오는 16일 '2025 인공지능(AI) 기술 트렌드 세미나'가 개최될 예정이다. 이 세미나는 인공지능 기술의 최신 트렌드와 미래 방향을 논의하는 자리이다. 다양한 전문가들이 tham가하여 인공지능의 발전 방향과 적용 사례를 공유할 예정이다. 이 세미나는 인공지능 기술에 관심 있는 개발자와 연구원, 사업가들에게 유익한 정보를 제공할 것으로 기대된다.",
+      "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE02QzRDUTV3ZmdPNUZkSG9nMWhvbWFUV2dMYk5qSHROZ3ljcTVSdTVVOVFQc2NaWmJoeGZaSzlhV0VkUVMwMDZF?oc=5",
+      "image": "https://images.unsplash.com/photo-1526314114033-349ef6f72220?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4ODl8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "브레이크뉴스",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 8,
+      "title": "생성형 AI의 새로운 트렌드: 에이전틱 AI와 피지컬 AI",
+      "summary": "생성형 AI의 발전으로 새로운 트렌드가 등장하고 있습니다. 에이전틱 AI와 피지컬 AI는 생성형 AI의 새로운 가능성을 보여주고 있습니다. 에이전틱 AI는 인공 지능을 자연스럽고 인간적인 방식으로 구현하는 기술입니다. 피지컬 AI는 физ적인 환경과 상호작용하는 인공 지능을 말합니다. 이러한 기술은 다양한 산업에서 새로운 가능성을 열어주고 있습니다.",
+      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9hWDUybzdsUVRjV19NUVBlNUtSbWNfaVdMY1NQdlo4WVl6a0VRb3dTS25jNjJuc05yWTRpOWJvNHhFTjdBM01wTldoTW1VS2VpazNMR0duaDBmTTJMZEU4VkxRR2pLRGM?oc=5",
+      "image": "https://images.unsplash.com/photo-1713345248737-2698000f143d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4OTF8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "M이코노미뉴스",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 9,
+      "title": "2026년 10대 전략 기술 트렌드 발표: AI와 사이버보안의 역할",
+      "summary": "전 세계적인 IT 연구 및 자문업체인 가트너는 2026년 10대 전략 기술 트렌드를 발표했다. 이 트렌드에는 인공지능(AI), 사이버보안, 클라우드 컴퓨팅 등 다양한 기술이 포함되어 있다. 가트너는 이 기술 트렌드가 사업과 산업을革命적으로 변화시키는 역할을 할 것으로 예상하고 있다. 특히, AI와 사이버보안은 가장 중요한 기술 트렌드로 나타났다. 가트너는企业들이 이러한 기술 트렌드를 이해하고 적용함으로써 경쟁력을 높이고 새로운 비즈니스 기회를 발견할 수 있을 것으로 기대한다.",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1ET0otUEtEY1NYalFpMHR2ZTN4U0Z3UVFRbUxRQkk4OGhQSFhiQjlZeVFET1BBSXo1N1gtcWIyMEs4VFNOTTdYU1k4WEdLdnhhZ0NpOUdn?oc=5",
+      "image": "https://images.unsplash.com/photo-1636690581110-a512fed05fd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4OTR8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "지디넷코리아",
+      "date": "2026-03-06"
+    },
+    {
+      "index": 10,
+      "title": "2025년 9월 글로벌 산업 트렌드 주요 동향",
+      "summary": "2025년 9월 말 글로벌 산업 트렌드는 다양한 분야에서 기술 발전과 혁신이 이뤄졌습니다. IT 분야에서는 인공지능과 머신러닝이 더욱 발전하여 산업에 적용되었습니다. 제조业에서도 스마트 팩토리 구축과 산업용 로봇의 활용이 증가했습니다. 이에 따라 생산성 향상과 비용 절감이 이뤄졌습니다. 또한 에너지 분야에서는 신재생 에너지의 사용이 확대되어 환경에 대한 관심이 높아졌습니다. 이러한 트렌드는 글로벌 산업의 미래를 선도할 것이며, 다양한 산업이 이를 도입하여 발전할 것으로 기대됩니다.",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5tUmdTUzYxTWNZcTJXVU5hNVMzOEZYanE1Tk5rRmVqVDVxY0pWamdpbENORHB3Z3RUQlVMeDVkS2o5R1FTMXFSSk83Uk9aVnNFVkQw?oc=5",
+      "image": "https://images.unsplash.com/photo-1665690399850-036127c5da17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODg3MjV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI3Nzg4OTd8&ixlib=rb-4.1.0&q=80&w=1080",
+      "source": "산업종합저널",
+      "date": "2026-03-06"
+    }
+  ]
 }
