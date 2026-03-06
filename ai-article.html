@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 기사</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+      .article-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+      .article-header { margin-bottom: 24px; }
+      .article-meta { color: #666; font-size: 14px; margin: 8px 0; }
+      .article-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 24px; }
+      .article-body { line-height: 1.9; font-size: 17px; white-space: pre-line; }
+      .article-tag { background: #1a3a5c; color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 13px; }
+      .back-btn { display: inline-block; margin-bottom: 20px; color: #1a3a5c; text-decoration: none; font-size:
+  14px; }
+      .back-btn:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <div class="article-container">
+      <a href="/" class="back-btn">← 메인으로</a>
+      <div id="article-content"><p>기사를 불러오는 중...</p></div>
+    </div>
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var articleId = params.get('id');
+
+      if (!articleId) {
+        document.getElementById('article-content').innerHTML = '<p>기사를 찾을 수 없습니다.</p>';
+      } else {
+        fetch('/data/ai-articles.json?v=' + Date.now())
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var article = null;
+            for (var i = 0; i < data.articles.length; i++) {
+              if (data.articles[i].id === articleId) { article = data.articles[i]; break; }
+            }
+            if (!article) {
+              document.getElementById('article-content').innerHTML = '<p>기사를 찾을 수 없습니다.</p>';
+              return;
+            }
+            document.title = article.title + ' - AI 뉴스';
+            var html = '<div class="article-header">';
+            html += '<span class="article-tag">AI 자동 생성</span>';
+            html += '<h1 style="margin:12px 0 8px;">' + article.title + '</h1>';
+            html += '<p class="article-meta">' + article.date + ' · ' + article.topic + '</p>';
+            html += '</div>';
+            if (article.image) {
+              html += '<img class="article-image" src="' + article.image + '" alt="' + article.title + '"
+  onerror="this.style.display=\'none\'">';
+            }
+            html += '<div class="article-body">' + article.body.replace(/</g,'&lt;') + '</div>';
+            document.getElementById('article-content').innerHTML = html;
+          })
+          .catch(function() {
+            document.getElementById('article-content').innerHTML = '<p>기사 로딩 실패</p>';
+          });
+      }
+    </script>
+  </body>
+  </html>
