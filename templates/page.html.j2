@@ -136,27 +136,51 @@
     <section class="news-grid" id="ai-articles-grid"></section>
 
  {# 추천기사 부분  추가#}
- <script>
+ 
+  <script>
     fetch('/data/ai-articles.json?v=' + Date.now())
-      .then(r => r.json())
-      .then(data => {
-        const grid = document.getElementById('ai-articles-grid');
-        data.articles.forEach(article => {
-          const card = document.createElement('article');
-          card.className = 'news-card';
-          card.innerHTML =
-            '<img src="' + article.image + '" alt="' + article.title + '" class="news-card-img">' +
-            '<div class="news-card-body">' +
-            '<div class="kicker">' + article.source + '</div>' +
-            '<h3><a href="' + article.link + '" target="_blank" rel="noopener">' + article.title + '</a></h3>' +
-            '<p class="desc">' + article.summary + '</p>' +
-            '<div class="meta">' + article.date + '</div>' +
-            '</div>';
-          grid.appendChild(card);
-        });
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var grid = document.getElementById('ai-articles-grid');
+        if (!grid || !data.articles) return;
+        for (var i = 0; i < data.articles.length; i++) {
+          var a = data.articles[i];
+          var cleanSummary = a.summary.replace(/<[^>]+>/g, '').substring(0, 150);
+          var article = document.createElement('article');
+          article.className = 'news-card';
+          var img = document.createElement('img');
+          img.src = a.image;
+          img.alt = a.title;
+          img.className = 'news-card-img';
+          article.appendChild(img);
+          var body = document.createElement('div');
+          body.className = 'news-card-body';
+          var kicker = document.createElement('div');
+          kicker.className = 'kicker';
+          kicker.textContent = a.source;
+          var h3 = document.createElement('h3');
+          var link = document.createElement('a');
+          link.href = a.link;
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = a.title;
+          h3.appendChild(link);
+          var desc = document.createElement('p');
+          desc.className = 'desc';
+          desc.textContent = cleanSummary;
+          var meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.textContent = a.date;
+          body.appendChild(kicker);
+          body.appendChild(h3);
+          body.appendChild(desc);
+          body.appendChild(meta);
+          article.appendChild(body);
+          grid.appendChild(article);
+        }
       })
-      .catch(function(e) { console.log('AI 기사 로드 실패:', e); });
-    </script>
+      .catch(function(e) { console.log('오류:', e); });
+  </script>
 
   </main>
 
