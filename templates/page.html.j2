@@ -135,7 +135,8 @@
     </div>
     <section class="news-grid" id="ai-articles-grid"></section>
 
-    <script>
+ {# 추천기사 부분  추가#}
+ <script>
     fetch('/data/ai-articles.json?v=' + Date.now())
       .then(r => r.json())
       .then(data => {
