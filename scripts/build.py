@@ -249,8 +249,12 @@ def pick_thumbnail(entry, cache_key: str) -> str:
     return f"https://www.google.com/s2/favicons?domain={host}&sz=128&v={cache_key}"
 
 # ===== RSS 수집 =====
-feed = feedparser.parse(FEED_URL)
-cards = []
+  feed = feedparser.parse(
+      FEED_URL,
+      agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+  )
+  print(f"RSS 수집 결과: {len(feed.entries)}개 기사")
+  cards = []
 
 for entry in feed.entries[:CARDS_LIMIT]:
     title = (entry.get("title") or "").strip()
