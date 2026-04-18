@@ -45,27 +45,35 @@ def fetch_unsplash_image(keyword: str) -> str:
     return f"https://picsum.photos/seed/{seed}/800/450"
 
 def build_content(items, link, domain, date_str):
-    """여러 기사 요약을 엮어 풍부한 본문 HTML을 생성합니다."""
-    paragraphs = []
-    for item in items:
-        desc = clean(item.get('description', ''))
-        if desc:
-            paragraphs.append(f'<p>{desc}</p>')
+    """메인 기사 1개 + 관련 뉴스 브리핑 형식으로 본문 HTML 생성."""
+    main = items[0]
+    main_desc = clean(main.get('description', ''))
 
-    related_links = ''
-    if len(items) > 1:
-        related_items = ''.join(
-            f'<li><a href="{it.get("originallink") or it.get("link","")}" target="_blank" rel="noopener">'
-            f'{clean(it.get("title",""))}</a></li>'
-            for it in items[1:]
+    # 관련 뉴스 브리핑 (나머지 기사)
+    brief_rows = ''
+    for it in items[1:]:
+        t = clean(it.get('title', ''))
+        d = clean(it.get('description', ''))
+        href = it.get('originallink') or it.get('link', '')
+        brief_rows += (
+            f'<li style="margin-bottom:12px">'
+            f'<strong><a href="{href}" target="_blank" rel="noopener" style="color:#1a56db">{t}</a></strong>'
+            f'<br><span style="color:#555;font-size:14px">{d}</span>'
+            f'</li>'
         )
-        related_links = f'<h3>관련 기사</h3><ul>{related_items}</ul>'
 
-    body = '\n'.join(paragraphs)
+    related_section = ''
+    if brief_rows:
+        related_section = (
+            f'<hr style="margin:24px 0">'
+            f'<h3 style="margin-bottom:16px">📰 오늘의 AI 뉴스 브리핑</h3>'
+            f'<ul style="list-style:none;padding:0">{brief_rows}</ul>'
+        )
+
     return (
-        f'{body}\n'
-        f'<p>더 자세한 내용은 <a href="{link}" target="_blank" rel="noopener">원문 기사</a>에서 확인하세요.</p>\n'
-        f'{related_links}\n'
+        f'<p style="font-size:16px;line-height:1.8">{main_desc}</p>'
+        f'<p><a href="{link}" target="_blank" rel="noopener">▶ 원문 기사 보기</a></p>'
+        f'{related_section}'
         f'<hr><p><small>출처: {domain} | {date_str}</small></p>'
     )
 
