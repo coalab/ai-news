@@ -3,11 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 뉴스 | 2026.04.18 (Sat)</title>
-  <meta name="description" content="AI 뉴스 - 에디터 기사와 자동 수집 뉴스를 한눈에">
-  <meta property="og:title" content="AI 뉴스 | 2026.04.18 (Sat)">
-  <meta property="og:description" content="AI 주요 이슈를 한눈에 확인하세요">
+  <title>AI 뉴스 | 2026.04.19 (Sun) | COALAB</title>
+  <meta name="description" content="매일 아침 최신 AI 뉴스를 한눈에. COALAB AI 교육 전문가가 큐레이팅하는 국내외 AI 주요 이슈.">
+  <meta name="keywords" content="AI뉴스, 인공지능뉴스, AI교육, COALAB, 코아랩, GPT, 머신러닝">
+  <meta name="author" content="COALAB">
+  <link rel="canonical" href="https://ai-news.coalab.co.kr/index.html">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="COALAB AI뉴스">
+  <meta property="og:title" content="AI 뉴스 | 2026.04.19 (Sun) | COALAB">
+  <meta property="og:description" content="매일 아침 최신 AI 뉴스를 한눈에. COALAB AI 교육 전문가가 큐레이팅하는 국내외 AI 주요 이슈.">
+  <meta property="og:url" content="https://ai-news.coalab.co.kr/index.html">
+  <meta property="og:image" content="https://ai-news.coalab.co.kr/ai-news-img1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 뉴스 | COALAB">
+  <meta name="twitter:description" content="매일 아침 최신 AI 뉴스를 한눈에.">
   <style>
     :root{--bg:#f4f6f8;--card:#ffffff;--muted:#6b7280;--text:#111827;--border:rgba(0,0,0,.08);--accent:#2d8659;--accent-light:#e8f5ef}
     *{box-sizing:border-box}
@@ -95,6 +104,21 @@
 
     /* 푸터 */
     .site-footer{text-align:center;color:var(--muted);padding:40px 0 60px;font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+
+    /* CTA 배너 */
+    .cta-banner{background:linear-gradient(135deg,#1a4d3a 0%,#2d8659 100%);border-radius:14px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:24px 0}
+    .cta-banner .cta-text{color:#fff}
+    .cta-banner .cta-text strong{display:block;font-size:16px;font-weight:800;margin-bottom:4px}
+    .cta-banner .cta-text span{font-size:13px;opacity:.85}
+    .cta-banner .cta-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1a4d3a;font-size:14px;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none;white-space:nowrap}
+    .cta-banner .cta-btn:hover{opacity:.9}
+
+    /* 교재 예고 배너 */
+    .book-banner{background:#fff;border:2px solid #2d8659;border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:16px;margin:16px 0 24px;flex-wrap:wrap}
+    .book-banner .book-icon{font-size:32px;flex-shrink:0}
+    .book-banner .book-text strong{display:block;font-size:15px;font-weight:800;color:#111827;margin-bottom:4px}
+    .book-banner .book-text span{font-size:13px;color:#6b7280}
+    .book-banner .book-btn{margin-left:auto;display:inline-flex;align-items:center;background:#2d8659;color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0}
   </style>
 </head>
 <body>
@@ -107,15 +131,34 @@
       <a href="/index.html" class="active">홈</a>
       <a href="/board.html">기사 게시판</a>
       <a href="/archive-list.html">아카이브</a>
-      <a href="/admin.html">관리자</a>
+      <a href="https://www.coalab.co.kr" target="_blank" rel="noopener" style="background:#2d8659;color:#fff">COALAB</a>
     </nav>
   </div>
   <div class="wrap">
-    <div class="site-date">2026.04.18 (Sat) · Week 15</div>
+    <div class="site-date">2026.04.19 (Sun) · Week 15</div>
   </div>
 </header>
 
 <main class="wrap">
+
+<!-- coalab 강의 문의 CTA -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <strong>AI · SQL · 코딩 교육 문의</strong>
+    <span>기업교육 · 대학강의 · 파주시 지역연계 · 평생교육원</span>
+  </div>
+  <a href="https://open.kakao.com/o/sZhJVf7" target="_blank" rel="noopener" class="cta-btn">💬 카카오톡 문의</a>
+</div>
+
+<!-- 교재 출판 예고 -->
+<div class="book-banner">
+  <div class="book-icon">📘</div>
+  <div class="book-text">
+    <strong>출판 예정: GPT를 활용한 SQL 최적화방안</strong>
+    <span>내일배움카드 과정 교재 · 사전 관심 등록</span>
+  </div>
+  <a href="https://open.kakao.com/o/sZhJVf7" target="_blank" rel="noopener" class="book-btn">관심 등록</a>
+</div>
 
   <!-- 에디터 기사 섹션 (Supabase에서 동적 로드) -->
   <div class="section-title">
@@ -131,7 +174,7 @@
   <div class="section-title">
     <span class="label label-auto">AUTO</span>
     <h2>AI 뉴스 자동 수집</h2>
-    <a href="/archive/2026-04-18/index.html" class="more">오늘 아카이브 &rarr;</a>
+    <a href="/archive/2026-04-19/index.html" class="more">오늘 아카이브 &rarr;</a>
   </div>
   <section class="news-grid">
     
@@ -148,30 +191,60 @@
     <article class="news-card">
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">한국경제</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LVkNxVE0zNXVuWV8xNUg2N1hwdFpfUmVZekxkeWluQkFtOHpyUVVwckNHMFozMkpOZTdhWEs5N2Y4YTNhRXZrM1Q4MTA5YnNHdUpUYl9NajRLZ9IBVEFVX3lxTFBHa1RtdWRrc1VVVFNZMk1naHNsY3EwcnE4alRVbFA1MFZqdmlkb2RUZkJRQWFUeGx4OVdBZkNhVUFiNUdUZWE4MklwQk1sU2Mwby0wMA?oc=5" target="_blank" rel="noopener">오픈AI와 협력 중단…신세계에 무슨 일이 - 한국경제</a></h3>
-        <p class="desc">오픈AI와 협력 중단…신세계에 무슨 일이 한국경제</p>
-        <div class="meta">Fri, 17 Apr 2026 09:23:25 GMT</div>
+        <div class="kicker">동아일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTFB6WExLSWZhLS16WmJuTUNNdjJrVjhKWFotR2YxUjJIeWN2S0gyTGF6UWV5Y0c2VVk5VjJRUEdMdWlJY0E2OXlkVTQzUDU0ZmRrSnlGYmZ6QjNDM2VlZ280dmNPVWV3dnBvSEFSYjNaONIBZkFVX3lxTFBTRTgyZUV5LVFOUU5IMUVZc0RQU2VtSTV4UE5jWl9YZTd0RHpPeUpBQWlqNUdkeHQ3c2p5MVpnWWxIR1dEc0NhOHB4eHNpTElxUktVTEtjcGhQVnIwOGRjaHRfcVNjUQ?oc=5" target="_blank" rel="noopener">“시인이 쓴 글 모두 학습한 AI, 시 창작 넘어 시인 정체성까지 창조” - 동아일보</a></h3>
+        <p class="desc">“시인이 쓴 글 모두 학습한 AI, 시 창작 넘어 시인 정체성까지 창조” 동아일보</p>
+        <div class="meta">Fri, 17 Apr 2026 16:40:00 GMT</div>
       </div>
     </article>
     
     <article class="news-card">
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">서울경제</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1CWjJuQUo0UDh4Y0kwdUtjdmhUY0hlTTJ5b05qSkc3ak0xd1B6Z2hRUklJWHlqM0ZueU54VjZNSzBtRXNsRXZ1LW9aMGVsNFRkR2fSAVNBVV95cUxNRUdEMERyUF84ZEVSNVRaRUtvdmZFMnRUOFgzejM4ZWFMenFwVUVYUHZObWdwUS01cUxsRE4zWl83V0dDdmUzUVdYSlRuemxHbXpPYw?oc=5" target="_blank" rel="noopener">신세계, 리플렉션AI와 유통 전 과정 AI화…오픈AI 협력은 중단 - 서울경제</a></h3>
-        <p class="desc">신세계, 리플렉션AI와 유통 전 과정 AI화…오픈AI 협력은 중단 서울경제</p>
-        <div class="meta">Sat, 18 Apr 2026 01:18:16 GMT</div>
+        <div class="kicker">뉴시스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9OWXhsd1B2eE42aDVfai1LcC0tUTZrYUwxTUdDeHk3SWlUQnNXLWtoaFc3NjRWRzEzcmR1TUVaV1B3WU1HNmtBVFBTWHFjeDR6UEZod3RkbEVQTW5SOTByNdIBeEFVX3lxTE1SZTQ2ZFY3TWkwMFBFQWk2VjViZHFDYVExSlJMaVlISGpCZ2xKOEF2TUZkV2tQVFpyVFRMQ3NNbkdxMXY4cWpjZ3loVS04N0E3ajJ5OHVkS1RkT1ZDcmVSRlpUX1g4QmxZeGpNVVJKZlExTC14Y0phSQ?oc=5" target="_blank" rel="noopener">&#34;실생활 중심·재미도&#34;…발달장애인 위한 첫 &#39;AI 앱&#39; 써보니 - 뉴시스</a></h3>
+        <p class="desc">&#34;실생활 중심·재미도&#34;…발달장애인 위한 첫 &#39;AI 앱&#39; 써보니 뉴시스</p>
+        <div class="meta">Sat, 18 Apr 2026 21:01:00 GMT</div>
       </div>
     </article>
     
     <article class="news-card">
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">중앙일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFA0WmNRVHBiVEFJTU1vOUtuVFFvaUdKeGFlVkN0VGwzcnlFdWNPN2JzazJNdEx0ZkFEWkM0Z0lCaG1tRlhZMVB1T212MWVmX0RMdTlZVm1B?oc=5" target="_blank" rel="noopener">27년 숨은 결함 찾아냈다…美 ‘괴물 AI’ 미토스 쓰는 이유 - 중앙일보</a></h3>
-        <p class="desc">27년 숨은 결함 찾아냈다…美 ‘괴물 AI’ 미토스 쓰는 이유 중앙일보</p>
-        <div class="meta">Fri, 17 Apr 2026 22:00:00 GMT</div>
+        <div class="kicker">Chosunbiz</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOTi10LWxHdkpCN1Z4UkRaeEstSml1aFJ3Y2Fwd3lYUm5wNUU0Y0s0VTlWeVFqdDBGSjY3NGtuRWtOeVhCNWlHc2J4MEJKdW1ZdXBPSWRveDFtVGFBYlI2bjRRVnRwMjlkVlpwZUg3WUFKenZiWFdZa3dRLXJYSUJnRURR0gGWAUFVX3lxTE50b2plR2JnOGJMLTktYzZtN3JER1QzNncyYktXMFFVV09xRXZBNjhQXzFBUWZoS3dGTjJCSU81WXQwbEpJUFJZdEM4VnNYeXpMR1FzR3FxQXo1Z1BMYkhYUkNmZHBLN0tocGc1LTYwWVg0VGhURDF1d1lDeFpaT2t1azJBaTBFYWtLeng0ZVQ5U2xwZF9udw?oc=5" target="_blank" rel="noopener">[인터뷰] 세계 3위 생성형 AI 플랫폼 ‘캔바’… 캐머런 애덤스 공동창업자 “디자인 맥락 이해하는 AI로 창작 장벽 허문다” - 조선비즈 - Chosunbiz</a></h3>
+        <p class="desc">[인터뷰] 세계 3위 생성형 AI 플랫폼 ‘캔바’… 캐머런 애덤스 공동창업자 “디자인 맥락 이해하는 AI로 창작 장벽 허문다” - 조선비즈 Chosunbiz</p>
+        <div class="meta">Sat, 18 Apr 2026 21:00:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9CY1IxQnNmdVpkZTgyUTVnTENZQ0hwQlRvYVdaU2NEMmdOY3B2ZXBjZEVBdEFVdWpObUxEb29TMHhGRGdnWFZ2bUo2UmV3Q1k?oc=5" target="_blank" rel="noopener">오픈AI, IPO 앞두고 핵심임원 잇단 퇴사…&#34;재조정·통합 일환&#34; - v.daum.net</a></h3>
+        <p class="desc">오픈AI, IPO 앞두고 핵심임원 잇단 퇴사…&#34;재조정·통합 일환&#34; v.daum.net</p>
+        <div class="meta">Sat, 18 Apr 2026 18:02:15 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBmeUVxZnlPQ2tFZnRiV1NUcmhGTGp2Zmc1NmJ3UGhUUmExUlhIU0VUOXFjY3VQMGpiUFpXWlRUNzg1Q1djbC1pY1I3aGFVN0k3TE1mYmJsNWkxcjjSAWBBVV95cUxPdWNyNzlueDNmQkhKUjdGSzRMdk1SanpvMFU4NG1DbnlUTEJmZE5CZFFVSXpfVHlTandzVUt1QjdMM1AzUW9LYTl0UFFUdXlzaUx6TWdxdkdrdFVqbU5sTk8?oc=5" target="_blank" rel="noopener">[AI픽] &#39;덕테이프&#39; 뭐길래…챗GPT 이미지 모델 추정에 업계 주목 - 연합뉴스</a></h3>
+        <p class="desc">[AI픽] &#39;덕테이프&#39; 뭐길래…챗GPT 이미지 모델 추정에 업계 주목 연합뉴스</p>
+        <div class="meta">Sat, 18 Apr 2026 21:17:01 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">뉴시스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1VVmZZUzRnUHNfcThCWk5zajQtZjVoR3hEN2NnZnp4N195Ty14VjIyWGJsWlhsaDBwMVpidjlMRDdFQ2ZIVU4yNGFiOFZfMWJ4eG5nQTV0bm5zazlDaTV0RdIBeEFVX3lxTE14eTlkT0JGSXZzaUNuS3QwWEU3SEpXRmRMQkhtY05yUDdyQUd6QnM2SDB5ZW5Sc1NuVm1zMlZZUVhmYkRWeWVUcE14b2t0MmRkQU5HTElHT0FnX1F3VHVBT0diMjJUS1Z3T2F3ZmxPcFQyVDFiTUlHVg?oc=5" target="_blank" rel="noopener">&#34;30년 보안성벽, AI에겐 1분짜리 퍼즐&#34;… 전세계 금융·안보 &#39;초비상&#39;[미토스 쇼크②] - 뉴시스</a></h3>
+        <p class="desc">&#34;30년 보안성벽, AI에겐 1분짜리 퍼즐&#34;… 전세계 금융·안보 &#39;초비상&#39;[미토스 쇼크②] 뉴시스</p>
+        <div class="meta">Fri, 17 Apr 2026 23:01:00 GMT</div>
       </div>
     </article>
     
@@ -189,19 +262,9 @@
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
         <div class="kicker">v.daum.net</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9LRUtOWWl6QUl3X1RCZVRVV0x3Yzc3MVhHT1B1OS1JZFRvbVQ4N19ZMjhGSEtKUU5PdzZQZW9KeVNzZ29xX1ZPeDduT1pHazA?oc=5" target="_blank" rel="noopener">‘초강력 AI 해커’ 충격파 확산… 각국 경제수장들 “은행 시스템 위협” 경고 - v.daum.net</a></h3>
-        <p class="desc">‘초강력 AI 해커’ 충격파 확산… 각국 경제수장들 “은행 시스템 위협” 경고 v.daum.net</p>
-        <div class="meta">Fri, 17 Apr 2026 16:43:37 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">전자신문</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE9uYW14RkhTQVY1aGhQNHJUVlF4dGxfZk5zak9QaTdpd2xpU1VkdkxuUDdDNlpfZlh5dENwbGN2NzNyMWJqU1JYQjduME16dw?oc=5" target="_blank" rel="noopener">산학연·지방정부 AI 협력…&#39;K-소버린 AX 얼라이언스&#39; 뜬다 - 전자신문</a></h3>
-        <p class="desc">산학연·지방정부 AI 협력…&#39;K-소버린 AX 얼라이언스&#39; 뜬다 전자신문</p>
-        <div class="meta">Sat, 18 Apr 2026 08:00:00 GMT</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBDRzRZbXY1VlVEMmJpVktLakpSY3hJNDNoZ3Rxb2xZaFpHYnd5OUpwWlU4M29HTGJabjFlSU1nNnczMjA4eUVkV1VGWU4zcFE?oc=5" target="_blank" rel="noopener">&#34;AI, 해킹 주도권까지 쥔다&#34;…&#39;미토스 충격&#39;에 정부 보안 비상 - v.daum.net</a></h3>
+        <p class="desc">&#34;AI, 해킹 주도권까지 쥔다&#34;…&#39;미토스 충격&#39;에 정부 보안 비상 v.daum.net</p>
+        <div class="meta">Sat, 18 Apr 2026 20:03:04 GMT</div>
       </div>
     </article>
     
@@ -212,26 +275,6 @@
         <h3><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1NV2poeVdKVUNqeUZsOXk0LVRFOUttbjI2VkVrWUxtbXplNUJpY1NFSXNmQ2pwcVZiOURGUGtqbVktd0dwSHRLMWxMUlRZUQ?oc=5" target="_blank" rel="noopener">서초구, 전국 최초 &#39;엣지형 AI&#39; CCTV 도입 - 전자신문</a></h3>
         <p class="desc">서초구, 전국 최초 &#39;엣지형 AI&#39; CCTV 도입 전자신문</p>
         <div class="meta">Sat, 18 Apr 2026 08:00:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">조선일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdWRzWUszQ2FRLUVvcGN1V1ZzUUNGUjg2THlwNFJNc011T3NBRVd4aGJON1hjQ28tTVNQbi0yeENoa0hySkM0ZDk5Zl9TYjVFeWxRZ19maUhHTDhJQ1BIVV9LblVfQjM0ZkdtekI3c1R6dlh2V3ljWTNrMFJLNTVDYUU5Y0EzWHY5?oc=5" target="_blank" rel="noopener">李대통령, ‘AI 기본사회 주도’ 與 차지호 의원에 감사패 - 조선일보</a></h3>
-        <p class="desc">李대통령, ‘AI 기본사회 주도’ 與 차지호 의원에 감사패 조선일보</p>
-        <div class="meta">Sat, 18 Apr 2026 00:29:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">문화일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE0yeElHdzZKcllqZVpYWHo1S09uMEdYZ0RaVzdJVUJRd3NTY0ZkN2dRZ1dhUTRLYVM5Qm1ZYkJJeDZOdzNvWm5WLXgzVHBqRGtZ?oc=5" target="_blank" rel="noopener">李 대통령, ‘AI 기본사회 주도’ 與 차지호 의원에게 감사패 수여 - 문화일보</a></h3>
-        <p class="desc">李 대통령, ‘AI 기본사회 주도’ 與 차지호 의원에게 감사패 수여 문화일보</p>
-        <div class="meta">Sat, 18 Apr 2026 09:06:41 GMT</div>
       </div>
     </article>
     
@@ -250,7 +293,13 @@
 </main>
 
 <footer class="site-footer">
-  &copy; 2026 COALAB AI뉴스 &middot; 자동 생성 (GitHub Actions) &middot; 최신: 2026.04.18 (Sat)
+  <div style="margin-bottom:10px">
+    <a href="https://www.coalab.co.kr" target="_blank" rel="noopener" style="font-weight:700;color:#2d8659">COALAB</a>
+    &nbsp;·&nbsp;AI 교육 전문 · 기업/대학/지역연계
+    &nbsp;·&nbsp;<a href="https://open.kakao.com/o/sZhJVf7" target="_blank" rel="noopener" style="color:#2d8659">강의 문의 (카카오톡)</a>
+  </div>
+  &copy; 2026 COALAB AI뉴스 &middot; 자동 생성 (GitHub Actions) &middot; 최신: 2026.04.19 (Sun)
+  &middot; <a href="/privacy.html" style="color:var(--muted)">개인정보처리방침</a>
 </footer>
 
 <!-- Supabase: 에디터 기사 로드 -->

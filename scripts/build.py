@@ -293,3 +293,29 @@ html = template.render(
 
 print("✅ index.html 및 COALAB archive 페이지 생성 완료:", today_iso)
 
+# ===== sitemap.xml 생성 =====
+def generate_sitemap(root: Path, base: str, today: str):
+    urls = [
+        f'  <url><loc>{base}/index.html</loc><lastmod>{today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>',
+        f'  <url><loc>{base}/about.html</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>',
+        f'  <url><loc>{base}/archive-list.html</loc><lastmod>{today}</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>',
+        f'  <url><loc>{base}/privacy.html</loc><lastmod>{today}</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>',
+    ]
+    archive_dir = root / "archive"
+    if archive_dir.exists():
+        for d in sorted(archive_dir.iterdir()):
+            if d.is_dir() and (d / "index.html").exists():
+                urls.append(
+                    f'  <url><loc>{base}/archive/{d.name}/index.html</loc>'
+                    f'<lastmod>{d.name}</lastmod>'
+                    f'<changefreq>never</changefreq><priority>0.4</priority></url>'
+                )
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += '\n'.join(urls)
+    sitemap += '\n</urlset>\n'
+    (root / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    print(f"✅ sitemap.xml 생성 완료 ({len(urls)}개 URL)")
+
+generate_sitemap(ROOT, "https://ai-news.coalab.co.kr", today_iso)
+
