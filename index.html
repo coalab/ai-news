@@ -74,18 +74,24 @@
     .news-card-body .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
     .news-card-body .meta{margin-top:8px;color:#9ca3af;font-size:12px}
 
-    /* 기사 리스트 */
-    .article-list{display:flex;flex-direction:column;gap:0}
-    .article-item{background:var(--card);border-bottom:1px solid var(--border);padding:24px 28px;transition:background .15s}
-    .article-item:first-child{border-radius:14px 14px 0 0}
-    .article-item:last-child{border-radius:0 0 14px 14px;border-bottom:none}
-    .article-item:hover{background:#f8fafb}
-    .article-item .a-num{font-size:11px;font-weight:700;color:#03c75a;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
-    .article-item h3{margin:0 0 8px;font-size:17px;font-weight:800;line-height:1.4}
-    .article-item h3 a{color:var(--text)}
-    .article-item h3 a:hover{color:#03c75a}
-    .article-item .a-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
-    .article-item .a-meta{font-size:12px;color:#9ca3af}
+    /* 네이버 기사 섹션 */
+    .naver-section{background:#0f2027;border-radius:16px;padding:32px;margin-top:8px}
+    .naver-featured{border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:28px;margin-bottom:24px}
+    .naver-featured .badge{display:inline-block;background:#03c75a;color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:14px}
+    .naver-featured h2{margin:0 0 12px;font-size:24px;font-weight:900;line-height:1.4;color:#fff}
+    .naver-featured h2 a{color:#fff}
+    .naver-featured h2 a:hover{color:#03c75a}
+    .naver-featured .body{font-size:15px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:12px}
+    .naver-featured .meta{font-size:12px;color:rgba(255,255,255,.4)}
+    .naver-list{display:flex;flex-direction:column;gap:0}
+    .naver-list-item{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .naver-list-item:last-child{border-bottom:none;padding-bottom:0}
+    .naver-list-item .num{font-size:22px;font-weight:900;color:#03c75a;min-width:32px;line-height:1}
+    .naver-list-item .content h4{margin:0 0 4px;font-size:15px;font-weight:700;color:#fff;line-height:1.4}
+    .naver-list-item .content h4 a{color:#fff}
+    .naver-list-item .content h4 a:hover{color:#03c75a}
+    .naver-list-item .content p{margin:0 0 4px;font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
+    .naver-list-item .content .meta{font-size:11px;color:rgba(255,255,255,.3)}
 
     /* 푸터 */
     .site-footer{text-align:center;color:var(--muted);padding:40px 0 60px;font-size:13px;border-top:1px solid var(--border);margin-top:40px}
@@ -237,8 +243,8 @@
     <span class="label" style="background:#03c75a;color:#fff">NAVER</span>
     <h2>AI 뉴스 기사</h2>
   </div>
-  <div class="article-list" id="naver-articles">
-    <div class="editor-empty">기사를 불러오는 중...</div>
+  <div class="naver-section" id="naver-articles">
+    <div style="color:rgba(255,255,255,.5);text-align:center;padding:20px">기사를 불러오는 중...</div>
   </div>
 
 </main>
@@ -321,13 +327,26 @@
       container.innerHTML = '<div class="editor-empty">등록된 기사가 없습니다.</div>';
       return;
     }
-    container.innerHTML = articles.map((a, i) => `
-      <div class="article-item">
-        <div class="a-num">${a.source || 'Naver 뉴스'} · ${a.topic || ''}</div>
-        <h3><a href="${a.link || '#'}" target="_blank" rel="noopener">${a.title}</a></h3>
-        <p class="a-body">${a.body || a.summary}</p>
-        <div class="a-meta">${a.date}</div>
-      </div>`).join('');
+    const first = articles[0];
+    const rest = articles.slice(1);
+    let html = `<div class="naver-featured">
+      <div class="badge">${first.source || 'NAVER 뉴스'}</div>
+      <h2><a href="${first.link||'#'}" target="_blank" rel="noopener">${first.title}</a></h2>
+      <p class="body">${first.body||first.summary}</p>
+      <div class="meta">${first.topic||''} · ${first.date}</div>
+    </div>`;
+    if(rest.length){
+      html += '<div class="naver-list">' + rest.map((a,i)=>`
+        <div class="naver-list-item">
+          <span class="num">0${i+2}</span>
+          <div class="content">
+            <h4><a href="${a.link||'#'}" target="_blank" rel="noopener">${a.title}</a></h4>
+            <p>${a.body||a.summary}</p>
+            <div class="meta">${a.source||'Naver'} · ${a.date}</div>
+          </div>
+        </div>`).join('') + '</div>';
+    }
+    container.innerHTML = html;
   } catch(e) {
     container.innerHTML = '<div class="editor-empty">기사 로드 실패</div>';
   }
