@@ -128,6 +128,16 @@
     {% endfor %}
   </section>
 
+
+  <!-- 네이버 뉴스 AI 기사 섹션 -->
+  <div class="section-title">
+    <span class="label" style="background:#03c75a;color:#fff">NAVER</span>
+    <h2>AI 자동 생성 기사</h2>
+  </div>
+  <section class="news-grid" id="naver-articles">
+    <div class="editor-empty">기사를 불러오는 중...</div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -193,6 +203,33 @@
     var div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+})();
+</script>
+<!-- 네이버 AI 기사 로드 -->
+<script>
+(async function() {
+  const container = document.getElementById('naver-articles');
+  try {
+    const r = await fetch('/data/ai-articles.json?v=' + Date.now());
+    const json = await r.json();
+    const articles = json.articles || [];
+    if (!articles.length) {
+      container.innerHTML = '<div class="editor-empty">등록된 기사가 없습니다.</div>';
+      return;
+    }
+    container.innerHTML = articles.map(a => `
+      <article class="news-card">
+        <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+        <div class="news-card-body">
+          <div class="kicker">${a.source || 'Naver 뉴스'}</div>
+          <h3><a href="${a.link || '#'}" target="_blank" rel="noopener">${a.title}</a></h3>
+          <p class="desc">${a.summary}</p>
+          <div class="meta">${a.date}</div>
+        </div>
+      </article>`).join('');
+  } catch(e) {
+    container.innerHTML = '<div class="editor-empty">기사 로드 실패</div>';
   }
 })();
 </script>
