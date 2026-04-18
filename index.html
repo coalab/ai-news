@@ -199,16 +199,6 @@
     <article class="news-card">
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">v.daum.net</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE4yWXJqZERuNWNPMzZmT2ZLdFJmcU1NUkZESWlqcUE0ZTRjQVAxR1lTZkFFZmFqYWpCcFRtZnNkVGlYTWtkS01zR1hqVzJFQlk?oc=5" target="_blank" rel="noopener">[칩톡]&#34;몰락한 왕에서 지휘자로&#34;…인텔, AI 추론 시대 &#39;왕의 귀환&#39; 예고 - v.daum.net</a></h3>
-        <p class="desc">[칩톡]&#34;몰락한 왕에서 지휘자로&#34;…인텔, AI 추론 시대 &#39;왕의 귀환&#39; 예고 v.daum.net</p>
-        <div class="meta">Fri, 17 Apr 2026 23:02:13 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
         <div class="kicker">조선일보</div>
         <h3><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdWRzWUszQ2FRLUVvcGN1V1ZzUUNGUjg2THlwNFJNc011T3NBRVd4aGJON1hjQ28tTVNQbi0yeENoa0hySkM0ZDk5Zl9TYjVFeWxRZ19maUhHTDhJQ1BIVV9LblVfQjM0ZkdtekI3c1R6dlh2V3ljWTNrMFJLNTVDYUU5Y0EzWHY5?oc=5" target="_blank" rel="noopener">李대통령, ‘AI 기본사회 주도’ 與 차지호 의원에 감사패 - 조선일보</a></h3>
         <p class="desc">李대통령, ‘AI 기본사회 주도’ 與 차지호 의원에 감사패 조선일보</p>
@@ -216,6 +206,26 @@
       </div>
     </article>
     
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9CZ2pVcnhCdTF6OTdRQ3FDZEo0cFltZ1pKVmMzdENYenpPUnNGWTVsNjE4OThral9QRTJ6N01LbWdnWUllNXc1YnBhVnNtSTA?oc=5" target="_blank" rel="noopener">이 대통령, 차지호 의원에 감사패…&#34;글로벌 AI허브 설립 지원&#34; - v.daum.net</a></h3>
+        <p class="desc">이 대통령, 차지호 의원에 감사패…&#34;글로벌 AI허브 설립 지원&#34; v.daum.net</p>
+        <div class="meta">Sat, 18 Apr 2026 01:06:00 GMT</div>
+      </div>
+    </article>
+    
+  </section>
+
+
+  <!-- 네이버 뉴스 AI 기사 섹션 -->
+  <div class="section-title">
+    <span class="label" style="background:#03c75a;color:#fff">NAVER</span>
+    <h2>AI 자동 생성 기사</h2>
+  </div>
+  <section class="news-grid" id="naver-articles">
+    <div class="editor-empty">기사를 불러오는 중...</div>
   </section>
 
 </main>
@@ -283,6 +293,33 @@
     var div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+})();
+</script>
+<!-- 네이버 AI 기사 로드 -->
+<script>
+(async function() {
+  const container = document.getElementById('naver-articles');
+  try {
+    const r = await fetch('/data/ai-articles.json?v=' + Date.now());
+    const json = await r.json();
+    const articles = json.articles || [];
+    if (!articles.length) {
+      container.innerHTML = '<div class="editor-empty">등록된 기사가 없습니다.</div>';
+      return;
+    }
+    container.innerHTML = articles.map(a => `
+      <article class="news-card">
+        <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+        <div class="news-card-body">
+          <div class="kicker">${a.source || 'Naver 뉴스'}</div>
+          <h3><a href="${a.link || '#'}" target="_blank" rel="noopener">${a.title}</a></h3>
+          <p class="desc">${a.summary}</p>
+          <div class="meta">${a.date}</div>
+        </div>
+      </article>`).join('');
+  } catch(e) {
+    container.innerHTML = '<div class="editor-empty">기사 로드 실패</div>';
   }
 })();
 </script>
