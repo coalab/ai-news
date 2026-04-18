@@ -39,7 +39,10 @@ def fetch_unsplash_image(keyword: str) -> str:
                 return r.json()['urls']['regular']
         except Exception as e:
             print(f'Unsplash 오류: {e}')
-    return f"https://source.unsplash.com/800x450/?{keyword.replace(' ', ',')}"
+    # picsum.photos: 무료, 안정적인 플레이스홀더 이미지
+    import random
+    seed = random.randint(1, 1000)
+    return f"https://picsum.photos/seed/{seed}/800/450"
 
 def build_content(items, link, domain, date_str):
     """여러 기사 요약을 엮어 풍부한 본문 HTML을 생성합니다."""
