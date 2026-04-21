@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ai-news.coalab.co.kr/index.html</loc><lastmod>2026-04-21</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ai-news.coalab.co.kr/about.html</loc><lastmod>2026-04-21</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ai-news.coalab.co.kr/archive-list.html</loc><lastmod>2026-04-21</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ai-news.coalab.co.kr/privacy.html</loc><lastmod>2026-04-21</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ai-news.coalab.co.kr/index.html</loc><lastmod>2026-04-22</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ai-news.coalab.co.kr/about.html</loc><lastmod>2026-04-22</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://ai-news.coalab.co.kr/archive-list.html</loc><lastmod>2026-04-22</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ai-news.coalab.co.kr/privacy.html</loc><lastmod>2026-04-22</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://ai-news.coalab.co.kr/archive/2025-10-03/index.html</loc><lastmod>2025-10-03</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://ai-news.coalab.co.kr/archive/2025-10-04/index.html</loc><lastmod>2025-10-04</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://ai-news.coalab.co.kr/archive/2025-10-05/index.html</loc><lastmod>2025-10-05</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
@@ -146,4 +146,5 @@
   <url><loc>https://ai-news.coalab.co.kr/archive/2026-04-19/index.html</loc><lastmod>2026-04-19</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://ai-news.coalab.co.kr/archive/2026-04-20/index.html</loc><lastmod>2026-04-20</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
   <url><loc>https://ai-news.coalab.co.kr/archive/2026-04-21/index.html</loc><lastmod>2026-04-21</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
+  <url><loc>https://ai-news.coalab.co.kr/archive/2026-04-22/index.html</loc><lastmod>2026-04-22</lastmod><changefreq>never</changefreq><priority>0.4</priority></url>
 </urlset>
