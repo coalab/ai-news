@@ -1,60 +1,38 @@
 {
-  "updated": "2026-07-14T08:51:40.576341+09:00",
+  "updated": "2026-07-15T08:50:43.393539+09:00",
   "articles": [
     {
-      "id": "naver-1783986696146-0",
-      "title": "해썹인증원, '네이버 메이트' 푸드 분야 선정",
-      "summary": "한국농업신문, NEWSFARM 한국식품안전관리인증원은 공식 블로그가 네이버 인공지능(AI) 검색 서비스인 '인공지능(AI) 브리핑'에서 누적 106만회 이상 인용되며 '네이버 메이트' 푸드 분야에 선정됐다....",
-      "body": "한국농업신문, NEWSFARM 한국식품안전관리인증원은 공식 블로그가 네이버 인공지능(AI) 검색 서비스인 '인공지능(AI) 브리핑'에서 누적 106만회 이상 인용되며 '네이버 메이트' 푸드 분야에 선정됐다....",
+      "id": "naver-1784073039651-0",
+      "title": "시흥시, 제조기업 AI 전환 해법 모색…기업혁신 포럼 개최",
+      "summary": "경기 시흥시가 제조기업의 인공지능(AI) 활용과 인공지능 전환(AX) 전략을 논의하는 기업혁신 포럼을 열었다. 지역 제조업 특성을 반영한 사례 공유와 전문가 토론을 통해 기업의 AI 도입 방향과 인재 양성 방안을...",
+      "body": "경기 시흥시가 제조기업의 인공지능(AI) 활용과 인공지능 전환(AX) 전략을 논의하는 기업혁신 포럼을 열었다. 지역 제조업 특성을 반영한 사례 공유와 전문가 토론을 통해 기업의 AI 도입 방향과 인재 양성 방안을...",
       "image": "https://www.google.com/s2/favicons?domain=news.naver.com&sz=128",
       "topic": "AI 인공지능",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "source": "Naver 뉴스",
-      "link": "http://www.newsfarm.co.kr/news/articleView.html?idxno=101649"
+      "link": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5040959"
     },
     {
-      "id": "naver-1783986697241-1",
-      "title": "랜섬웨어·피싱메일, AI가 잡는다…KT 'AI 메일보안'",
-      "summary": "이번 인증은 AI와 APT 기술을 결합한 이메일 보안 서비스 가운데 국내 최초로 CSAP를 획득한 사례라는 점에 의미가 크다. 공공기관은 보안성과 안전성이 검증된 AI 기반 이메일 보안 서비스를 이용할 수 있게 된 셈이다....",
-      "body": "이번 인증은 AI와 APT 기술을 결합한 이메일 보안 서비스 가운데 국내 최초로 CSAP를 획득한 사례라는 점에 의미가 크다. 공공기관은 보안성과 안전성이 검증된 AI 기반 이메일 보안 서비스를 이용할 수 있게 된 셈이다....",
-      "image": "https://www.google.com/s2/favicons?domain=news.naver.com&sz=128",
-      "topic": "AI 기술",
-      "date": "2026-07-14",
-      "source": "Naver 뉴스",
-      "link": "https://www.kfenews.co.kr/news/articleView.html?idxno=660288"
-    },
-    {
-      "id": "naver-1783986698321-2",
-      "title": "삼양그룹, 업무용 AI 포털 'SAMI 2.0' 오픈",
-      "summary": "SAMI 2.0은 기존 생성형 AI 서비스 'SAMI 1.0'을 보완한 버전으로, 임직원별 업무 특성에 적합한 맞춤형 AI를 사용할 수 있도록 설계됐다. 임직원은 각자의 데이터베이스에 업무 파일을 업로드해 AI를 학습시키고 본인...",
-      "body": "SAMI 2.0은 기존 생성형 AI 서비스 'SAMI 1.0'을 보완한 버전으로, 임직원별 업무 특성에 적합한 맞춤형 AI를 사용할 수 있도록 설계됐다. 임직원은 각자의 데이터베이스에 업무 파일을 업로드해 AI를 학습시키고 본인...",
+      "id": "naver-1784073041376-2",
+      "title": "고경표, 롯데칠성 오트몬드 CF 온에어...\"영양 왔다\"",
+      "summary": "특히 이번 광고는 실사 촬영과 생성형 AI 기술을 결합한 '하이브리드 프로덕션 방식'으로 제작됐다. AI를 활용해 영양 캐릭터, 배경, CG 등을 구현하고 VFX(시각특수효과) 기술을 접목해 동물의 자연스러운 움직임을 완성했다....",
+      "body": "특히 이번 광고는 실사 촬영과 생성형 AI 기술을 결합한 '하이브리드 프로덕션 방식'으로 제작됐다. AI를 활용해 영양 캐릭터, 배경, CG 등을 구현하고 VFX(시각특수효과) 기술을 접목해 동물의 자연스러운 움직임을 완성했다....",
       "image": "https://www.google.com/s2/favicons?domain=news.naver.com&sz=128",
       "topic": "생성형AI",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "source": "Naver 뉴스",
-      "link": "http://www.e2news.com/news/articleView.html?idxno=332255"
+      "link": "https://www.slist.kr/news/articleView.html?idxno=751884"
     },
     {
-      "id": "naver-1783986699382-3",
-      "title": "인하대 정석물류통상연구원 2026 상반기 키워드 '공급망 보안' 선정",
-      "summary": "다변화, AI와 로봇 중심의 디지털 전환이 가속화될 것으로 예상했다. 통상 분야에서는 미국발 관세 장벽의 제도화, 첨단기술 공급망이 국가와 진영별로 나뉘는 흐름, 주요국 간 산업과 기술 패권 경쟁이 심화될...",
-      "body": "다변화, AI와 로봇 중심의 디지털 전환이 가속화될 것으로 예상했다. 통상 분야에서는 미국발 관세 장벽의 제도화, 첨단기술 공급망이 국가와 진영별로 나뉘는 흐름, 주요국 간 산업과 기술 패권 경쟁이 심화될...",
-      "image": "https://www.google.com/s2/favicons?domain=news.naver.com&sz=128",
-      "topic": "AI 산업",
-      "date": "2026-07-14",
-      "source": "Naver 뉴스",
-      "link": "https://www.incheontoday.com/news/articleView.html?idxno=321149"
-    },
-    {
-      "id": "naver-1783986700276-4",
-      "title": "랜섬웨어·피싱메일, AI가 잡는다…KT 'AI 메일보안'",
-      "summary": "위한 선제적 대응이 중요하다\"면서 \"국내에서 가장 먼저 CSAP 인증을 획득한 AI 기반 이메일 보안 서비스를 통해 공공·교육기관에 최적화된 보안 환경을 제공하고 안전한 디지털 전환을 적극 지원할 것\"이라고 말했다.",
-      "body": "위한 선제적 대응이 중요하다\"면서 \"국내에서 가장 먼저 CSAP 인증을 획득한 AI 기반 이메일 보안 서비스를 통해 공공·교육기관에 최적화된 보안 환경을 제공하고 안전한 디지털 전환을 적극 지원할 것\"이라고 말했다.",
+      "id": "naver-1784073043093-4",
+      "title": "엘리스그룹, ICML 서울 개최 발판 삼아 글로벌 AI 연구 접점 넓힌다",
+      "summary": "엘리스그룹은 글로벌 AI 교육 학술행사 페스티벌 오브 러닝 2026에 후원사로 이름을 올렸다. ICML 2026 서울 개최에 앞서 열린 이 행사는 AI 교육 분야를 대표하는 3개 국제 학회인 ACM L@S와 EDM, AIED가 공동으로 개최했다....",
+      "body": "엘리스그룹은 글로벌 AI 교육 학술행사 페스티벌 오브 러닝 2026에 후원사로 이름을 올렸다. ICML 2026 서울 개최에 앞서 열린 이 행사는 AI 교육 분야를 대표하는 3개 국제 학회인 ACM L@S와 EDM, AIED가 공동으로 개최했다....",
       "image": "https://www.google.com/s2/favicons?domain=news.naver.com&sz=128",
       "topic": "AI 교육",
-      "date": "2026-07-14",
+      "date": "2026-07-15",
       "source": "Naver 뉴스",
-      "link": "https://www.kfenews.co.kr/news/articleView.html?idxno=660288"
+      "link": "https://www.econovill.com/news/articleView.html?idxno=745237"
     }
   ]
 }
