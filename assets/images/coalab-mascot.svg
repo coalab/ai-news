@@ -1,43 +1,37 @@
 <svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="bodyGrad2" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#3aa374"/>
       <stop offset="100%" stop-color="#1a4d3a"/>
     </linearGradient>
   </defs>
 
-  <!-- antenna -->
-  <line x1="120" y1="18" x2="120" y2="42" stroke="#1a4d3a" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="120" cy="14" r="9" fill="#e8f5ef" stroke="#1a4d3a" stroke-width="4"/>
+  <!-- hexagon head (circuit-board feel) -->
+  <polygon points="120,20 190,58 190,134 120,172 50,134 50,58"
+           fill="url(#bodyGrad2)" stroke="#123c2e" stroke-width="4" stroke-linejoin="round"/>
 
-  <!-- head -->
-  <rect x="45" y="42" width="150" height="110" rx="42" fill="url(#bodyGrad)"/>
-  <rect x="45" y="42" width="150" height="110" rx="42" fill="none" stroke="#123c2e" stroke-width="4"/>
+  <!-- circuit traces on head -->
+  <path d="M50,70 L30,70 L30,50" stroke="#e8f5ef" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="27" cy="47" r="4" fill="#e8f5ef"/>
+  <path d="M190,120 L210,120 L210,145" stroke="#e8f5ef" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="213" cy="148" r="4" fill="#e8f5ef"/>
 
-  <!-- face plate -->
-  <rect x="66" y="66" width="108" height="62" rx="28" fill="#e8f5ef"/>
+  <!-- visor / screen face -->
+  <rect x="72" y="70" width="96" height="52" rx="14" fill="#0f2b21"/>
+  <text x="120" y="106" font-family="'Courier New', monospace" font-size="30" font-weight="700" fill="#5be3a3" text-anchor="middle">&lt;/&gt;</text>
 
-  <!-- eyes -->
-  <circle cx="100" cy="97" r="10" fill="#1a4d3a"/>
-  <circle cx="140" cy="97" r="10" fill="#1a4d3a"/>
-  <circle cx="103" cy="94" r="3" fill="#ffffff"/>
-  <circle cx="143" cy="94" r="3" fill="#ffffff"/>
+  <!-- body: open book / laptop base shape -->
+  <path d="M55 172 L120 190 L185 172 L185 232 Q185 244 173 244 L67 244 Q55 244 55 232 Z"
+        fill="#2d8659" stroke="#123c2e" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="120" y1="190" x2="120" y2="244" stroke="#123c2e" stroke-width="3"/>
 
-  <!-- smile -->
-  <path d="M104 112 Q120 124 136 112" stroke="#1a4d3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- book pages lines, left -->
+  <line x1="70" y1="196" x2="108" y2="204" stroke="#e8f5ef" stroke-width="3" stroke-linecap="round"/>
+  <line x1="70" y1="208" x2="104" y2="215" stroke="#e8f5ef" stroke-width="3" stroke-linecap="round"/>
+  <!-- right -->
+  <line x1="170" y1="196" x2="132" y2="204" stroke="#e8f5ef" stroke-width="3" stroke-linecap="round"/>
+  <line x1="170" y1="208" x2="136" y2="215" stroke="#e8f5ef" stroke-width="3" stroke-linecap="round"/>
 
-  <!-- side ear circles -->
-  <circle cx="42" cy="97" r="12" fill="#3aa374" stroke="#1a4d3a" stroke-width="4"/>
-  <circle cx="198" cy="97" r="12" fill="#3aa374" stroke="#1a4d3a" stroke-width="4"/>
-
-  <!-- body -->
-  <rect x="70" y="150" width="100" height="80" rx="26" fill="#2d8659" stroke="#123c2e" stroke-width="4"/>
-
-  <!-- chip / AI badge on chest -->
-  <rect x="102" y="172" width="36" height="36" rx="8" fill="#e8f5ef" stroke="#1a4d3a" stroke-width="3"/>
-  <text x="120" y="197" font-family="Pretendard, sans-serif" font-size="16" font-weight="800" fill="#1a4d3a" text-anchor="middle">AI</text>
-
-  <!-- arms -->
-  <circle cx="58" cy="180" r="14" fill="#3aa374" stroke="#1a4d3a" stroke-width="4"/>
-  <circle cx="182" cy="180" r="14" fill="#3aa374" stroke="#1a4d3a" stroke-width="4"/>
+  <!-- small antenna leaf (파주 자연 느낌) -->
+  <path d="M120 20 C110 6 96 6 92 16 C104 18 112 16 120 20Z" fill="#8dd4b8" stroke="#1a4d3a" stroke-width="2"/>
 </svg>
