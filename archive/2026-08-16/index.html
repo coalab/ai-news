@@ -121,6 +121,11 @@
     .book-banner .book-text strong{display:block;font-size:15px;font-weight:800;color:#111827;margin-bottom:4px}
     .book-banner .book-text span{font-size:13px;color:#6b7280}
     .book-banner .book-btn{margin-left:auto;display:inline-flex;align-items:center;background:#2d8659;color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0}
+
+    /* 소셜 채널 */
+    .social-links{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .social-links a{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;border:1px solid var(--border);color:var(--text)}
+    .social-links a:hover{background:var(--accent-light);color:var(--accent);opacity:1}
   </style>
 </head>
 <body>
@@ -128,11 +133,16 @@
 <!-- 헤더 -->
 <header class="site-header">
   <div class="wrap">
-    <a href="/index.html" class="site-logo">COALAB <span>AI뉴스</span></a>
+    <a href="/index.html" class="site-logo" style="display:flex;align-items:center;gap:8px">
+      <img src="/assets/images/coalab-mascot.svg" alt="코아랩 마스코트" style="width:32px;height:32px;border-radius:8px">
+      COALAB <span>AI뉴스</span>
+    </a>
     <nav class="site-nav">
       <a href="/index.html" class="active">홈</a>
       <a href="/board.html">기사 게시판</a>
       <a href="/archive-list.html">아카이브</a>
+      <a href="/profile.html">대표 소개</a>
+      <a href="/records.html">교육실적</a>
       <a href="https://coalab.co.kr" target="_blank" rel="noopener" style="background:#2d8659;color:#fff">COALAB</a>
     </nav>
   </div>
@@ -183,60 +193,50 @@
     <article class="news-card">
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
-        <div class="kicker">조선일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQZUU1WkdSb3JwYjJYTnJuRHdBQ1c2NnFvai1VRGNJNEM3cFlkTHBBY0RZaFoxUy1Jb2lMcFhERUNVb1BxWTNrOFY2NEV4Vm4xMW1RX0dyV3pVdVp5aGRwTkxKd3daYjZkTVppWnU5ZVk3WGhINjMyVV91RklPVy15SXFQZw?oc=5" target="_blank" rel="noopener">엔비디아, 오픈AI 데이터센터 ‘채무 보증’ 절반 축소 - 조선일보</a></h3>
-        <p class="desc">엔비디아, 오픈AI 데이터센터 ‘채무 보증’ 절반 축소 조선일보</p>
-        <div class="meta">Sat, 15 Aug 2026 05:10:48 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">연합뉴스</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ma1p4d3dHMDRXVDdxLUdleXNHUTE3MTdlQjEzMVRkNS03eWR3R1lTTEJjOW9wZWNZaGpQTy10ZGNlMDlwVHUxREdxWDZMSTU4amNtN0pHMFUxdTjSAWBBVV95cUxQOGJPb0NTMk9SaGZhM2JQRlpZdFZoQ1I5UHpuLURfYU5CUHlheWVrSVZCTjRoMF96NnY3NGNIZzlkaE9WTUU1QllKdi1tR19DVDdxOU9vWWgwQ3F5bUM0WFQ?oc=5" target="_blank" rel="noopener">엔비디아, 오픈AI 데이터센터 &#39;채무 보증&#39; 반토막 축소 - 연합뉴스</a></h3>
-        <p class="desc">엔비디아, 오픈AI 데이터센터 &#39;채무 보증&#39; 반토막 축소 연합뉴스</p>
-        <div class="meta">Sat, 15 Aug 2026 02:30:28 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">v.daum.net</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE9pQndhenNHeDdpSGhLaEc1ZTRZTFBvalRKUDltYk5peDNLakEzNmwtV24zRDBFZExqZUswZmdDaDBTYmpkbklMbHNZMThvd3M?oc=5" target="_blank" rel="noopener">AI 데이터센터 메가프로젝트에 中企 참여 확대…K-소부장 키운다 - v.daum.net</a></h3>
-        <p class="desc">AI 데이터센터 메가프로젝트에 中企 참여 확대…K-소부장 키운다 v.daum.net</p>
-        <div class="meta">Sat, 15 Aug 2026 21:21:34 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">weekly.khan.co.kr</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE01WlptYjc3NUtDUjZ4Y0NkSEFFUTZTRjhZM0JjZWZLR3BpS2tkX3JzUmtFQldaeUFvaVdsTW1aa1Mza2Q5OHVsUTgxbGZYVC1maHg4UXdnVmcyUFVrWWc?oc=5" target="_blank" rel="noopener">[기고] AI는 정말 ‘느끼기’ 시작했을까…센티언트 AI가 던지는 위험하고도 중요한 질문 - weekly.khan.co.kr</a></h3>
-        <p class="desc">[기고] AI는 정말 ‘느끼기’ 시작했을까…센티언트 AI가 던지는 위험하고도 중요한 질문 weekly.khan.co.kr</p>
-        <div class="meta">Fri, 14 Aug 2026 21:00:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">v.daum.net</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1Ma1VHSUtiNm4wc0xWc2tGS21lQWNjYm5wdHQzcWJRdWlDV2xGTGVpOUpENG1fWnJuUExPWmE1TDdlNnNKV3pkYTZuYVhtakU?oc=5" target="_blank" rel="noopener">[만나보니] 블라인드 대표 &#34;AI발 효율화, 신입채용 축소로 먼저 나타나&#34; - v.daum.net</a></h3>
-        <p class="desc">[만나보니] 블라인드 대표 &#34;AI발 효율화, 신입채용 축소로 먼저 나타나&#34; v.daum.net</p>
-        <div class="meta">Sat, 15 Aug 2026 22:02:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
         <div class="kicker">한겨레</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5lNm1pYmwxeDNaME1ma0ZQalVlb1FOWFgwNDlFMEhpTjRkb2NrS0R0ZnZqZExRbDBqWjU0RG9jQzMyNWdHRC1TcWRhcUFlU2Q3bm1reHdWOTE1TkY5eFNVdTZRRWdlbGdib01zckhsUQ?oc=5" target="_blank" rel="noopener">미국, AI 동맹국에 ‘미·중 양자택일’ 요구 추진…한국도 대상 - 한겨레</a></h3>
-        <p class="desc">미국, AI 동맹국에 ‘미·중 양자택일’ 요구 추진…한국도 대상 한겨레</p>
-        <div class="meta">Sat, 15 Aug 2026 21:14:00 GMT</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5lNm1pYmwxeDNaME1ma0ZQalVlb1FOWFgwNDlFMEhpTjRkb2NrS0R0ZnZqZExRbDBqWjU0RG9jQzMyNWdHRC1TcWRhcUFlU2Q3bm1reHdWOTE1TkY5eFNVdTZRRWdlbGdib01zckhsUQ?oc=5" target="_blank" rel="noopener">미국, 한국 포함 35개국에 ‘중국 주도 AI 협력체 불참’ 요구 방침 - 한겨레</a></h3>
+        <p class="desc">미국, 한국 포함 35개국에 ‘중국 주도 AI 협력체 불참’ 요구 방침 한겨레</p>
+        <div class="meta">Sat, 15 Aug 2026 21:59:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">머니투데이</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9ndGFEemt6dWJjc2I5dmozU2xvY2xHTXJoYnBMSVpvZHdUYVlTNk00VEhFXzZjbGtSX29pVEN0V1ljNHBjUFp0Y0RlMFdfa0pleFVGdFpSUUFtcWhkaTUxUVhBMGI0bXhs?oc=5" target="_blank" rel="noopener">미, 한국 등 35개국에 경고…&#34;중국 AI 손잡으면 미국 연합서 제외&#34; - 머니투데이</a></h3>
+        <p class="desc">미, 한국 등 35개국에 경고…&#34;중국 AI 손잡으면 미국 연합서 제외&#34; 머니투데이</p>
+        <div class="meta">Sun, 16 Aug 2026 01:00:29 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE55ZFZNR0ZzeXFZdEF2SGtFQWNwUUFWVzA1ZGFYQXFzeFQzQUNncG1uNTNXQTE5aUJSc21wOTdyMzhNMHBfZWZqa0Jmbi1JNjQ?oc=5" target="_blank" rel="noopener">美 &#34;중국 AI 동참하지마&#34;…韓 등 35개국에 &#39;양다리 불가&#39; 경고 - v.daum.net</a></h3>
+        <p class="desc">美 &#34;중국 AI 동참하지마&#34;…韓 등 35개국에 &#39;양다리 불가&#39; 경고 v.daum.net</p>
+        <div class="meta">Sat, 15 Aug 2026 02:38:49 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">조선일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOYkFTeG85Y0R5cjJ3NGZ0UF9nMzhNbkwxdEpQdndpbXNuVGE3RHJ1VnNsTXU0OGlYajNqdmR3VHp6VmhiNlhVOU9HVzhITVZqZVp6QlVSN0gxbjRrbDk0ekRmM01Tc2g4bktKYU92SUxGRUJZSm13bUY3blZSdFVqalJiSzk?oc=5" target="_blank" rel="noopener">AI에 밀려나는 사람 일자리… ‘갓무원’은 예외라고? - 조선일보</a></h3>
+        <p class="desc">AI에 밀려나는 사람 일자리… ‘갓무원’은 예외라고? 조선일보</p>
+        <div class="meta">Fri, 14 Aug 2026 15:30:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">v.daum.net</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE51T09Dc0QtUDNycmNvNWFRcENUVVlyMG5Vc3BLNVFEQVJoYnBQbXdnVnRORXJ0dmlxSU43UXZJbEZEMFk5M3BfVWhoZTh5YmM?oc=5" target="_blank" rel="noopener">구로문화누리도서관, AI 기반 도서 추천 &#39;아테나&#39; 시범운영 - v.daum.net</a></h3>
+        <p class="desc">구로문화누리도서관, AI 기반 도서 추천 &#39;아테나&#39; 시범운영 v.daum.net</p>
+        <div class="meta">Sun, 16 Aug 2026 01:01:52 GMT</div>
       </div>
     </article>
     
@@ -244,9 +244,39 @@
       <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
       <div class="news-card-body">
         <div class="kicker">연합뉴스</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFByeGxLUVRxYTNHQzdJSV9mT1J2V201LUNYMWVEZTFNalFsV2k4VVFLRlR5YzVlMWNoZ0ZLN25ES3prd2daaUJLMDhlVmoxcU1RZTdpVk9OdzlqcXfSAWBBVV95cUxPWWt5aUM0X1JvTjE4ZmxYTk1xMThQcU5HaWdkNjJ4MXFzOC1velFMY213aWdXdVBuNVl3R0stMGFJLTdRUkJCQXljTFVrNU9iTWhhTWZBWFhjdFp6Nmc0dWg?oc=5" target="_blank" rel="noopener">美 &#34;중국 AI 동참하지마&#34;…韓 등 35개국에 &#39;양다리 불가&#39; 경고 - 연합뉴스</a></h3>
-        <p class="desc">美 &#34;중국 AI 동참하지마&#34;…韓 등 35개국에 &#39;양다리 불가&#39; 경고 연합뉴스</p>
-        <div class="meta">Sat, 15 Aug 2026 02:36:50 GMT</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QRlZDZmQzSm85Z09EdUI3czBUY1JPVzcwWTRVMlZCOENzZE9IaUl6Y040ZnBRMHNzbGJvWVltYWRGX2NxZmw5T2dQT0xqRFRKS0hrYjgtbmZ5TkHSAWBBVV95cUxPdzNMcmVRWjdYd1pDN3FVaWZOX0tiTXZvZlpzQzZ6anZOVHNtNW9lMjVBTW9NSXZKd2pzQlNicmxSaVJodHliR1ZrOHIwNzJiek5JbndmZC1tc2d5NjJvTGI?oc=5" target="_blank" rel="noopener">서울시, AI 시대 행정보안망 촘촘히…사이버공격 대응 체계 강화 - 연합뉴스</a></h3>
+        <p class="desc">서울시, AI 시대 행정보안망 촘촘히…사이버공격 대응 체계 강화 연합뉴스</p>
+        <div class="meta">Sat, 15 Aug 2026 23:43:13 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">머니투데이</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFB5c2FIWTBxYWl3U1NxVXpITG4zcVJ6MVJIYnF2ZEt4OWRsUUVtalRiWnFma01sOEtqWWV5OWVlRDRPakVheDllOWxFeGFCTDZCci1Sa0FRWUZ4OWxBRTYzZ05HbTNMUzFtdnfSAW9BVV95cUxPNzI5eTZ4VzFPWGhyWUVIMF9xS1BBajV0NGh1V0VpNXFSZU9lXzhhLWV0NktiSkxyVGRZSEtwNGZ3LTBMMVhuWDBNZkdndVF5b0VLN2FaNXBfUjF6RVdHZ0xTMmNVTHdsWWJNbXRzSjA?oc=5" target="_blank" rel="noopener">&#39;29금 사주&#39;, &#39;퀴어 사주&#39; 넣었더니…MZ 홀린 AI 사주의 정체 - 머니투데이 - 머니투데이</a></h3>
+        <p class="desc">&#39;29금 사주&#39;, &#39;퀴어 사주&#39; 넣었더니…MZ 홀린 AI 사주의 정체 - 머니투데이 머니투데이</p>
+        <div class="meta">Sat, 15 Aug 2026 23:00:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">KBS 뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE10RTlLV0EwRWlJRGNCbXB0Z01RbGRLVXM0NTd0OV9QaEZUdktVT29SbHJlbEttcUpUdExLWmRPRk5IQUpyZENqcVV3MzNaNllaUGZRaF9NMDdIRWc?oc=5" target="_blank" rel="noopener">스스로 감옥 부수고 나온 AI…진짜 공포가 시작됐다? - KBS 뉴스</a></h3>
+        <p class="desc">스스로 감옥 부수고 나온 AI…진짜 공포가 시작됐다? KBS 뉴스</p>
+        <div class="meta">Fri, 14 Aug 2026 22:00:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">YTN</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5fbGlTM2tINEZpdUVzeGNnUDQwaURyd0k4Q19MckpOSXpISkZOU2owUGU2ZS1ZYWZHd2JrTGRTMWY4MnFqU1hfcmNraWJLenBwMGRXaGFBc095UW9iVVVwMkR3ajVkaHBYRTdBajViSTdfMUQzdWc?oc=5" target="_blank" rel="noopener">AI로 &#39;도로 파임&#39; 자동 감지...용인시, 버스 등 차량 300대 투입 - YTN</a></h3>
+        <p class="desc">AI로 &#39;도로 파임&#39; 자동 감지...용인시, 버스 등 차량 300대 투입 YTN</p>
+        <div class="meta">Sat, 15 Aug 2026 19:23:00 GMT</div>
       </div>
     </article>
     
@@ -257,26 +287,6 @@
         <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBFYnEzQXpDUFZFX1lBY2dlYUh2RTMzNndOR1NQemduVXVMNjBZYXFoUldWbzZybzJUY3pYdjRaMUtDcVo3dHN3NVFFclFIMUxaLWpVblRB?oc=5" target="_blank" rel="noopener">비용 10분의 1인데…AI 톱10에 중국모델 4개 - 중앙일보</a></h3>
         <p class="desc">비용 10분의 1인데…AI 톱10에 중국모델 4개 중앙일보</p>
         <div class="meta">Fri, 14 Aug 2026 15:09:13 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">연합뉴스TV</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5MWGVmX3RWOHNHa3QzTllWVzBHakNLMDdXQ0Yya1hKTTh4cVpjd0NrUEVEZi1OMmp2YnRKM1pBSDJJX0ZZdV9UY2U5WktidGNJU0tySV93R2VlNHRpaFp4ZWNqY1VBUWM?oc=5" target="_blank" rel="noopener">한국 노린 북한 해킹 늘어…AI·딥페이크 악용 - 연합뉴스TV</a></h3>
-        <p class="desc">한국 노린 북한 해킹 늘어…AI·딥페이크 악용 연합뉴스TV</p>
-        <div class="meta">Sat, 15 Aug 2026 21:18:00 GMT</div>
-      </div>
-    </article>
-    
-    <article class="news-card">
-      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
-      <div class="news-card-body">
-        <div class="kicker">조선일보</div>
-        <h3><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOYkFTeG85Y0R5cjJ3NGZ0UF9nMzhNbkwxdEpQdndpbXNuVGE3RHJ1VnNsTXU0OGlYajNqdmR3VHp6VmhiNlhVOU9HVzhITVZqZVp6QlVSN0gxbjRrbDk0ekRmM01Tc2g4bktKYU92SUxGRUJZSm13bUY3blZSdFVqalJiSzk?oc=5" target="_blank" rel="noopener">AI에 밀려나는 사람 일자리… ‘갓무원’은 예외라고? - 조선일보</a></h3>
-        <p class="desc">AI에 밀려나는 사람 일자리… ‘갓무원’은 예외라고? 조선일보</p>
-        <div class="meta">Fri, 14 Aug 2026 15:37:26 GMT</div>
       </div>
     </article>
     
@@ -295,6 +305,12 @@
 </main>
 
 <footer class="site-footer">
+  <div class="social-links">
+    <a href="https://coalab.co.kr" target="_blank" rel="noopener">🏠 홈페이지</a>
+    <a href="https://blog.naver.com/valuablethings" target="_blank" rel="noopener">📝 네이버 블로그</a>
+    <a href="https://www.instagram.com/coalab_lsh/" target="_blank" rel="noopener">📷 인스타그램</a>
+    <a href="https://www.youtube.com/@%EC%98%A4%EB%8A%98%EA%B3%B5%EB%B6%80-u3k" target="_blank" rel="noopener">▶ 유튜브</a>
+  </div>
   <div style="margin-bottom:10px">
     <a href="https://coalab.co.kr" target="_blank" rel="noopener" style="font-weight:700;color:#2d8659">COALAB</a>
     &nbsp;·&nbsp;AI 교육 전문 · 기업/대학/지역연계
