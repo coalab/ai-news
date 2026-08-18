@@ -17,8 +17,8 @@ from jinja2 import Environment, FileSystemLoader
 from playwright.sync_api import sync_playwright
 
 CARDS_LIMIT = 7
-CARD_WIDTH = 1000
-CARD_HEIGHT = 1250
+CARD_WIDTH = 1080
+CARD_HEIGHT = 1080
 FEED_URL = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
 
 # 헤드라인에서 강조색으로 표시할 키워드 (먼저 매칭되는 것 하나만 강조)
