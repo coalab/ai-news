@@ -1,21 +1,25 @@
-"""오늘의 AI 뉴스를 네이버 블로그용 카드뉴스 이미지로 생성한다.
+"""ai-news.coalab.co.kr에 오늘 게재된 뉴스로 카드뉴스 이미지를 생성한다.
 
-data/ai-articles.json 을 읽어 상위 기사들을 카드 이미지(PNG)로 렌더링하고,
+build.py가 사이트(index.html)를 만들 때 쓰는 것과 같은 RSS 피드에서
+오늘의 카드 목록을 가져와, 그 상위 기사들을 카드 이미지(PNG)로 렌더링하고
 블로그에 바로 붙여넣을 수 있는 제목/본문 초안(blog-post.md)을 함께 만든다.
 실제 네이버 블로그 게시는 공식 API가 없어 자동화하지 않으며, 생성된 이미지와
 글 초안을 사람이 직접 업로드하는 것을 전제로 한다.
 """
-import json
 import re
 from datetime import datetime, timezone, timedelta
+from html import unescape
 from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 
+import feedparser
 from jinja2 import Environment, FileSystemLoader
 from playwright.sync_api import sync_playwright
 
 CARDS_LIMIT = 7
 CARD_WIDTH = 1000
 CARD_HEIGHT = 1250
+FEED_URL = "https://news.google.com/rss/search?q=AI&hl=ko&gl=KR&ceid=KR:ko"
 
 # 헤드라인에서 강조색으로 표시할 키워드 (먼저 매칭되는 것 하나만 강조)
 HIGHLIGHT_KEYWORDS = [
@@ -26,15 +30,47 @@ HIGHLIGHT_KEYWORDS = [
 
 KST = timezone(timedelta(hours=9))
 ROOT = Path(__file__).resolve().parents[1]
-DATA_FILE = ROOT / "data" / "ai-articles.json"
 TPL_DIR = ROOT / "templates"
+
+TAG_RE = re.compile(r"<[^>]+>")
+
+
+def clean_summary(html_text: str, limit: int = 180) -> str:
+    if not html_text:
+        return ""
+    text = TAG_RE.sub("", html_text)
+    text = unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return (text[:limit] + "…") if len(text) > limit else text
+
+
+def resolve_original_link(gn_link: str) -> str:
+    """news.google.com 중계 링크에서 원문 링크를 복원한다 (build.py와 동일 로직)."""
+    try:
+        p = urlparse(gn_link or "")
+        if p.netloc.endswith("news.google.com"):
+            q = parse_qs(p.query)
+            return q.get("url", [gn_link])[0]
+        return gn_link
+    except Exception:
+        return gn_link
 
 
 def load_today_articles():
-    if not DATA_FILE.exists():
-        raise FileNotFoundError(f"{DATA_FILE} 없음. generate_articles.py를 먼저 실행하세요.")
-    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    return data.get("articles", [])[:CARDS_LIMIT]
+    """사이트(ai-news.coalab.co.kr)가 오늘 사용한 것과 동일한 RSS 피드에서 기사를 가져온다."""
+    feed = feedparser.parse(FEED_URL)
+    articles = []
+    for entry in feed.entries[:CARDS_LIMIT]:
+        title = (entry.get("title") or "").strip()
+        gn_link = entry.get("link")
+        if not (title and gn_link):
+            continue
+        articles.append({
+            "title": title,
+            "summary": clean_summary(entry.get("summary") or ""),
+            "link": resolve_original_link(gn_link),
+        })
+    return articles
 
 
 def highlight(title: str) -> str:
