@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 뉴스 | 2026.10.18 (Sun) | COALAB</title>
+  <meta name="description" content="매일 아침 최신 AI 뉴스를 한눈에. COALAB AI 교육 전문가가 큐레이팅하는 국내외 AI 주요 이슈.">
+  <meta name="keywords" content="AI뉴스, 인공지능뉴스, AI교육, COALAB, 코아랩, GPT, 머신러닝">
+  <meta name="author" content="COALAB">
+  <link rel="canonical" href="https://ai-news.coalab.co.kr/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="COALAB AI뉴스">
+  <meta property="og:title" content="AI 뉴스 | 2026.10.18 (Sun) | COALAB">
+  <meta property="og:description" content="매일 아침 최신 AI 뉴스를 한눈에. COALAB AI 교육 전문가가 큐레이팅하는 국내외 AI 주요 이슈.">
+  <meta property="og:url" content="https://ai-news.coalab.co.kr/index.html">
+  <meta property="og:image" content="https://ai-news.coalab.co.kr/ai-news-img1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 뉴스 | COALAB">
+  <meta name="twitter:description" content="매일 아침 최신 AI 뉴스를 한눈에.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1841750816553239"
+     crossorigin="anonymous"></script>
+  <style>
+    :root{--bg:#f4f6f8;--card:#ffffff;--muted:#6b7280;--text:#111827;--border:rgba(0,0,0,.08);--accent:#2d8659;--accent-light:#e8f5ef}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.85}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+    /* 헤더 */
+    .site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+    .site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;gap:8px}
+    .site-logo{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em}
+    .site-logo span{color:var(--accent)}
+    .site-nav{display:flex;gap:6px;align-items:center}
+    .site-nav a{font-size:14px;font-weight:600;padding:6px 14px;border-radius:8px;color:var(--text);transition:background .2s}
+    .site-nav a:hover,.site-nav a.active{background:var(--accent-light);color:var(--accent);opacity:1}
+    .site-date{font-size:13px;color:var(--muted);width:100%;text-align:center;padding-bottom:4px;border-top:1px solid var(--border);margin-top:4px;padding-top:8px}
+
+    /* 섹션 헤딩 */
+    .section-title{display:flex;align-items:center;gap:10px;margin:32px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--text)}
+    .section-title h2{margin:0;font-size:20px;font-weight:800}
+    .section-title .label{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+    .label-editor{background:#1a4d3a;color:#fff}
+    .label-auto{background:var(--accent-light);color:var(--accent)}
+    .section-title .more{margin-left:auto;font-size:13px;font-weight:600}
+
+    /* 에디터 섹션: 왼쪽 메인 + 오른쪽 리스트 */
+    .editor-layout{display:grid;gap:20px;grid-template-columns:1fr}
+    @media(min-width:768px){.editor-layout{grid-template-columns:1.3fr 1fr}}
+
+    .editor-main{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}
+    .editor-main:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+    .editor-main-thumb{width:100%;height:300px;background-size:cover;background-position:center;background-color:#e5e7eb;background-image:linear-gradient(135deg,#b8e6d5 0%,#8dd4b8 100%)}
+    .editor-main-body{padding:20px}
+    .editor-main-body .cat{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+    .editor-main-body h3{margin:0 0 10px;font-size:20px;font-weight:800;line-height:1.4}
+    .editor-main-body h3 a{color:var(--text)}
+    .editor-main-body h3 a:hover{color:var(--accent)}
+    .editor-main-body .summary{font-size:14px;color:var(--muted);line-height:1.6}
+    .editor-main-body .meta{font-size:12px;color:#9ca3af;margin-top:12px}
+
+    .editor-sidebar{background:var(--card);border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+    .editor-sidebar-item{display:block;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .15s}
+    .editor-sidebar-item:last-child{border-bottom:none}
+    .editor-sidebar-item:hover{background:#f8fafb}
+    .editor-sidebar-item .cat{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+    .editor-sidebar-item h4{margin:0 0 4px;font-size:15px;font-weight:700;line-height:1.4;color:var(--text)}
+    .editor-sidebar-item .meta{font-size:11px;color:#9ca3af}
+
+    .editor-empty{text-align:center;padding:40px;color:var(--muted);background:var(--card);border-radius:14px}
+
+    /* 자동 수집 뉴스 그리드 */
+    .news-grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .news-card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
+    .news-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    @media(min-width:720px){.news-card{grid-column:span 6}}
+    @media(min-width:1024px){.news-card{grid-column:span 4}}
+    .news-card-img{width:100%;height:160px;object-fit:cover;background:#f0f0f0}
+    .news-card-body{padding:16px}
+    .news-card-body .kicker{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+    .news-card-body h3{margin:0 0 8px;font-size:15px;font-weight:700;line-height:1.4}
+    .news-card-body h3 a{color:var(--text)}
+    .news-card-body h3 a:hover{color:var(--accent)}
+    .news-card-body .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+    .news-card-body .meta{margin-top:8px;color:#9ca3af;font-size:12px}
+
+    /* 네이버 기사 섹션 */
+    .naver-section{background:var(--card);border-radius:16px;padding:32px;margin-top:8px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+    .naver-featured{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:24px}
+    .naver-featured .badge{display:inline-block;background:#03c75a;color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:4px;letter-spacing:.05em;margin-bottom:14px}
+    .naver-featured h2{margin:0 0 12px;font-size:24px;font-weight:900;line-height:1.4;color:var(--text)}
+    .naver-featured h2 a{color:var(--text)}
+    .naver-featured h2 a:hover{color:#03c75a}
+    .naver-featured .body{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+    .naver-featured .meta{font-size:12px;color:var(--muted)}
+    .naver-list{display:flex;flex-direction:column;gap:0}
+    .naver-list-item{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+    .naver-list-item:last-child{border-bottom:none;padding-bottom:0}
+    .naver-list-item .num{font-size:22px;font-weight:900;color:#03c75a;min-width:32px;line-height:1}
+    .naver-list-item .content h4{margin:0 0 4px;font-size:15px;font-weight:700;color:var(--text);line-height:1.4}
+    .naver-list-item .content h4 a{color:var(--text)}
+    .naver-list-item .content h4 a:hover{color:#03c75a}
+    .naver-list-item .content p{margin:0 0 4px;font-size:13px;color:var(--muted);line-height:1.6}
+    .naver-list-item .content .meta{font-size:11px;color:var(--muted)}
+
+    /* 푸터 */
+    .site-footer{text-align:center;color:var(--muted);padding:40px 0 60px;font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+
+    /* CTA 배너 */
+    .cta-banner{background:linear-gradient(135deg,#1a4d3a 0%,#2d8659 100%);border-radius:14px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:24px 0}
+    .cta-banner .cta-text{color:#fff}
+    .cta-banner .cta-text strong{display:block;font-size:16px;font-weight:800;margin-bottom:4px}
+    .cta-banner .cta-text span{font-size:13px;opacity:.85}
+    .cta-banner .cta-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1a4d3a;font-size:14px;font-weight:700;padding:10px 20px;border-radius:8px;text-decoration:none;white-space:nowrap}
+    .cta-banner .cta-btn:hover{opacity:.9}
+
+    /* 교재 예고 배너 */
+    .book-banner{background:#fff;border:2px solid #2d8659;border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:16px;margin:16px 0 24px;flex-wrap:wrap}
+    .book-banner .book-icon{font-size:32px;flex-shrink:0}
+    .book-banner .book-text strong{display:block;font-size:15px;font-weight:800;color:#111827;margin-bottom:4px}
+    .book-banner .book-text span{font-size:13px;color:#6b7280}
+    .book-banner .book-btn{margin-left:auto;display:inline-flex;align-items:center;background:#2d8659;color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0}
+
+    /* 소셜 채널 */
+    .social-links{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+    .social-links a{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;border:1px solid var(--border);color:var(--text)}
+    .social-links a:hover{background:var(--accent-light);color:var(--accent);opacity:1}
+  </style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="/index.html" class="site-logo" style="display:flex;align-items:center;gap:8px">
+      <img src="/assets/images/coalab-mascot.svg" alt="코아랩 마스코트" style="width:32px;height:32px;border-radius:8px">
+      COALAB <span>AI뉴스</span>
+    </a>
+    <nav class="site-nav">
+      <a href="/index.html" class="active">홈</a>
+      <a href="/board.html">기사 게시판</a>
+      <a href="/archive-list.html">아카이브</a>
+      <a href="/profile.html">대표 소개</a>
+      <a href="/records.html">교육실적</a>
+      <a href="https://coalab.co.kr" target="_blank" rel="noopener" style="background:#2d8659;color:#fff">COALAB</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <div class="site-date">2026.10.18 (Sun) · Week 41</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- coalab 강의 문의 CTA -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <strong>AI · SQL · 코딩 교육 문의</strong>
+    <span>기업교육 · 대학강의 · 파주시 지역연계 · 평생교육원</span>
+  </div>
+  <a href="https://open.kakao.com/o/suj6Q4qi" target="_blank" rel="noopener" class="cta-btn">💬 카카오톡 문의</a>
+</div>
+
+<!-- 교재 출판 예고 -->
+<div class="book-banner">
+  <div class="book-icon">📘</div>
+  <div class="book-text">
+    <strong>출판 예정: GPT를 활용한 SQL 최적화방안</strong>
+    <span>내일배움카드 과정 교재 · 사전 관심 등록</span>
+  </div>
+  <a href="https://open.kakao.com/o/suj6Q4qi" target="_blank" rel="noopener" class="book-btn">관심 등록</a>
+</div>
+
+  <!-- 에디터 기사 섹션 (Supabase에서 동적 로드) -->
+  <div class="section-title">
+    <span class="label label-editor">EDITOR</span>
+    <h2>에디터 기사</h2>
+    <a href="board.html" class="more">전체보기 &rarr;</a>
+  </div>
+  <div class="editor-layout" id="editor-articles">
+    <div class="editor-empty">기사를 불러오는 중...</div>
+  </div>
+
+  <!-- 자동 수집 뉴스 섹션 -->
+  <div class="section-title">
+    <span class="label label-auto">AUTO</span>
+    <h2>AI 뉴스 자동 수집</h2>
+    <a href="/archive/2026-10-18/index.html" class="more">오늘 아카이브 &rarr;</a>
+  </div>
+  <section class="news-grid">
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">이데일리</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNeXgtem9Oc0J6M3BtN0U4Y1c0WjBqaGJnMHpIODZsaGxlbzl6WmxJNWZYaHJkQl80UTFVNVRXb1FDcVFxNXl6RV9JdVUtR0NkQWlfSmxDZkhnWnJaTnpPVm5vcUM3QXo3MmJsNElZYXNLNkF6YlgtOEF5NlpBdUdBUA?oc=5" target="_blank" rel="noopener">&#34;AI 인프라 70조 빚 감당 되나?&#34;…코어위브 사태에 쏟아진 우려 - 이데일리</a></h3>
+        <p class="desc">&#34;AI 인프라 70조 빚 감당 되나?&#34;…코어위브 사태에 쏟아진 우려 이데일리</p>
+        <div class="meta">Sat, 17 Oct 2026 01:41:40 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9TcDNVMjhQcXhIZUhRMmlXOTZ0a1VIQUtrVHVnQlVkYS1Mbkl6Q3A1X2RSa0tCcllnSjFiSnVNRTRjWExEbEhhTmlJdVFtcmFrNEZ4Q0NlSVFMNzTSAWBBVV95cUxQX0U1TzFIZjVELWF0ZDZ0UU9IR3FiSUJlZkd6NFFLMFBHbVVVMlJ3NFNFWGhKcVZSa2wzcWJrQTBKb3A2cy1tVmdab2IzX244emhnYUFORlpPMVVjWVo3WXQ?oc=5" target="_blank" rel="noopener">고금리 부채에 흔들리는 코어위브…AI 인프라 붐의 그늘 - 연합뉴스</a></h3>
+        <p class="desc">고금리 부채에 흔들리는 코어위브…AI 인프라 붐의 그늘 연합뉴스</p>
+        <div class="meta">Fri, 16 Oct 2026 15:31:54 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">AI타임스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1yQlRIdzloZkc0clRhZy1ZbVk0eXdJdjZBMUp6c2gxY01tRk16XzBUYmtwcTNyendxcVBEaGpOVTV5QmpBeWdQbGJWYjZoTHkza1VRSmduRFlTemY0MFRmN1E4Q1piS2ZSSmc?oc=5" target="_blank" rel="noopener">[10월16일] AI 수요는 넘치는데 채권은 급락…코어위브가 드러낸 &#39;부채 위험&#39; - AI타임스</a></h3>
+        <p class="desc">[10월16일] AI 수요는 넘치는데 채권은 급락…코어위브가 드러낸 &#39;부채 위험&#39; AI타임스</p>
+        <div class="meta">Fri, 16 Oct 2026 22:00:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">지디넷코리아</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE83VmYxN2MyMDhTQWRpLW5NdG1IckpFRmJWakNUcW4zcko5QXNmbl9NNzl5Q1JmMlpva1Z0MVVDQWVtcGZPYzd6Q09tdnRxdlhYQ0NKQ2d3?oc=5" target="_blank" rel="noopener">AI에 &#39;인간 20명&#39; vs &#39;서버 1대&#39; 누구 구할래 물어보니 - 지디넷코리아</a></h3>
+        <p class="desc">AI에 &#39;인간 20명&#39; vs &#39;서버 1대&#39; 누구 구할래 물어보니 지디넷코리아</p>
+        <div class="meta">Sat, 17 Oct 2026 00:40:23 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">동아일보</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5sZS1kZUxtcndORmsxaWc2ZE9UNHppaUFsdHhqamdzekl3LWtSSEc0OHhRNkd0ME5BMDZkTXdtdkpXQmswQm41azFNQUE5d3Y1SzlYSzdjUFJRNVZ2NVJaXzl1ZEhKRzIxS01pTW1NVTYzemhNVnfSAWZBVV95cUxQYy1KejRaTjM4bXhOcjJLRE92alF1d3BWd0l3NUJnV0hVWFVUdzRybE9Fbk1rYTBSS05WR0JBM29rS0pzdUx3TEJxYmxMWmdRajBTZkNnRS1aV214c0k3cTh5YnRKakE?oc=5" target="_blank" rel="noopener">“수능 문제 보자 5초 만에 답이 눈앞에”…AI 안경 직접 써보니 - 동아일보</a></h3>
+        <p class="desc">“수능 문제 보자 5초 만에 답이 눈앞에”…AI 안경 직접 써보니 동아일보</p>
+        <div class="meta">Sat, 17 Oct 2026 22:02:08 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sOWlpazNxU2NEb0ZQUmVsWmlqMTJ4NjRtSVlWMHZHSVZaMGpGcVlxTmpieDRHWU1WNS1qaThOb0tUTWpPUV9RUkh1VHlwa3dfb203UDdRMjlfS1nSAWBBVV95cUxNYUMzN2NUVVVjam01bjFRS1d5QlczdFNHZWxLaG1IR01iQnpwR2EyMFJRSk9Sam5lTGw5TkNTbkp5OFI5U1NVUThpcUZkZEE5WFo5UVJyOUhKWld5bWo4enc?oc=5" target="_blank" rel="noopener">앤트로픽 공동창업자 &#34;AI로 4년간 美GDP 50%↑…30조→44조달러&#34; - 연합뉴스</a></h3>
+        <p class="desc">앤트로픽 공동창업자 &#34;AI로 4년간 美GDP 50%↑…30조→44조달러&#34; 연합뉴스</p>
+        <div class="meta">Sat, 17 Oct 2026 20:59:52 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">머니투데이</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5nV2h3a1FLT0ZnT0ZQOXVjV3E4LWxOU2dIbF8wUUNSeUpKMFhUZkVqN0VLTktqSDQyLUFOMDhBYm55dG9sSE5zaWZ3a2VKR0RnSnZsMDBTMW83MFNkbFJCQXhjS1BETWt10gFuQVVfeXFMT3BIdzYwSVFjSVZtOE9URHNqNFEwTWp0cXpBZC1pbFZxU1JySzRLS2RtOG1LZXRUcTc1cGtlY3pyVXg0c2NzdUxIR19aSmRaSkF0Z0xBa3R4R0lVTUQzSnpTQjhHRTFHR19LeDZHR3c?oc=5" target="_blank" rel="noopener">&#34;中, 로봇 기술로 AI 패권 경쟁에서 우위 차지할 것&#34; - 머니투데이 - 머니투데이</a></h3>
+        <p class="desc">&#34;中, 로봇 기술로 AI 패권 경쟁에서 우위 차지할 것&#34; - 머니투데이 머니투데이</p>
+        <div class="meta">Sat, 17 Oct 2026 21:00:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">KBS 뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9yM0xhWHZtUWdfd3lOQUM4NS1jRkFBQk1vNHByZHdxX0UxQ3k1UldtcXNhVjgyNFpucWR4YWU2LTQ1T3NXLU16czgzMk92NTVtQzkwUTZ5dGFuRzg?oc=5" target="_blank" rel="noopener">인간보다 잘 할까? AI 투자 결과 살펴보니 [AI너머] - KBS 뉴스</a></h3>
+        <p class="desc">인간보다 잘 할까? AI 투자 결과 살펴보니 [AI너머] KBS 뉴스</p>
+        <div class="meta">Sat, 17 Oct 2026 12:18:00 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">MBC 뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1mS1hmVmcxU0g1cUFqX0lkM2daa3hsNzJkMHk2UjZ3UGx3NTRwclpqRDNQOFpqOEtqR3JlSTZrdzhGRkZOakNVaGk0UkI2U1J0WnV5TjdySzhjakd1dk5LQjFMSFNRQUs0My1qTy1VSGpvU3pvRUN0ZdIBeEFVX3lxTE5pTXFEUTBSWktRU1d0NTJTWUhWSExNaF9OSTRmQUtydDZaVVVBMnh0QThBZmtmTU1CRDEwbjVWZ0VEdURZQjNEMmpRcnRYRW5NTlpIOTdacWo1R1Q0MmVmaks4UnpFb3RzN3E0NEh0b2JOdHQ4dHYzUw?oc=5" target="_blank" rel="noopener">&#34;AI에 돈 너무 썼나&#34; 미국 기술주 급락‥다음 주 우리 증시에도? - MBC 뉴스</a></h3>
+        <p class="desc">&#34;AI에 돈 너무 썼나&#34; 미국 기술주 급락‥다음 주 우리 증시에도? MBC 뉴스</p>
+        <div class="meta">Sat, 17 Oct 2026 11:07:47 GMT</div>
+      </div>
+    </article>
+    
+    <article class="news-card">
+      <img src="/assets/images/ai-news-img1.png" alt="AI News" class="news-card-img">
+      <div class="news-card-body">
+        <div class="kicker">연합뉴스</div>
+        <h3><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1TSXk3TExaRFBaOWZkdGZzMTJSRjA5ZVZscVBBVXZJZVhEeUh2SmtyMzFCY0JfZWE4VDA1LU5ZRzlFY2w5WWZ2QkY1eGpyaGxxQlpCUTA0eGpzWHfSAWBBVV95cUxOeTBuNE5ma1Jxb0dYSjB1MlVfMm5nUnloME04RVkyaXV2NHRrSG1XOVFfY1hXRjdJX3hLM3VlSU5NdjVEQkV2MUVoWldzcHhuUVdQc0pnZzhPQ1l6Nko3cWM?oc=5" target="_blank" rel="noopener">AI 경고등에 유가 급등까지…반도체 급락, 나스닥 2.2%↓(종합) - 연합뉴스</a></h3>
+        <p class="desc">AI 경고등에 유가 급등까지…반도체 급락, 나스닥 2.2%↓(종합) 연합뉴스</p>
+        <div class="meta">Fri, 16 Oct 2026 21:26:05 GMT</div>
+      </div>
+    </article>
+    
+  </section>
+
+
+  <!-- 네이버 뉴스 AI 기사 섹션 -->
+  <div class="section-title">
+    <span class="label" style="background:#03c75a;color:#fff">NAVER</span>
+    <h2>AI 뉴스 기사</h2>
+  </div>
+  <div class="naver-section" id="naver-articles">
+    <div style="color:rgba(255,255,255,.5);text-align:center;padding:20px">기사를 불러오는 중...</div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="social-links">
+    <a href="https://coalab.co.kr" target="_blank" rel="noopener">🏠 홈페이지</a>
+    <a href="https://blog.naver.com/valuablethings" target="_blank" rel="noopener">📝 네이버 블로그</a>
+    <a href="https://www.instagram.com/coalab_lsh/" target="_blank" rel="noopener">📷 인스타그램</a>
+    <a href="https://www.youtube.com/@%EC%98%A4%EB%8A%98%EA%B3%B5%EB%B6%80-u3k" target="_blank" rel="noopener">▶ 유튜브</a>
+  </div>
+  <div style="margin-bottom:10px">
+    <a href="https://coalab.co.kr" target="_blank" rel="noopener" style="font-weight:700;color:#2d8659">COALAB</a>
+    &nbsp;·&nbsp;AI 교육 전문 · 기업/대학/지역연계
+    &nbsp;·&nbsp;<a href="https://open.kakao.com/o/suj6Q4qi" target="_blank" rel="noopener" style="color:#2d8659">강의 문의 (카카오톡)</a>
+  </div>
+  &copy; 2026 COALAB AI뉴스 &middot; <a href="/privacy.html" style="color:var(--muted)">개인정보처리방침</a>
+</footer>
+
+<!-- Supabase: 에디터 기사 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(async function() {
+  const SUPABASE_URL = 'https://onfddgmyzkeaxidpdwra.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uZmRkZ215emtlYXhpZHBkd3JhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NzgwMDcsImV4cCI6MjA3ODI1NDAwN30.pwzxOD_6TEQT-KWZzvvlIXCnR6qr_9kN6jFf57FtAwo';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const container = document.getElementById('editor-articles');
+
+  const { data, error } = await sb
+    .from('articles')
+    .select('id, title, summary, author, category, thumbnail_url, created_at')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
+    .limit(5);
+
+  if (error || !data || data.length === 0) {
+    container.innerHTML = '<div class="editor-empty">등록된 에디터 기사가 없습니다.</div>';
+    return;
+  }
+
+  var first = data[0];
+  var firstDate = new Date(first.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+  var firstThumb = first.thumbnail_url
+    ? 'background-image:url(' + first.thumbnail_url + ');background-size:cover;background-position:center;background-color:transparent'
+    : '';
+
+  var html = '<div class="editor-main">';
+  html += '<div class="editor-main-thumb" style="' + firstThumb + '"></div>';
+  html += '<div class="editor-main-body">';
+  html += '<div class="cat">' + escapeHtml(first.category || '일반') + '</div>';
+  html += '<h3><a href="article.html?id=' + first.id + '">' + escapeHtml(first.title) + '</a></h3>';
+  if (first.summary) {
+    html += '<p class="summary">' + escapeHtml(first.summary) + '</p>';
+  }
+  html += '<div class="meta">' + escapeHtml(first.author || '관리자') + ' · ' + firstDate + '</div>';
+  html += '</div></div>';
+
+  if (data.length > 1) {
+    html += '<div class="editor-sidebar">';
+    for (var i = 1; i < data.length; i++) {
+      var article = data[i];
+      var date = new Date(article.created_at).toLocaleDateString('ko-KR', { month: 'long', day: 'numeric' });
+      html += '<a href="article.html?id=' + article.id + '" class="editor-sidebar-item">';
+      html += '<div class="cat">' + escapeHtml(article.category || '일반') + '</div>';
+      html += '<h4>' + escapeHtml(article.title) + '</h4>';
+      html += '<div class="meta">' + escapeHtml(article.author || '관리자') + ' · ' + date + '</div>';
+      html += '</a>';
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+})();
+</script>
+<!-- 네이버 AI 기사 로드 -->
+<script>
+(async function() {
+  const container = document.getElementById('naver-articles');
+  try {
+    const r = await fetch('/data/ai-articles.json?v=' + Date.now());
+    const json = await r.json();
+    const articles = json.articles || [];
+    if (!articles.length) {
+      container.innerHTML = '<div class="editor-empty">등록된 기사가 없습니다.</div>';
+      return;
+    }
+    const first = articles[0];
+    const rest = articles.slice(1);
+    let html = `<div class="naver-featured">
+      <div class="badge">${first.source || 'NAVER 뉴스'}</div>
+      <h2><a href="${first.link||'#'}" target="_blank" rel="noopener">${first.title}</a></h2>
+      <p class="body">${first.body||first.summary}</p>
+      <div class="meta">${first.topic||''} · ${first.date}</div>
+    </div>`;
+    if(rest.length){
+      html += '<div class="naver-list">' + rest.map((a,i)=>`
+        <div class="naver-list-item">
+          <span class="num">0${i+2}</span>
+          <div class="content">
+            <h4><a href="${a.link||'#'}" target="_blank" rel="noopener">${a.title}</a></h4>
+            <p>${a.body||a.summary}</p>
+            <div class="meta">${a.source||'Naver'} · ${a.date}</div>
+          </div>
+        </div>`).join('') + '</div>';
+    }
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="editor-empty">기사 로드 실패</div>';
+  }
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
